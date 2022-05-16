@@ -1,0 +1,148 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/bennett/.config/awesome/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210110.0/
+b:draw	deco/titlebar.lua	/^	function b:draw(_, cr, width, _)$/;"	f
+b:fit	deco/titlebar.lua	/^	function b:fit(_, width, _) return width, width end$/;"	f
+battery_widget.get_BAT0_device_path	lib/battery_upower.lua	/^function battery_widget.get_BAT0_device_path()$/;"	f
+battery_widget.get_device	lib/battery_upower.lua	/^function battery_widget.get_device(path)$/;"	f
+battery_widget.list_devices	lib/battery_upower.lua	/^function battery_widget.list_devices()$/;"	f
+battery_widget.new	lib/battery_upower.lua	/^function battery_widget.new(args)$/;"	f
+battery_widget.to_clock	lib/battery_upower.lua	/^function battery_widget.to_clock(seconds)$/;"	f
+blue_light_toggle	deco/leftthing.lua	/^	blue_light_toggle = toggle_button(nil, awful.button({}, 1, function()$/;"	f
+blue_light_toggle	deco/rightthing.lua	/^	blue_light_toggle = toggle_button(beautiful.lightbulb, awful.button({}, 1, function()$/;"	f
+buttons	deco/rightthing.lua	/^		buttons = awful.button({}, 1, function()$/;"	f
+buttons	deco/rightthing.lua	/^		buttons = {awful.button({}, 1, function()$/;"	f
+buttons	deco/screens.lua	/^					buttons = awful.button({}, 1, function()$/;"	f
+buttons	deco/screens.lua	/^			buttons = awful.button({}, 1, function() t:view_only() end),$/;"	f
+buttons	deco/screens.lua	/^		buttons = awful.button({}, 1, function()$/;"	f
+color	lib/color.lua	/^function color(args)$/;"	f
+create_battery_widget	deco/screens.lua	/^local function create_battery_widget()$/;"	f
+create_brightness_widget	deco/rightthing.lua	/^local function create_brightness_widget()$/;"	f
+create_callback	deco/screens.lua	/^			create_callback = function(self, c, index, objects)$/;"	f
+create_cool_clock_widget	deco/screens.lua	/^local function create_cool_clock_widget()$/;"	f
+create_left_navbar	deco/screens.lua	/^local function create_left_navbar(s)$/;"	f
+create_music_widget	deco/leftthing.lua	/^local function create_music_widget()$/;"	f
+create_music_widget	deco/rightthing.lua	/^local function create_music_widget(s_dpi)$/;"	f
+create_slider	deco/widgets/slider.lua	/^local function create_slider()$/;"	f
+create_slidey_thing	deco/screens.lua	/^local function create_slidey_thing(s)$/;"	f
+create_storage_widget	deco/rightthing.lua	/^local function create_storage_widget(text, signal)$/;"	f
+create_taglist_widgets	deco/screens.lua	/^local function create_taglist_widgets(s, slidey_thing)$/;"	f
+create_tasklist_widget	deco/screens.lua	/^local function create_tasklist_widget(s) --TODO$/;"	f
+create_titlebars	deco/titlebar.lua	/^local function create_titlebars(c)$/;"	f
+create_top_navbar	deco/screens.lua	/^local function create_top_navbar(s, rightthing)$/;"	f
+create_volume_widget	deco/rightthing.lua	/^local function create_volume_widget()$/;"	f
+create_volume_widget	deco/screens.lua	/^local function create_volume_widget()$/;"	f
+default_template	lib/battery_upower.lua	/^local function default_template()$/;"	f
+disable_wrapper	lib/playerctl/init.lua	/^local function disable_wrapper()$/;"	f
+draw	deco/screens.lua	/^		draw = function(self, context, cr, width, height)$/;"	f
+draw	deco/titlebar.lua	/^			draw = function(_, _, cr, _, height)$/;"	f
+draw_arc	deco/titlebar.lua	/^local function draw_arc(cr, height)$/;"	f
+draw_circle	deco/screens.lua	/^local function draw_circle(cr, height)$/;"	f
+draw_slidey_thing	deco/screens.lua	/^local function draw_slidey_thing(cr, height, xpos)$/;"	f
+easing	lib/rubato.lua	/^	easing = function(t) return 1 end$/;"	f
+easing	lib/rubato.lua	/^	easing = function(t) return t * t end$/;"	f
+easing	lib/rubato.lua	/^	easing = function(t) return t end$/;"	f
+easing	lib/rubato.lua	/^	easing = function(t)$/;"	f
+emit_volume_info	lib/volume.lua	/^local function emit_volume_info()$/;"	f
+enable_wrapper	lib/playerctl/init.lua	/^local function enable_wrapper(args)$/;"	f
+fit	deco/screens.lua	/^			fit = function(_, _, _, height) return height end,$/;"	f
+fit	deco/screens.lua	/^		fit = function(self, cocntext, width, height)$/;"	f
+fit	deco/titlebar.lua	/^			fit = function(_, _, w, h) return h * 3, h end,$/;"	f
+fit	deco/titlebar.lua	/^			fit = function(_, _, w, h) return h, h end,$/;"	f
+fit	deco/titlebar.lua	/^			fit = function(_, _, w, h) return w, h end,$/;"	f
+fit	deco/titlebar.lua	/^			fit = function(_, _, width, height)$/;"	f
+get_dx	lib/rubato.lua	/^local function get_dx(time, duration, intro, intro_e, outro, outro_e, m, b)$/;"	f
+get_dx	lib/rubato/timed.lua	/^local function get_dx(time, duration, intro, intro_e, outro, outro_e, m, b)$/;"	f
+get_info_dot	deco/titlebar.lua	/^local function get_info_dot(c)$/;"	f
+get_middle_widget	deco/titlebar.lua	/^local function get_middle_widget(c)$/;"	f
+get_slope	lib/rubato.lua	/^local function get_slope(i, o, t, d, F_1, F_2, b)$/;"	f
+get_slope	lib/rubato/timed.lua	/^local function get_slope(i, o, t, d, F_1, F_2, b)$/;"	f
+get_widget	deco/titlebar.lua	/^local function get_widget(r, g, b, buttons, args)$/;"	f
+h:draw	deco/widgets/slider.lua	/^	function h:draw(_, cr, width, height)$/;"	f
+h:fit	deco/widgets/slider.lua	/^	function h:fit(_, width, height) return height, height end$/;"	f
+hex_to_rgb	lib/color.lua	/^function hex_to_rgb(hex)$/;"	f
+hsl_to_rgb	lib/color.lua	/^function hsl_to_rgb(obj)$/;"	f
+leftthing:set	deco/leftthing.lua	/^	function leftthing:set(value)$/;"	f
+leftthing:set	deco/rightthing.lua	/^	function leftthing:set(value)$/;"	f
+leftthing:toggle	deco/leftthing.lua	/^	function leftthing:toggle()$/;"	f
+leftthing:toggle	deco/rightthing.lua	/^	function leftthing:toggle()$/;"	f
+mt.__call	lib/battery_upower.lua	/^function mt.__call(self, ...)$/;"	f
+mt.__index	lib/color.lua	/^	mt.__index = function(self, key)$/;"	f
+mt.__newindex	lib/color.lua	/^	mt.__newindex = function(self, key, value)$/;"	f
+mt:__index	lib/rubato.lua	/^	function mt:__index(key)$/;"	f
+mt:__index	lib/rubato/timed.lua	/^	function mt:__index(key)$/;"	f
+mt:__newindex	lib/rubato.lua	/^	function mt:__newindex(key, value)$/;"	f
+mt:__newindex	lib/rubato/timed.lua	/^	function mt:__newindex(key, value)$/;"	f
+obj.subscribe_callback	lib/rubato.lua	/^	obj.subscribe_callback = function(func) func(obj.pos, time, dt) end$/;"	f
+obj.subscribe_callback	lib/rubato/timed.lua	/^	obj.subscribe_callback = function(func) func(obj.pos, time, dt) end$/;"	f
+obj:_hex_to_rgb	lib/color.lua	/^	function obj:_hex_to_rgb()$/;"	f
+obj:_hsl_to_rgb	lib/color.lua	/^	function obj:_hsl_to_rgb()$/;"	f
+obj:_rgb_to_hex	lib/color.lua	/^	function obj:_rgb_to_hex()$/;"	f
+obj:_rgb_to_hsl	lib/color.lua	/^	function obj:_rgb_to_hsl()$/;"	f
+obj:abort	lib/rubato.lua	/^	function obj:abort()$/;"	f
+obj:abort	lib/rubato/timed.lua	/^	function obj:abort()$/;"	f
+obj:fire	lib/rubato.lua	/^	function obj:fire(...) for _, func in pairs(subscribed) do func(...) end end$/;"	f
+obj:fire	lib/rubato/timed.lua	/^	function obj:fire(...) for _, func in pairs(subscribed) do func(...) end end$/;"	f
+obj:initial	lib/rubato.lua	/^		function obj:initial() return obj._initial end$/;"	f
+obj:initial	lib/rubato/timed.lua	/^		function obj:initial() return obj._initial end$/;"	f
+obj:last	lib/rubato.lua	/^		function obj:last() return obj._last end$/;"	f
+obj:last	lib/rubato/timed.lua	/^		function obj:last() return obj._last end$/;"	f
+obj:reset	lib/rubato.lua	/^	function obj:reset(func)$/;"	f
+obj:reset	lib/rubato/timed.lua	/^	function obj:reset()$/;"	f
+obj:set	lib/rubato.lua	/^	if obj.awestore_compat then function obj:set(target) set(target) end end$/;"	f
+obj:set	lib/rubato/timed.lua	/^	if obj.awestore_compat then function obj:set(target) set(target) end end$/;"	f
+obj:set_no_update	lib/color.lua	/^	function obj:set_no_update(key, value)$/;"	f
+obj:subscribe	lib/rubato.lua	/^	function obj:subscribe(func)$/;"	f
+obj:subscribe	lib/rubato/timed.lua	/^	function obj:subscribe(func)$/;"	f
+obj:unsubscribe	lib/rubato.lua	/^	function obj:unsubscribe(func)$/;"	f
+obj:unsubscribe	lib/rubato/timed.lua	/^	function obj:unsubscribe(func)$/;"	f
+rgb_to_hex	lib/color.lua	/^function rgb_to_hex(obj)$/;"	f
+rgb_to_hsl	lib/color.lua	/^function rgb_to_hsl(obj)$/;"	f
+round	deco/screens.lua	/^local function round(x, p)$/;"	f
+round	lib/color.lua	/^local function round(x, p) $/;"	f
+set	lib/rubato.lua	/^	local function set(target_new)$/;"	f
+set	lib/rubato/timed.lua	/^	local function set(target_new)$/;"	f
+set_def_rate	lib/rubato.lua	/^local function set_def_rate(rate)$/;"	f
+set_wallpaper	deco/screens.lua	/^local function set_wallpaper(s)$/;"	f
+shape	deco/screens.lua	/^				shape = function(cr, width, height) return gears.shape.rounded_rect(cr, width, height, dpi(4/;"	f
+shape	deco/screens.lua	/^			shape = function(cr, width, height) return gears.shape.rounded_rect(cr, width, height, dpi(3)/;"	f
+simulate_easing	lib/rubato.lua	/^local function simulate_easing(pos, duration, intro, intro_e, outro, outro_e, m, b, dt)$/;"	f
+simulate_easing	lib/rubato/timed.lua	/^local function simulate_easing(pos, duration, intro, intro_e, outro, outro_e, m, b, dt)$/;"	f
+stdout	deco/rightthing.lua	/^		stdout = function(out)$/;"	f
+stdout	lib/volume.lua	/^        stdout = function(line) emit_volume_info() end$/;"	f
+subscribable	lib/rubato.lua	/^local function subscribable(obj)$/;"	f
+subscribable	lib/rubato/timed.lua	/^local function subscribable(args)$/;"	f
+subscribed	deco/leftthing.lua	/^		subscribed = function(pos)$/;"	f
+subscribed	deco/rightthing.lua	/^		subscribed = function(pos)$/;"	f
+subscribed	deco/screens.lua	/^		subscribed = function(pos) a1.value = 15+pos\/59*100*0.85 end$/;"	f
+subscribed	deco/screens.lua	/^		subscribed = function(pos) a2.value = 11.25+pos\/59*100*0.8975 end$/;"	f
+subscribed	deco/screens.lua	/^		subscribed = function(pos) a3.value = 7.5+pos\/11*100*0.925 end$/;"	f
+target	lib/rubato.lua	/^local function target(obj)$/;"	f
+timed	lib/rubato.lua	/^local function timed(args)$/;"	f
+timed	lib/rubato/timed.lua	/^local function timed(args)$/;"	f
+toggle_button	deco/leftthing.lua	/^local function toggle_button(icon, button, reset_on_leave)$/;"	f
+toggle_button	deco/rightthing.lua	/^local function toggle_button(icon, button, reset_on_leave)$/;"	f
+update_rgb	deco/screens.lua	/^		local function update_rgb(rgb)$/;"	f
+update_rgb	deco/titlebar.lua	/^local function update_rgb(w, r, g, b)$/;"	f
+update_slidey_thing	deco/screens.lua	/^local function update_slidey_thing(w, dim, pos)$/;"	f
+w.buttons	deco/screens.lua	/^		w.buttons = awful.button({}, 1, function() t:view_only() end)$/;"	f
+w:draw	deco/screens.lua	/^			function w:draw(_, cr, _, height)$/;"	f
+w:draw	deco/screens.lua	/^		function w:draw(_, cr, _, height)$/;"	f
+w:draw	deco/screens.lua	/^	function w:draw(_, cr, _, height)$/;"	f
+w:draw	deco/titlebar.lua	/^	function w:draw(_, cr, _, height)$/;"	f
+w:draw	deco/titlebar.lua	/^	function w:draw(_, cr, width, _)$/;"	f
+w:draw	deco/widgets/slider.lua	/^	function w:draw(_, cr, width, height)$/;"	f
+w:fit	deco/screens.lua	/^		function w:fit(_, _, height) return height, height end$/;"	f
+w:fit	deco/titlebar.lua	/^	function w:fit(_, width, _) return width, width end$/;"	f
+w:fit	deco/widgets/slider.lua	/^	function w:fit(_, width, height) return width, height end$/;"	f
+w:update_colors	deco/leftthing.lua	/^	function w:update_colors()$/;"	f
+w:update_colors	deco/rightthing.lua	/^	function w:update_colors()$/;"	f
+widget.device.on_notify	lib/battery_upower.lua	/^    widget.device.on_notify = function(d)$/;"	f
