@@ -1,6 +1,0 @@
-[KNewStuff3]
-ProvidersUrl=https://autoconfig.kde.org/ocs/providers.xml
-Categories=Cantor (Maxima),Cantor (Sage),Cantor (KAlgebra),Cantor (Qalculate),Cantor (Python),Cantor (Scilab),Cantor (Octave),Cantor (R),Cantor (Lua),Cantor (Julia)
-TargetDir=cantor/examples
-Uncompress=never
-CustomName=true

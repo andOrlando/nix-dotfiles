@@ -1027,6 +1027,7 @@ local ui = {
 			shape = gears.shape.rounded_rect,
 			widget = coolwidget.margin.background.align.vertical
 		}
+		naughty.notify {text="hi8"}
 
 		local container = w:get_children_by_id("container")[1]
 		local tallcontainer = w:get_children_by_id("tallcontainer")[1]
@@ -1136,11 +1137,15 @@ awful.screen.connect_for_each_screen(function(screen)
 		awful.tag.add(tostring(i), { layout = awful.layout.suit.tile, })
 	end
 	gears.wallpaper.set("#2e323a")
+
+	local giraffe = wibox.widget.imagebox(images.giraffe)
+
 	awful.popup {
-		widget = {
+		widget = giraffe,
+		--[[{
 			image = images.giraffe,
 			widget = wibox.widget.imagebox
-		},
+		},]]
 		maximum_height = dpi(400),
 		maximum_width = dpi(400),
 		bg = "#00000000",

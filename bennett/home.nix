@@ -64,7 +64,7 @@ in
     lutris           # gaming
     osu-lazer        # more gaming
     muse             # DAW
-    signal-desktop   # "chat for ~gamers~ privacy nerds"
+    pkgs.unstable.signal-desktop   # "chat for ~gamers~ privacy nerds"
     xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording

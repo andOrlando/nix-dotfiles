@@ -2613,6 +2613,7 @@ handleMathRender	programs/cantor/cantor-21.12.2/src/markdownentry.cpp	/^void Mar
 handleMathRender	programs/cantor/cantor-21.12.2/src/textentry.cpp	/^void TextEntry::handleMathRender(QSharedPointer<MathRenderResult> result)$/;"	f	class:TextEntry
 handleParenCompletionWithType	programs/cantor/cantor-21.12.2/src/lib/completionobject.cpp	/^void CompletionObject::handleParenCompletionWithType(IdentifierType type)$/;"	f	class:CompletionObject
 handlePressedKey	bennett/qutebrowser/greasemonkey/VideoSpeed.js	/^function handlePressedKey(event) {$/;"	f
+handlePressedKey	bennett/qutebrowser/greasemonkey/umassarrowgood.js	/^function handlePressedKey(event) {$/;"	f
 handleSettingsChanges	programs/cantor/cantor-21.12.2/src/worksheet.cpp	/^void Worksheet::handleSettingsChanges()$/;"	f	class:Worksheet
 handleTabPress	programs/cantor/cantor-21.12.2/src/commandentry.cpp	/^void CommandEntry::handleTabPress()$/;"	f	class:CommandEntry
 hasActionBar	programs/cantor/cantor-21.12.2/src/worksheetentry.cpp	/^bool WorksheetEntry::hasActionBar()$/;"	f	class:WorksheetEntry

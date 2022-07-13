@@ -1,8 +1,0 @@
-<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="cantor_runscript_assistant" version="1">
-<MenuBar>
-  <Menu name="file">
-    <Action name="runscript_assistant"/>
-  </Menu>
-</MenuBar>
-</kpartgui>

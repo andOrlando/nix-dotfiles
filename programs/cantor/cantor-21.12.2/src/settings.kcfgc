@@ -1,5 +1,0 @@
-File=cantor.kcfg
-ClassName=Settings
-Singleton=true
-Visibility=Q_DECL_EXPORT
-Mutators=true
