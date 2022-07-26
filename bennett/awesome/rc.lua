@@ -14,11 +14,33 @@ local GLib = require("lgi").GLib
 local cairo = require("lgi").cairo
 naughty.notify {text="reloaded config"}
 
+-- error handling before I load handwritten libraries lol
+-- can't trust myself lol
+if awesome.startup_errors then naughty.notify({
+	preset = naughty.config.presets.critical,
+	title = "Oops, there were errors during startup!",
+	text = awesome.startup_errors }) end
+
+local in_error = false
+awesome.connect_signal("debug::error", function (err)
+	-- Make sure we don't go into an endless error loop
+	if in_error then return end
+	in_error = true
+
+	naughty.notify({ preset = naughty.config.presets.critical,
+		title = "Oops, an error happened!",
+		text = tostring(err) })
+	in_error = false
+end)
+function TEST(str) naughty.notify {text=tostring(str), --[[timeout=20]]} end
+
+
 --libraries
 local rubato = require "lib.rubato"
 local color = require "lib.color"
 local slider = require "lib.awesome-widgets.slider"
 local coolwidget = require "lib.awesome-widgets.coolwidget"
+local recycler = require "lib.awesome-widgets.recycler"
 
 --load other important stuff
 require "awful.hotkeys_popup"
@@ -32,31 +54,12 @@ require "lib.deviceinfo"
 
 require "binding.bindings_key"
 
--- error handling
-if awesome.startup_errors then naughty.notify({
-	preset = naughty.config.presets.critical,
-	title = "Oops, there were errors during startup!",
-	text = awesome.startup_errors })
-end
-
-local in_error = false
-awesome.connect_signal("debug::error", function (err)
-	-- Make sure we don't go into an endless error loop
-	if in_error then return end
-	in_error = true
-
-	naughty.notify({ preset = naughty.config.presets.critical,
-		title = "Oops, an error happened!",
-		text = tostring(err) })
-	in_error = false
-end)
-
 --if cpu is at like 98% then make rubato instant
 awesome.connect_signal("signal::cpu", function(percent) RUBATO_MANAGER.timed.override.instant = percent > 95 end)
 
 -- does some more stuff
 awesome.register_xproperty("WM_CLASS", "string") --picom stuff?
-awful.spawn.with_shell "if [ ! $(pgrep picom) ]; then picom; fi"
+awful.spawn.with_shell "sh -c \"if [ ! $(pgrep picom) ]; then picom; fi\""
 beautiful.init({
 	hotkeys_border_width = 0,
 	hotkeys_label_fg = "#000000",
@@ -127,19 +130,6 @@ TAGLIST_ICON_THEME="Papirus"
 
 --searches through likely directories for the theme folder in question
 --this works on nixos so it'll probably work on just about anything
-local function determine_icon_dir(theme_name)
-    local dir = GLib.build_filenamev({GLib.get_home_dir(), ".icons"}).."/"..theme_name
-	if gears.filesystem.dir_readable(dir) then return dir end
-
-    dir = GLib.build_filenamev({GLib.get_user_data_dir(), "icons"}).."/"..theme_name
-	if gears.filesystem.dir_readable(dir) then return dir end
-
-    for _,v in ipairs(GLib.get_system_data_dirs()) do
-        dir = GLib.build_filenamev({v, "icons"}).."/"..theme_name
-		if gears.filesystem.dir_readable(dir) then return dir end
-    end
-end
-
 local icon_directories = setmetatable({}, {
 	__index=function(self, value)
 		if rawget(self, value) then return rawget(self, value) end
@@ -176,6 +166,7 @@ local function set_client_icon(client)
 	if icon then client.icon = icon._native end
 end
 
+--TODO: fix not working for qutebrowser on new laptop for some reason
 -- does client stuff
 client.connect_signal("manage", function (client)
 	-- Prevent clients from being unreachable after screen count changes.
@@ -296,14 +287,14 @@ local ui = {
 	create = function(ui, screen)
 		ui.screen = screen
 		ui:create_sidebar()
-		ui:create_tasklist()
-		ui:create_tasklist_dropdown()
+		--ui:create_tasklist()
+		--ui:create_tasklist_dropdown()
 		ui:create_taglist()
 	end,
 
-	unused = {},
-	dropdown = nil,
-	request_tasklist_item = function(ui, client)
+	--unused = {},
+	--dropdown = nil,
+	--[[request_tasklist_item = function(ui, client)
 		local widget
 		if #ui.unused == 0 then --if there are no items, create one
 			widget = ui:create_tasklist_item()
@@ -311,10 +302,9 @@ local ui = {
 		else widget = table.remove(ui.unused, 1) end --otherwise pop from unused
 		widget:create(client) --set display values for widget
 		return widget
-	end,
+	end,]]
+
 	create_tasklist_item = function(ui)
-		--these values are used for redrawing since both modify position
-		local position, inout = 0, 0
 
 		--placeholder textbox for finding text size
 		local textsize = wibox.widget {
@@ -378,61 +368,19 @@ local ui = {
 
 		--animates it with the sidebar
 		ui.sidebar_timed:subscribe(function(pos)
-			if inout == 0 then return end
+			if w.opacity == 0 then return end
 			w.width = pos * dpi(340) + dpi(40)
 		end)
 
-		--redraws the widget
-		function w:redraw()
-			self.opacity = inout
-			ui.homepage:move_widget(self, {x=dpi(15), y=position - (1-inout) * dpi(8)})
-			ui.homepage:emit_signal("widget::redraw_needed")
-		end
-
-		--rubato timers for position and inout aniamtions respectively
-		local position_timed = rubato.timed {
-			duration = 0.3,
-			intro = 0.3,
-			prop_intro = true,
-			subscribed = function(pos) position = pos; w:redraw() end
-		}
-		local inout_timed = rubato.timed {
-			duration = 0.1,
-			intro = 0.3,
-			prop_intro = true,
-			subscribed = function(pos) inout = pos; w:redraw() end
-		}
-
-		--animates in and out
-		--also has to update width when showing
-		function w:show()
-			inout_timed.target = 1
-			self.width = dpi(40) + dpi(340) * ui.sidebar_timed.pos
-		end
-		function w:hide() inout_timed.target = 0 end
-
 		--instantiates or destroys (sends to unused) a widget
-		function w:create(client)
+		function w:populate(client)
 			self.client = client
-			table.remove_element(ui.unused, self)
-
 			text.text = client.name
+
 			if client then icon:set_client(client) end
 			client:connect_signal("property::name", function() text.text = client.name end)
-			client:connect_signal("property::minimized", function() end)
+			client:connect_signal("property::minimized", function() --[[TODO: do something]] end)
 
-			self:show()
-		end
-		function w:destroy()
-			inout_timed.target = 0
-			table.insert(ui.unused, self)
-		end
-
-		--either moves with animation or without to target
-		function w:move(y) position_timed.target = y end
-		function w:set(y)
-			position_timed.pos = y
-			ui.homepage:move_widget(self, {x=10, y=y})
 		end
 
 		local drag_trans = color.transition(color.color{hex="#444956"}, color.color{hex="#444956"} + "0.06l")
@@ -455,13 +403,9 @@ local ui = {
 			drag_timer:stop()
 		end)
 
-		--mousegrabber for hover thing
-		--drag.buttons = awful.button({}, 1, function()
-		--	naughty.notify {text="heyo"}
-		--end)
-
 		return w
 	end,
+
 	create_tasklist_dropdown_item = function(text, image, func)
 		local item_trans = color.transition(color.color{hex="#444956"} + "0.03l", color.color{hex="#444956"} + "0.05l")
 		local w = wibox.widget {
@@ -556,60 +500,32 @@ local ui = {
 
 	end,
 	create_tasklist = function(ui)
-		local tasklist_indices = {} --a table containing tags as keys and tables as values
-		local last_tag = ui.screen.selected_tag --the tag selected before the current one
+		local layout = recycler(function() return ui:create_tasklist_item() end, {
+			pady = 6,
+			padx = 2,
+			spacing = 8,
+		})
 
-		--generate tables for tasklist_indices
-		for _, tag in pairs(ui.screen.tags) do tasklist_indices[tag] = {} end
+		client.connect_signal("tagged", function(client)
+			if not table.index(ui.screen.selected_tag:clients(), client) then return end
+			layout:add(client)
+		end)
+		client.connect_signal("untagged", function(client)
+			if table.index(ui.screen.selected_tag:clients(), client) then return end
+			layout:remove(layout:get_by_args(client))
+		end)
+		ui.screen:connect_signal("tag::history::update", function(screen)
+			layout:set_children(table.unpack(screen.selected_tag:clients()))
 
-		--called when a client is changed or moved (tagged/untagged)
-		local function update_tasklist()
-			local tag = ui.screen.selected_tag --ease of use
-			local clients = tag:clients() --ease of use
+		end)
 
-			--remove old clients
-			for _, widget in pairs(tasklist_indices[tag]) do
-				if not table.index(clients, widget.client) then
-					widget:destroy()
-					table.remove_element(tasklist_indices[tag], widget)
-			end end
-
-			--add new clients
-			for _,client in pairs(clients) do
-				if not table.index(table.map(tasklist_indices[tag],
-						function(w) return w.client end), client) then
-
-					local w = ui:request_tasklist_item(client)
-					table.insert(tasklist_indices[tag], w)
-					w:set(table.index(tasklist_indices[tag], w) * dpi(46) - dpi(42))
-			end end
-
-			--update widget position
-			for _,widget in pairs(tasklist_indices[tag]) do
-				widget:move(table.index(tasklist_indices[tag], widget) * dpi(46) - dpi(42)) end
-		end
-
-		--TODO: remove old old widgets (last_last_tag kinda thing)
-		local function switch_tag()
-			local tag = ui.screen.selected_tag --ease of use
-			--hitting <mod-1> <mod-1> triggers the singal
-			if tag == last_tag then return end
-
-			for _,w in pairs(tasklist_indices[last_tag]) do w:hide() end
-			for _,w in pairs(tasklist_indices[tag]) do w:show() end
-			update_tasklist()
-
-			last_tag = tag
-		end
-
-		client.connect_signal("tagged", update_tasklist)
-		client.connect_signal("untagged", update_tasklist)
-		ui.screen:connect_signal("tag::history::update", switch_tag)
-
+		return layout
 	end,
 
 	create_taglist = function(ui)
 		local ti = {} --inverse taglist
+		local layout = wibox.layout.manual()
+		layout.forced_width = dpi(14)
 
 		for i, tag in ipairs(ui.screen.tags) do
 			ti[tag] = i --add to inverse taglist
@@ -627,7 +543,7 @@ local ui = {
 				shape = gears.shape.rounded_rect,
 				widget = wibox.container.background
 			}
-			ui.homepage:add_at(w, {x=dpi(4), y=i*dpi(36)-dpi(30)})
+			layout:add_at(w, {x=dpi(4), y=i*dpi(36)-dpi(30)})
 
 			local populated_trans = color.transition(color.color{hex="#444956"}, color.color{hex="#444956"} + "0.2l")
 			local populated_timed = rubato.timed {
@@ -652,12 +568,13 @@ local ui = {
 			shape = gears.shape.rounded_rect,
 			widget = wibox.container.background
 		}
-		ui.homepage:add_at(w, {x=0, y=0})
+		layout:add_at(w, {x=0, y=0})
 		local pos_timed = rubato.timed {
 			pos = 1,
 			duration = 0.3,
 			intro = 0.1,
-			subscribed = function(pos) ui.homepage:move_widget(w, {x=dpi(3), y=pos*dpi(36)-dpi(30)}) end
+			debug = true,
+			subscribed = function(pos) layout:move_widget(w, {x=dpi(3), y=pos*dpi(36)-dpi(30)}) end
 		}
 		local pos_hover_trans = color.transition(color.color{hex="#489568"}, color.color{hex="#489568"} + "0.06l")
 		local pos_hover_timed = rubato.timed {
@@ -671,6 +588,8 @@ local ui = {
 		end)
 		w:connect_signal("mouse::enter", function() pos_hover_timed.target = 1 end)
 		w:connect_signal("mouse::leave", function() pos_hover_timed.target = 0 end)
+
+		return layout
 	end,
 
 	widgets = {
@@ -759,17 +678,6 @@ local ui = {
 			return w
 		end,
 
-		unused = {},
-		panel = nil,
-		request_notification_item = function(self, notification)
-			local widget
-			if #self.unused == 0 then --if there are no items, create one
-				widget = self:create_notification_item()
-				self.panel:add_at(widget, {x=0,y=0})
-			else widget = table.remove(self.unused, 1) end --otherwise pop from unused
-			widget:create(notification)
-			return widget
-		end,
 		create_notification_item = function(widgets)
 			--[[	image title 			category appicon
 					|    | message
@@ -822,10 +730,12 @@ local ui = {
 						{
 							image = images.drag,
 							widget = wibox.widget.imagebox,
+							forced_height = dpi(24),
+							forced_width = dpi(24),
 							id = "app_icon"
 						},
 						spacing = dpi(5),
-						valign = "left",
+						valign = "right",
 						halign = "top",
 						layout = coolwidget.place.fixed.horizontal
 					},
@@ -834,7 +744,10 @@ local ui = {
 				},
 				bg = "#000000",
 				shape = gears.shape.rounded_rect,
-				margins = dpi(4),
+				margins = dpi(8),
+				left = dpi(16),
+				right = dpi(16),
+				forced_width = dpi(380),
 				expand = "explast",
 				layout = coolwidget.background.margin.align.horizontal
 			}
@@ -846,21 +759,7 @@ local ui = {
 			local image_container = w:get_children_by_id("image_container")[1]
 			local main = w:get_children_by_id("main")[1]
 
-			--rubato timers for position and inout aniamtions respectively
-			local position_timed = rubato.timed {
-				duration = 0.3,
-				intro = 0.3,
-				prop_intro = true,
-				subscribed = function(pos) position = pos; w:redraw() end
-			}
-			local inout_timed = rubato.timed {
-				duration = 0.1,
-				intro = 0.3,
-				prop_intro = true,
-				subscribed = function(pos) inout = pos; w:redraw() end
-			}
-
-			function w:create(notif)
+			function w:populate(notif)
 				--urgency	string		The notification urgency level.
 				--font		string?		Notification font.
 				--app_name	string		The application name specified by the notification.
@@ -868,7 +767,7 @@ local ui = {
 				title.text = notif.title
 				message.text = notif.message
 
-				w:set_widgets { notif.image and image_container, main }
+				w:set_children { notif.image and image_container, main }
 				image.image = notif.image
 
 				app_icon.image = get_icon(TAGLIST_ICON_THEME, "128x128/apps/"..notif.app_name..".svg")
@@ -882,33 +781,29 @@ local ui = {
 				elseif category:sub(1, 8) == "transfer" then category.image = get_icon("Papirus-Dark", "symbolic/places/folder-download-symbolic.svg")
 				end
 
-				naughty.notify {text=table:tostringdeep(notif.actions or {})}
+				--print(table.tostring(notif.actions))
+				--print(notif)
+				--if notif.actions[1] then notif.actions[1]:invoke(notif) end
 			end
-			function w:destroy()
-				inout_timed.target = 0
-				table.insert(widgets.unused, self)
-			end
-			function w:show()
-				inout_timed.target = 1
-			end
-			function w:hide()
-				inout_timed.target = 0
-			end
-			function w:move() end
-			function w:set() end
-			function w:redraw() end
 
 			return w
 		end,
-		create_notification_center = function(self)
-			self.panel = wibox.layout.manual
+		create_notification_center = function(widgets)
+			local layout = recycler(function() return widgets:create_notification_item() end, {
+				padx = 0,
+				pady = 8,
+				spacing = 8,
+				--orientation = recycler.UP
+			})
+			--local layout = recycler(function() local w = wibox.widget.textbox(); function w:populate(notif) w.text = notif.title end; return w end)
 
 			naughty.connect_signal("added", function(notif)
-				
+				layout:add(notif)
 			end)
 
-
-
+			return layout
+			--return wibox.widget.textbox("hi")
+			--return require "not_center"
 		end,
 	},
 	create_info_widgets = function(ui)
@@ -922,8 +817,6 @@ local ui = {
 		brightness--------------------------------------
 
 		wifi		mute		bluelight	theme
-		|		  | |		  | |		  | |		  |
-		|_________| |_________| |_________| |_________|
 
 		bluetooth	screenoff 	record		screenshot
 		|		  | |		  | |		  | |		  |
@@ -1010,7 +903,7 @@ local ui = {
 					},
 					layout = wibox.layout.fixed.vertical
 				},
-				wibox.widget.textbox("notifications"),
+				ui.widgets:create_notification_center(),
 				{
 					wibox.widget.textbox("music"),
 					bg = "#ff0000",
@@ -1027,7 +920,6 @@ local ui = {
 			shape = gears.shape.rounded_rect,
 			widget = coolwidget.margin.background.align.vertical
 		}
-		naughty.notify {text="hi8"}
 
 		local container = w:get_children_by_id("container")[1]
 		local tallcontainer = w:get_children_by_id("tallcontainer")[1]
@@ -1104,7 +996,12 @@ local ui = {
 		}
 		ui.sidebar = awful.popup {
 			widget={
-				ui.homepage,
+				--ui.homepage,
+				{
+					ui:create_taglist(),
+					ui:create_tasklist(),
+					layout = wibox.layout.align.horizontal
+				},
 				ui.dropdowns,
 				{
 					nil,
@@ -1133,19 +1030,13 @@ local ui = {
 
 -- does screen stuff
 awful.screen.connect_for_each_screen(function(screen)
-	for i = 1, 9, 1 do
-		awful.tag.add(tostring(i), { layout = awful.layout.suit.tile, })
-	end
+	for i=1,9 do awful.tag.add(tostring(i), { layout=awful.layout.suit.tile }) end
+	screen.tags[1]:view_only()
+
+	--wallpaper and giraffe
 	gears.wallpaper.set("#2e323a")
-
-	local giraffe = wibox.widget.imagebox(images.giraffe)
-
 	awful.popup {
-		widget = giraffe,
-		--[[{
-			image = images.giraffe,
-			widget = wibox.widget.imagebox
-		},]]
+		widget = wibox.widget.imagebox(images.giraffe),
 		maximum_height = dpi(400),
 		maximum_width = dpi(400),
 		bg = "#00000000",
@@ -1154,7 +1045,21 @@ awful.screen.connect_for_each_screen(function(screen)
 		screen = screen
 	}
 
-	screen.tags[1]:view_only()
-
+	--create screen
 	ui:create(screen)
 end)
+
+--awful.spawn('dunstify -A yes,Yes -A no,No -a discord -i ~/Pictures/insane.png "heyo" "this is a message"')
+
+--[[
+local on = true
+naughty:connect_signal("added", function(notif)
+
+	if on then
+		on = false
+		naughty.notify {text="dog"}
+		on = true
+	end
+end)
+]]
+

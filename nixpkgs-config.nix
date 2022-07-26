@@ -8,6 +8,5 @@ in
     unstable = import unstableNixosTarball { config = { allowUnfree = true; }; };
     nur = import nurTarball { inherit pkgs; };
   };
-
   allowUnfree = true;
 }

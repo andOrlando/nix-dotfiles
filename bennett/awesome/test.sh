@@ -1,3 +1,4 @@
+#!/bin/sh
 TMP=$(mktemp -d)
 
 trap "rm -r $TMP" SIGINT SIGTERM EXIT SIGKILL
@@ -8,7 +9,7 @@ ln -s `pwd` $TMP/awesome
 exec 6>$TMP/display
 
 #Xephyr -displayfd 6 -s 10000 -ac -noreset -screen 1280x720 > $LOG 2> $LOG_ERROR &
-Xephyr -displayfd 6 -s 10000 -ac -noreset -screen 1280x720 >/dev/null 2>&1 &
+Xephyr -displayfd 6 -s 10000 -ac -noreset -screen 1280x720
 
 while [ ! `cat $TMP/display` ]; do sleep 0.1; done
 exec 6>&-

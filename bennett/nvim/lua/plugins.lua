@@ -16,7 +16,7 @@ g.chadtree_settings = chadtree_settings
 
 --Treesitter stuff
 require("nvim-treesitter.configs").setup {
-	ensure_installed = "maintained",
+	ensure_installed = "all",
 	highlight = {
 		enable = true
 	}
@@ -32,7 +32,6 @@ require("Comment").setup()
 local cmp = require "cmp"
 cmp.setup {
 	completion = { completeopt = "menuone,noselect" },
-	snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
 	formatting = {
 		format = function(entry, vim_item)
 			local icons = {
@@ -96,6 +95,7 @@ cmp.setup {
 			select = true,
 		},
 	},
+	snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
 	sources = {
 		{ name = "path" },
 		{ name = "calc" },
@@ -123,7 +123,7 @@ vim.api.nvim_set_keymap("i", "<s-tab>", "<cmd>call v:lua.tab_map(v:false)<cr>", 
 --g.copilot_no_tab_map = true --fix tab map thing
 
 --lspsaga
-local saga = require 'lspsaga'
+--[[local saga = require 'lspsaga'
 saga.init_lsp_saga {border_style="none"}
 
-vim.api.nvim_set_keymap("n", "ca", "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap("n", "ca", "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", {noremap=true, silent=true})]]

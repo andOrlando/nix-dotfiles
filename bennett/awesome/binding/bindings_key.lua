@@ -76,7 +76,10 @@ local globalkeys = gears.table.join(
 			local c = awful.client.restore()
 			if c then c:emit_signal("request::activate", "key.unminimize", {raise=true}) end
 		end,
-		{description="Unminimize all clients", group="aWM: Client"})
+		{description="Unminimize all clients", group="aWM: Client"}),
+
+	-- debugging rubato
+	awful.key({mk}, "w", function() require("lib.rubato").manager.timed.override.is_instant = true end)
 
 	--- Bad ones that are useful to keep around
 	--awful.key({mk}, "Left", awful.tag.viewprev)
