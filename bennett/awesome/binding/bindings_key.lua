@@ -4,6 +4,7 @@ local vars = require("main.variables")
 ---@diagnostic disable-next-line: unused-local
 local mymainmenu = require("deco.menu")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local naughty = require "naughty"
 require("awful.hotkeys_popup.keys")
 
 local mk = vars.modkey
@@ -78,8 +79,16 @@ local globalkeys = gears.table.join(
 		end,
 		{description="Unminimize all clients", group="aWM: Client"}),
 
-	-- debugging rubato
-	awful.key({mk}, "w", function() require("lib.rubato").manager.timed.override.is_instant = true end)
+	awful.key({mk}, "Tab", function() end),
+
+	-- debugging
+	awful.key({mk}, "w", function() naughty.notification {title="dog1",
+		text="this is some notification txext lorem ipsum dolor sit amet heyoooooo in the jungle the mighty jungle the lion sleeps tonight awimboweh awimboweh",
+		category="device",
+		icon=require"images".giraffe,
+		app_name="discord",
+		actions={naughty.action{name="Option 1"}, naughty.action{name="Option 2"}}
+	} end)
 
 	--- Bad ones that are useful to keep around
 	--awful.key({mk}, "Left", awful.tag.viewprev)
@@ -87,11 +96,6 @@ local globalkeys = gears.table.join(
 	--awful.key({mk}, "w", function() mymainmenu:show() end)
 	--awful.key({mk, "Control"}, "j", function() awful.screen.focus_relative(1) end)
 	--awful.key({mk, "Control"}, "k", function() awful.screen.focus_relative(-1) end)
-	--awful.key({mk}, "Tab",
-	--	function()
-	--		awful.client.focus.history.previous()
-	--		if client.focus then client.focus:raise() end
-	--	end end,) --Goes back one client
 	--awful.key({mk}, "space", function() awful.layout.inc(1) end)
 	--awful.key({mk, "Shift"}, "space" function() awful.layout.inc(-1) end)
 

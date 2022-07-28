@@ -41,6 +41,8 @@ local color = require "lib.color"
 local slider = require "lib.awesome-widgets.slider"
 local coolwidget = require "lib.awesome-widgets.coolwidget"
 local recycler = require "lib.awesome-widgets.recycler"
+local bling = require "lib.bling"
+local playerctl = bling.signal.playerctl.lib()
 
 --load other important stuff
 require "awful.hotkeys_popup"
@@ -48,7 +50,6 @@ require "awful.hotkeys_popup.keys"
 require "awful.autofocus"
 
 require "lib.volume"
-require("lib.playerctl").enable { backend = "playerctl_lib" }
 require "lib.deviceinfo"
 --require "lib.battery"
 
@@ -287,9 +288,6 @@ local ui = {
 	create = function(ui, screen)
 		ui.screen = screen
 		ui:create_sidebar()
-		--ui:create_tasklist()
-		--ui:create_tasklist_dropdown()
-		ui:create_taglist()
 	end,
 
 	--unused = {},
@@ -672,30 +670,175 @@ local ui = {
 			return w
 		end,
 		create_music_widget = function()
-			local w = {
-
-			}
-			return w
-		end,
-
-		create_notification_item = function(widgets)
-			--[[	image title 			category appicon
-					|    | message
-					|____| button button button button button 		]]
-			local position, inout = 0, 0
-
 			local w = wibox.widget {
 				{
 					{
-						image = images.drag,
-						widget = wibox.widget.imagebox,
-						id = "image"
+						{
+							image = images.giraffe,
+							forced_width = dpi(100),
+							forced_height = dpi(100),
+							widget = wibox.widget.imagebox,
+							id = "image"
+						},
+						margins = dpi(8),
+						shape = gears.shape.rounded_rect,
+						bg = "#fff999",
+						layout = coolwidget.margin.background.container
 					},
-					width = dpi(100),
-					height = dpi(100),
-					right = dpi(5),
+					{
+						{
+							{
+								text = "no song title",
+								font = "Sans Bold 12",
+								widget = wibox.widget.textbox,
+								id = "name",
+							},
+							{
+								text = "no song author",
+								font = "Sans 10",
+								widget = wibox.widget.textbox,
+								id = "author",
+							},
+							spacing = dpi(5),
+							layout = wibox.layout.fixed.vertical
+						},
+						{
+							{
+								text = "no player",
+								font = "Sans 10",
+								widget = wibox.widget.textbox,
+								id = "player"
+							},
+							{
+								{
+									image = images.skip_prev,
+									forced_width = dpi(30),
+									forced_height = dpi(30),
+									widget = wibox.widget.imagebox,
+									id = "skipback"
+								},
+								{
+									forced_width = dpi(30),
+									forced_height = dpi(30),
+									widget = require "lib.awesome-widgets.icons.playpause",
+									id = "playpause"
+								},
+								{
+									image = images.skip_next,
+									forced_width = dpi(30),
+									forced_height = dpi(30),
+									widget = wibox.widget.imagebox,
+									id = "skipforwards"
+								},
+								layout = wibox.layout.fixed.horizontal
+							},
+							expand = "neither",
+							right = dpi(8),
+							layout = coolwidget.margin.align.horizontal
+						},
+						top = dpi(8),
+						bottom = dpi(8),
+						expand = "expfirst",
+						layout = coolwidget.margin.align.vertical
+					},
+					layout = wibox.layout.align.horizontal
+				},
+				{
+					forced_height = dpi(24),
+					color_bar = color.color {hex="#262930"},
+					color_bar_active = color.color {hex="#aaaaaa"},
+					widget = slider,
+					id = "slider"
+				},
+				shape = gears.shape.rounded_rect,
+				bg = "#1f2228",
+				bottom = dpi(12),
+				top = dpi(8),
+				layout = coolwidget.margin.background.fixed.vertical
+			}
+
+			local image = w:get_children_by_id("image")[1]
+			local name = w:get_children_by_id("name")[1]
+			local author = w:get_children_by_id("author")[1]
+			local player = w:get_children_by_id("player")[1]
+			local playpause = w:get_children_by_id("playpause")[1]
+			local slider = w:get_children_by_id("slider")[1]
+
+			playerctl:connect_signal("metadata", function(_, title, artist, album_path, album, new, player_name)
+				TEST(("%s %s %s %s %s"):format(title, artist, album_path, album, player_name))
+				image.image = gears.surface.load_uncached(album_path)
+				name.text = title or "no song title"
+				author.text = artist or "no song artist"
+				player.text = player_name or "no player"
+				w:emit_signal("widget::redraw_needed")
+			end)
+
+			playerctl:connect_signal("no_players", function()
+				TEST("dog2")
+				image:set_image(images.giraffe)
+				name.text = "no song title"
+				author.text = "no song artist"
+				player.text = "no player"
+				slider:set(0)
+				w:emit_signal("widget::redraw_needed")
+			end)
+
+			playerctl:connect_signal("position", function(_, interval_sec, length_sec) slider:set(interval_sec / length_sec) end)
+
+			slider:connect_signal("slider::ended", function() end)
+
+
+
+			return w
+		end,
+
+		create_notification_item = function(_, layout)
+			--[[	image title 			category appicon
+					|    | message
+					|____| button button button button button 		]]
+			local w
+			w = wibox.widget {
+				{
+					{
+						{
+							{
+								image = images.drag,
+								forced_width = dpi(80),
+								forced_height = dpi(80),
+								widget = wibox.widget.imagebox,
+								id = "image"
+							},
+							halign = "center",
+							layout = wibox.container.place
+						},
+						{
+							{
+								image = images.drag,
+								widget = wibox.widget.imagebox,
+								forced_height = dpi(18),
+								forced_width = dpi(18),
+								id = "category"
+							},
+							{
+								image = images.drag,
+								widget = wibox.widget.imagebox,
+								forced_height = dpi(18),
+								forced_width = dpi(18),
+								id = "app_icon"
+							},
+							spacing = dpi(5),
+							valign = "bottom",
+							halign = "left",
+							layout = coolwidget.place.fixed.horizontal
+						},
+						layout = wibox.layout.stack
+					},
+					width = dpi(80),
+					height = dpi(80),
+					right = dpi(8),
 					strategy = "exact",
 					shape = gears.shape.rounded_rect,
+					bg = "#262930",
 					layout = coolwidget.margin.constraint.background.container,
 					id = "image_container"
 				},
@@ -704,16 +847,18 @@ local ui = {
 						{
 							text = "title",
 							widget = wibox.widget.textbox,
+							font = "Sans Bold 12",
 							id = "title"
 						},
 						{
 							text = "message",
 							widget = wibox.widget.textbox,
+							font = "Sans 10",
 							id = "message",
 						},
 						{
 							spacing = dpi(5),
-							widget = coolwidget.flex.horizontal,
+							widget = wibox.layout.flex.horizontal,
 							id = "actions"
 						},
 						spacing = dpi(5),
@@ -723,41 +868,47 @@ local ui = {
 					},
 					{
 						{
-							image = images.drag,
-							widget = wibox.widget.imagebox,
-							id = "category"
-						},
-						{
-							image = images.drag,
+							image = images.close,
 							widget = wibox.widget.imagebox,
 							forced_height = dpi(24),
 							forced_width = dpi(24),
-							id = "app_icon"
+							buttons = awful.button({}, 1, function() layout:remove(w) end),
+							id = "close",
 						},
-						spacing = dpi(5),
-						valign = "right",
-						halign = "top",
-						layout = coolwidget.place.fixed.horizontal
+						halign = "right",
+						valign = "top",
+						layout = wibox.container.place
+
 					},
 					layout = wibox.layout.stack,
 					id = "main"
 				},
-				bg = "#000000",
+				bg = "#363a44",
 				shape = gears.shape.rounded_rect,
 				margins = dpi(8),
-				left = dpi(16),
-				right = dpi(16),
 				forced_width = dpi(380),
 				expand = "explast",
 				layout = coolwidget.background.margin.align.horizontal
 			}
 			local title = w:get_children_by_id("title")[1]
 			local message = w:get_children_by_id("message")[1]
+			local actions = w:get_children_by_id("actions")[1]
 			local app_icon = w:get_children_by_id("app_icon")[1]
 			local category = w:get_children_by_id("category")[1]
+			local close = w:get_children_by_id("close")[1]
 			local image = w:get_children_by_id("image")[1]
 			local image_container = w:get_children_by_id("image_container")[1]
 			local main = w:get_children_by_id("main")[1]
+
+			local close_trans = color.transition(color.color {hex="#ffffff"}, color.color {hex="#ff6973"}, color.transition.RGB)
+			local close_timed = rubato.timed {
+				duration = 0.2,
+				intro = 0.3,
+				prop_intro = true,
+				subscribed = function(pos) close:set_image(gears.color.recolor_image(images.close, close_trans(pos).hex)) end
+			}
+			close:connect_signal("mouse::enter", function() close_timed.target = 1 end)
+			close:connect_signal("mouse::leave", function() close_timed.target = 0 end)
 
 			function w:populate(notif)
 				--urgency	string		The notification urgency level.
@@ -767,19 +918,46 @@ local ui = {
 				title.text = notif.title
 				message.text = notif.message
 
-				w:set_children { notif.image and image_container, main }
-				image.image = notif.image
+				w:set_children { notif.icon and image_container, main }
+				image.image = notif.icon
 
 				app_icon.image = get_icon(TAGLIST_ICON_THEME, "128x128/apps/"..notif.app_name..".svg")
 
 				if not notif.category then category.image = nil
-				elseif category:sub(1, 2) == "im" then category.image = get_icon("Papirus-Dark", "symbolic/actions/chat-new-message-symbolic.svg")
-				elseif category:sub(1, 5) == "email" then category.image = get_icon("Papirus-Dark", "symbolic/actions/chat-mail-message-new-symbolic.svg")
-				elseif category:sub(1, 6) == "device" then category.image = get_icon("Papirus-Dark", "symbolic/devices/drive-harddisk-usb-symbolic.svg")
-				elseif category:sub(1, 7) == "network" then category.image = get_icon("Papirus-Dark", "symbolic/status/network-transmit-receive-symbolic.svg")
-				elseif category:sub(1, 8) == "presence" then category.image = nil
-				elseif category:sub(1, 8) == "transfer" then category.image = get_icon("Papirus-Dark", "symbolic/places/folder-download-symbolic.svg")
+				elseif notif.category:sub(1, 2) == "im" then category.image = get_icon("Papirus-Dark", "symbolic/actions/chat-new-message-symbolic.svg")
+				elseif notif.category:sub(1, 5) == "email" then category.image = get_icon("Papirus-Dark", "symbolic/actions/chat-mail-message-new-symbolic.svg")
+				elseif notif.category:sub(1, 6) == "device" then category.image = get_icon("Papirus-Dark", "symbolic/devices/drive-harddisk-usb-symbolic.svg")
+				elseif notif.category:sub(1, 7) == "network" then category.image = get_icon("Papirus-Dark", "symbolic/status/network-transmit-receive-symbolic.svg")
+				elseif notif.category:sub(1, 8) == "presence" then category.image = nil
+				elseif notif.category:sub(1, 8) == "transfer" then category.image = get_icon("Papirus-Dark", "symbolic/places/folder-download-symbolic.svg")
 				end
+
+				res = {}
+				for _,action in pairs(notif.actions or nil) do
+					local w2 = wibox.widget {
+						{
+							text = action.name,
+							widget = wibox.widget.textbox,
+						},
+						shape = gears.shape.rounded_rect,
+						bg = "#262930",
+						margins = dpi(8),
+						buttons = awful.button({}, 1, function() action:invoke(notif); if not notif.resident then layout:remove(w) end end),
+						layout = coolwidget.background.margin.container
+					}
+					local color_trans = color.transition(color.color {hex="#262930"}, color.color {hex="#262930"} + "0.03l")
+					local color_timed = rubato.timed {
+						duration = 0.15,
+						intro = 0.3,
+						prop_intro = true,
+						subscribed = function(pos) w2.bg = color_trans(pos).hex; w2:emit_signal("widget::redraw_needed") end,
+					}
+					w2:connect_signal("mouse::enter", function() color_timed.target = 1 end)
+					w2:connect_signal("mouse::leave", function() color_timed.target = 0 end)
+
+					table.insert(res, w2)
+				end
+				actions:set_children(res)
 
 				--print(table.tostring(notif.actions))
 				--print(notif)
@@ -789,17 +967,16 @@ local ui = {
 			return w
 		end,
 		create_notification_center = function(widgets)
-			local layout = recycler(function() return widgets:create_notification_item() end, {
+			local layout
+			layout = recycler(function() return widgets:create_notification_item(layout) end, {
 				padx = 0,
 				pady = 8,
 				spacing = 8,
-				--orientation = recycler.UP
+				orientation = recycler.UP
 			})
 			--local layout = recycler(function() local w = wibox.widget.textbox(); function w:populate(notif) w.text = notif.title end; return w end)
 
-			naughty.connect_signal("added", function(notif)
-				layout:add(notif)
-			end)
+			naughty.connect_signal("added", function(notif) layout:add(notif) end)
 
 			return layout
 			--return wibox.widget.textbox("hi")
@@ -904,11 +1081,7 @@ local ui = {
 					layout = wibox.layout.fixed.vertical
 				},
 				ui.widgets:create_notification_center(),
-				{
-					wibox.widget.textbox("music"),
-					bg = "#ff0000",
-					widget = wibox.container.background
-				},
+				ui.widgets:create_music_widget(),
 				left = dpi(12),
 				right = dpi(12),
 				strategy = "exact",

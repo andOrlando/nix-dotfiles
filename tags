@@ -49,8 +49,12 @@
 ) hotkeys_popup.show_help	bennett/awesome/deco/menu.lua	/^   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },$/;"	f
 ) hotkeys_popup.show_help	bennett/awesome/old/deco/menu.lua	/^   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },$/;"	f
 ) if client.focus then client.focus:move_to_tag	bennett/awesome/binding/bindings_key.lua	/^		awful.key({mk, "Shift"}, "#"..i+9, function() if client.focus then client.focus:move_to_tag(client.focus.screen.tags[i]) end end,$/;"	f
+) return args[key:sub	bennett/awesome/lib/awesome-widgets/slider.lua	/^		if key:match("get_") and args[key:sub(5)] then return function() return args[key:sub(5)] end end$/;"	f
+) return args[key:sub	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^		if key:match("get_") and args[key:sub(5)] then return function() return args[key:sub(5)] end end$/;"	f
 ) rightthing:toggle	bennett/awesome/deco/screens.lua	/^				require("lib.awesome-widgets.hamburger")(awful.button({}, 1, function() rightthing:toggle() end)),$/;"	f
 ) rightthing:toggle	bennett/awesome/old/deco/screens.lua	/^				require("lib.awesome-widgets.hamburger")(awful.button({}, 1, function() rightthing:toggle() end)),$/;"	f
+) scroll_down	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^            awful.button({}, 5, function() scroll_down(ret) end)$/;"	f
+) scroll_up	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^            awful.button({}, 4, function() scroll_up(ret) end),$/;"	f
 ) self:emit_signal	bennett/awesome/lib/awesome-widgets/recycler.lua	/^		wdata[w].inout:subscribe(function() self:emit_signal("widget::layout_changed") end)$/;"	f
 ) self:emit_signal	bennett/awesome/lib/awesome-widgets/recycler.lua	/^		wdata[w].pos:subscribe(function() self:emit_signal("widget::layout_changed") end)$/;"	f
 ) self:emit_signal	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^		wdata[w].inout:subscribe(function() self:emit_signal("widget::layout_changed") end)$/;"	f
@@ -59,8 +63,29 @@
 ) ui.dropdown:unpopup	bennett/awesome/rc.lua	/^		ui.dropdown:connect_signal("mouse::leave", function() ui.dropdown:unpopup() end)$/;"	f
 CheckDep	programs/hosty/result/bin/hosty	/^CheckDep() {$/;"	f
 HL	bennett/nvim/colors.vim	/^function s:HL(group, ...)$/;"	f
+Scratchpad.mt:__call	bennett/awesome/lib/bling/module/scratchpad.lua	/^function Scratchpad.mt:__call(...)$/;"	f
+Scratchpad:apply	bennett/awesome/lib/bling/module/scratchpad.lua	/^function Scratchpad:apply(c)$/;"	f
+Scratchpad:find	bennett/awesome/lib/bling/module/scratchpad.lua	/^function Scratchpad:find()$/;"	f
+Scratchpad:new	bennett/awesome/lib/bling/module/scratchpad.lua	/^function Scratchpad:new(args)$/;"	f
+Scratchpad:toggle	bennett/awesome/lib/bling/module/scratchpad.lua	/^function Scratchpad:toggle()$/;"	f
+Scratchpad:turn_off	bennett/awesome/lib/bling/module/scratchpad.lua	/^function Scratchpad:turn_off()$/;"	f
+Scratchpad:turn_on	bennett/awesome/lib/bling/module/scratchpad.lua	/^function Scratchpad:turn_on()$/;"	f
 ["<S-tab>"] 	bennett/nvim/lua/plugins.lua	/^		["<S-tab>"] = cmp.mapping(function(fallback)$/;"	f
 ["<tab>"] 	bennett/nvim/lua/plugins.lua	/^		["<tab>"] = cmp.mapping(function(fallback)$/;"	f
+["centered"] 	bennett/awesome/lib/bling/module/wallpaper.lua	/^        ["centered"] = function(s)$/;"	f
+["fit"] 	bennett/awesome/lib/bling/module/wallpaper.lua	/^        ["fit"] = function(s)$/;"	f
+["maximized"] 	bennett/awesome/lib/bling/module/wallpaper.lua	/^        ["maximized"] = function(s)$/;"	f
+["tiled"] 	bennett/awesome/lib/bling/module/wallpaper.lua	/^        ["tiled"] = function(s)$/;"	f
+[cycle_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [cycle_key] = function()$/;"	f
+[hide_window_switcher_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [hide_window_switcher_key] = function()$/;"	f
+[kill_client_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [kill_client_key] = function()$/;"	f
+[minimize_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [minimize_key] = function()$/;"	f
+[next_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [next_key] = function()$/;"	f
+[previous_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [previous_key] = function()$/;"	f
+[unminimize_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [unminimize_key] = function()$/;"	f
+[vim_next_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [vim_next_key] = function()$/;"	f
+[vim_previous_key] 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        [vim_previous_key] = function()$/;"	f
+_, interval_sec, length_sec) slider:set	bennett/awesome/rc.lua	/^			playerctl:connect_signal("position", function(_, interval_sec, length_sec) slider:set(interval_sec \/ length_sec) end)$/;"	f
 _, value) rawget	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^			for k, v in pairs(PROPERTIES) do if index(v, key:sub(5)) then return function(_, value) rawget(parts[k], key)(parts[k], value) end end end$/;"	f
 _, value) rawget	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^			for k, v in pairs(PROPERTIES) do if index(v, key:sub(5)) then return function(_, value) rawget(parts[k], key)(parts[k], value) end end end$/;"	f
 _G.colorthing_close	bennett/nvim/colorthing/colorthing.lua	/^function _G.colorthing_close()$/;"	f
@@ -79,9 +104,40 @@ __index 	bennett/awesome/rc.lua	/^		__index = function(self, key)$/;"	f
 __newindex 	bennett/awesome/lib/rubato/manager.lua	/^		__newindex = function(self, key, value)$/;"	f
 __newindex 	bennett/awesome/old/lib/rubato/manager.lua	/^		__newindex = function(self, key, value)$/;"	f
 __newindex 	bennett/awesome/rc.lua	/^		__newindex = function(self, key, value)$/;"	f
+_client.find	bennett/awesome/lib/bling/helpers/client.lua	/^function _client.find(rule)$/;"	f
+_client.get_by_direction	bennett/awesome/lib/bling/helpers/client.lua	/^function _client.get_by_direction(direction)$/;"	f
+_client.is_child_of	bennett/awesome/lib/bling/helpers/client.lua	/^function _client.is_child_of(c, pid)$/;"	f
+_client.sync	bennett/awesome/lib/bling/helpers/client.lua	/^function _client.sync(to_c, from_c)$/;"	f
+_client.turn_off	bennett/awesome/lib/bling/helpers/client.lua	/^function _client.turn_off(c, current_tag)$/;"	f
+_client.turn_on	bennett/awesome/lib/bling/helpers/client.lua	/^function _client.turn_on(c)$/;"	f
+_color.clip	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.clip(num, min_num, max_num)$/;"	f
+_color.darken	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.darken(color, amount)$/;"	f
+_color.hex_to_hsv	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.hex_to_hsv(color)$/;"	f
+_color.hex_to_rgba	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.hex_to_rgba(color)$/;"	f
+_color.hsv_to_hex	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.hsv_to_hex(H, S, V)$/;"	f
+_color.is_dark	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.is_dark(color)$/;"	f
+_color.is_opaque	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.is_opaque(color)$/;"	f
+_color.lighten	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.lighten(color, amount)$/;"	f
+_color.multiply	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.multiply(color, amount)$/;"	f
+_color.rgba_to_hex	bennett/awesome/lib/bling/helpers/color.lua	/^function _color.rgba_to_hex(color)$/;"	f
+_filesystem.list_directory_files	bennett/awesome/lib/bling/helpers/filesystem.lua	/^function _filesystem.list_directory_files(path, exts, recursive)$/;"	f
+_filesystem.save_image_async_curl	bennett/awesome/lib/bling/helpers/filesystem.lua	/^function _filesystem.save_image_async_curl(url, filepath, callback)$/;"	f
+a,i) return itera	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^                for i,v in (function(a,i) return itera(-1,a,i) end), data.history[self.history_path].table, history_index do$/;"	f
+a,i) return itera	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^                for i,v in (function(a,i) return itera(1,a,i) end), data.history[self.history_path].table, history_index do$/;"	f
+abort_if_tag_was_switched	bennett/awesome/lib/bling/module/scratchpad.lua	/^local function abort_if_tag_was_switched(self)$/;"	f
 add_notif 	bennett/awesome/not_center.lua	/^local function add_notif (n)$/;"	f
+adjust_visibility	bennett/awesome/lib/bling/layout/mstab.lua	/^        local function adjust_visibility()$/;"	f
 alignplus	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^local function alignplus(orientation)$/;"	f
 alignplus	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^local function alignplus(orientation)$/;"	f
+animate_turn_off	bennett/awesome/lib/bling/module/scratchpad.lua	/^local function animate_turn_off(self, anim, axis)$/;"	f
+animate_turn_on	bennett/awesome/lib/bling/module/scratchpad.lua	/^local function animate_turn_on(self, anim, axis)$/;"	f
+app.spawn	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^    function app.spawn()$/;"	f
+app_launcher.mt:__call	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^function app_launcher.mt:__call(...)$/;"	f
+app_launcher.text	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^function app_launcher.text(args)$/;"	f
+app_launcher:hide	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^function app_launcher:hide()$/;"	f
+app_launcher:show	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^function app_launcher:show()$/;"	f
+app_launcher:toggle	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^function app_launcher:toggle()$/;"	f
+apply	bennett/awesome/lib/bling/module/wallpaper.lua	/^function apply(wallpaper_object, args)$/;"	f
 args.client:connect_signal("focus", function() gray_timed.target 	bennett/awesome/deco/titlebar.lua	/^		args.client:connect_signal("focus", function() gray_timed.target = 0 end)$/;"	f
 args.client:connect_signal("focus", function() gray_timed.target 	bennett/awesome/old/deco/titlebar.lua	/^		args.client:connect_signal("focus", function() gray_timed.target = 0 end)$/;"	f
 args.client:connect_signal("unfocus", function() gray_timed.target 	bennett/awesome/deco/titlebar.lua	/^		args.client:connect_signal("unfocus", function() gray_timed.target = 1 end)$/;"	f
@@ -106,9 +162,12 @@ awful.key({mk}, "f", function(c) c.fullscreen 	bennett/awesome/old/binding/bindi
 awful.key({mk}, "m", function (c) c.maximized 	bennett/awesome/binding/bindings_key.lua	/^	awful.key({mk}, "m", function (c) c.maximized = not c.maximized c:raise() end,$/;"	f
 awful.key({mk}, "n", function(c) c.minimized 	bennett/awesome/binding/bindings_key.lua	/^	awful.key({mk}, "n", function(c) c.minimized = true end,$/;"	f
 awful.key({mk}, "t", function (c) c.ontop 	bennett/awesome/binding/bindings_key.lua	/^	awful.key({mk}, "t", function (c) c.ontop = not c.ontop	end,$/;"	f
-awful.key({mk}, "w", function() require("lib.rubato").manager.timed.override.is_instant 	bennett/awesome/binding/bindings_key.lua	/^	awful.key({mk}, "w", function() require("lib.rubato").manager.timed.override.is_instant = true end)$/;"	f
+awful.key({mk}, "w", function() naughty.notification {title	bennett/awesome/binding/bindings_key.lua	/^	awful.key({mk}, "w", function() naughty.notification {title="dog1",$/;"	f
+awful.spawn.easy_async_with_shell("playerctl --player	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^        awful.spawn.easy_async_with_shell("playerctl --player=" .. player .. " loop", function(stdout)$/;"	f
+awful.spawn.easy_async_with_shell("playerctl --player	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^        awful.spawn.easy_async_with_shell("playerctl --player=" .. player .. " shuffle", function(stdout)$/;"	f
 awful.spawn.easy_async_with_shell([[awk 'NR	bennett/awesome/lib/network.lua	/^        awful.spawn.easy_async_with_shell([[awk 'NR==3 {printf "%3.0f" ,($3\/70)*100}' \/proc\/net\/wireless]], function(stdout)$/;"	f
 awful.spawn.easy_async_with_shell([[awk 'NR	bennett/awesome/old/lib/network.lua	/^        awful.spawn.easy_async_with_shell([[awk 'NR==3 {printf "%3.0f" ,($3\/70)*100}' \/proc\/net\/wireless]], function(stdout)$/;"	f
+awful.spawn.with_line_callback(subscribe_script, {stdout 	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^        awful.spawn.with_line_callback(subscribe_script, {stdout = function(_)$/;"	f
 b:draw	bennett/awesome/deco/titlebar.lua	/^	function b:draw(_, cr, width, _)$/;"	f
 b:draw	bennett/awesome/old/deco/titlebar.lua	/^	function b:draw(_, cr, width, _)$/;"	f
 b:fit	bennett/awesome/deco/titlebar.lua	/^	function b:fit(_, width, _) return width, width end$/;"	f
@@ -136,6 +195,8 @@ buttons 	bennett/awesome/old/deco/rightthing.lua	/^									buttons = awful.butt
 buttons 	bennett/awesome/old/deco/rightthing.lua	/^		buttons = {awful.button({}, 1, function()$/;"	f
 buttons 	bennett/awesome/old/deco/screens.lua	/^			buttons = awful.button({}, 1, function() t:view_only() end),$/;"	f
 buttons 	bennett/awesome/old/deco/screens.lua	/^		buttons = awful.button({}, 1, function()$/;"	f
+buttons 	bennett/awesome/rc.lua	/^							buttons = awful.button({}, 1, function() layout:remove(w) end),$/;"	f
+buttons 	bennett/awesome/rc.lua	/^						buttons = awful.button({}, 1, function() action:invoke(notif); if not notif.resident then layout:remove(w) end end),$/;"	f
 buttons 	bennett/awesome/rc.lua	/^				buttons = awful.button({}, 1, function() if ui.sidebar_lock:is_open() then ui.sidebar_timed.target=(ui.sidebar_timed.target+1)%2 end end),$/;"	f
 c) c:kill	bennett/awesome/binding/bindings_key.lua	/^	awful.key({mk, "Shift"}, "q", function(c) c:kill() end,$/;"	f
 c) c:kill	bennett/awesome/old/binding/bindings_key.lua	/^	awful.key({mk, "Shift"}, "q", function(c) c:kill() end,$/;"	f
@@ -144,15 +205,27 @@ c:connect_signal("focus", function() timed.target 	bennett/awesome/deco/titlebar
 c:connect_signal("focus", function() timed.target 	bennett/awesome/old/deco/titlebar.lua	/^	c:connect_signal("focus", function() timed.target = 0.5 * height end)$/;"	f
 c:connect_signal("unfocus", function() timed.target 	bennett/awesome/deco/titlebar.lua	/^	c:connect_signal("unfocus", function() timed.target = -1 * width end)$/;"	f
 c:connect_signal("unfocus", function() timed.target 	bennett/awesome/old/deco/titlebar.lua	/^	c:connect_signal("unfocus", function() timed.target = -1 * width end)$/;"	f
-callback 	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^                callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/module/scratchpad.lua	/^                        callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/module/scratchpad.lua	/^                callback = function(c)$/;"	f
+callback 	bennett/awesome/lib/bling/module/wallpaper.lua	/^            callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^                callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^                callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^                callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/widget/tag_preview.lua	/^            callback = function()$/;"	f
+callback 	bennett/awesome/lib/bling/widget/task_preview.lua	/^            callback = function()$/;"	f
 callback 	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^                callback = function()$/;"	f
 callback 	bennett/awesome/rc.lua	/^			callback = function() ui.dropdown:popup(w.client, position_timed.target) end$/;"	f
 callback 	bennett/luakit/ubinds.lua	/^					callback = function (_, err)$/;"	f
 captureActiveVideoElement	bennett/qutebrowser/greasemonkey/VideoSpeed.js	/^function captureActiveVideoElement(event) {$/;"	f
+case_insensitive_pattern	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function case_insensitive_pattern(pattern)$/;"	f
+cb 	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^                            cb = function() end$/;"	f
+changed_callback 	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^        changed_callback = function(text)$/;"	f
 check_network_directory	bennett/awesome/lib/network.lua	/^        function check_network_directory() {$/;"	f
 check_network_directory	bennett/awesome/old/lib/network.lua	/^        function check_network_directory() {$/;"	f
 check_network_state	bennett/awesome/lib/network.lua	/^        function check_network_state() {$/;"	f
 check_network_state	bennett/awesome/old/lib/network.lua	/^        function check_network_state() {$/;"	f
+check_swallow	bennett/awesome/lib/bling/module/window_swallowing.lua	/^local function check_swallow(parent, child)$/;"	f
 clear 	bennett/awesome/lib/rubato/manager.lua	/^		clear = function() for _, timed in pairs(obj.timeds) do timed:reset_values() end end,$/;"	f
 clear 	bennett/awesome/old/lib/rubato/manager.lua	/^		clear = function() for _, timed in pairs(obj.timeds) do timed:reset_values() end end,$/;"	f
 client.connect_signal("focus", function(c) c.border_color 	bennett/awesome/__rc.lua	/^client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)$/;"	f
@@ -163,20 +236,29 @@ client.connect_signal("unfocus", function(c) c.border_color 	bennett/awesome/__r
 client.connect_signal("unfocus", function(c) c.border_color 	bennett/awesome/old/rc.lua	/^client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)$/;"	f
 client.connect_signal("untagged", function() populated_timed.target 	bennett/awesome/rc.lua	/^			client.connect_signal("untagged", function() populated_timed.target = math.min(#tag:clients(),1) end)$/;"	f
 client:connect_signal("property::name", function() text.text 	bennett/awesome/rc.lua	/^			client:connect_signal("property::name", function() text.text = client.name end)$/;"	f
+close:connect_signal("mouse::enter", function() close_timed.target 	bennett/awesome/rc.lua	/^			close:connect_signal("mouse::enter", function() close_timed.target = 1 end)$/;"	f
+close:connect_signal("mouse::leave", function() close_timed.target 	bennett/awesome/rc.lua	/^			close:connect_signal("mouse::leave", function() close_timed.target = 0 end)$/;"	f
 cmdutils	bennett/qutebrowser/config.py	/^from qutebrowser.api import cmdutils$/;"	i
 color	bennett/awesome/lib/color/color.lua	/^local function color(args)$/;"	f
 color	bennett/awesome/old/lib/color/color.lua	/^local function color(args)$/;"	f
+config.set_function 	bennett/awesome/lib/bling/module/wallpaper.lua	/^    config.set_function = config.set_function$/;"	f
 contains	bennett/awesome/lib/color/utils.lua	/^local function contains(obj, value)$/;"	f
 contains	bennett/awesome/old/lib/color/utils.lua	/^local function contains(obj, value)$/;"	f
 convert 	bennett/luakit/ubinds.lua	/^local function convert (str, new_type)$/;"	f
 create	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^local function create(args)$/;"	f
+create	bennett/awesome/lib/bling/widget/tabbar/boxes.lua	/^local function create(c, focused_bool, buttons, inactive_bool)$/;"	f
+create	bennett/awesome/lib/bling/widget/tabbar/default.lua	/^local function create(c, focused_bool, buttons, inactive_bool)$/;"	f
+create	bennett/awesome/lib/bling/widget/tabbar/modern.lua	/^local function create(c, focused_bool, buttons, inactive_bool)$/;"	f
+create	bennett/awesome/lib/bling/widget/tabbar/pure.lua	/^local function create(c, focused_bool, buttons, inactive_bool)$/;"	f
 create	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^local function create(args)$/;"	f
 create 	bennett/awesome/rc.lua	/^	create = function(ui, screen)$/;"	f
+create_app_widget	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function create_app_widget(self, entry)$/;"	f
 create_battery_widget	bennett/awesome/deco/screens.lua	/^local function create_battery_widget()$/;"	f
 create_battery_widget	bennett/awesome/old/deco/screens.lua	/^local function create_battery_widget()$/;"	f
 create_brightness_widget	bennett/awesome/deco/rightthing.lua	/^local function create_brightness_widget()$/;"	f
 create_brightness_widget	bennett/awesome/old/deco/rightthing.lua	/^local function create_brightness_widget()$/;"	f
 create_callback 	bennett/awesome/deco/screens.lua	/^			create_callback = function(self, c, index, objects)$/;"	f
+create_callback 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^                    create_callback = function(self, c, _, __)$/;"	f
 create_callback 	bennett/awesome/old/deco/screens.lua	/^			create_callback = function(self, c, index, objects)$/;"	f
 create_card	bennett/awesome/deco/rightthing.lua	/^local function create_card(w)$/;"	f
 create_card	bennett/awesome/old/deco/rightthing.lua	/^local function create_card(w)$/;"	f
@@ -191,7 +273,7 @@ create_music_widget	bennett/awesome/deco/rightthing.lua	/^local function create_
 create_music_widget	bennett/awesome/old/deco/rightthing.lua	/^local function create_music_widget(s_dpi)$/;"	f
 create_music_widget 	bennett/awesome/rc.lua	/^		create_music_widget = function()$/;"	f
 create_notification_center 	bennett/awesome/rc.lua	/^		create_notification_center = function(widgets)$/;"	f
-create_notification_item 	bennett/awesome/rc.lua	/^		create_notification_item = function(widgets)$/;"	f
+create_notification_item 	bennett/awesome/rc.lua	/^		create_notification_item = function(_, layout)$/;"	f
 create_point_maker	bennett/awesome/lib/awesome-widgets/icons/playpause.lua	/^local function create_point_maker()$/;"	f
 create_point_maker	bennett/awesome/old/lib/awesome-widgets/icons/playpause.lua	/^local function create_point_maker()$/;"	f
 create_sidebar 	bennett/awesome/rc.lua	/^	create_sidebar = function(ui)$/;"	f
@@ -212,8 +294,10 @@ create_tasklist_dropdown_item 	bennett/awesome/rc.lua	/^	create_tasklist_dropdow
 create_tasklist_item 	bennett/awesome/rc.lua	/^	create_tasklist_item = function(ui)$/;"	f
 create_tasklist_widget	bennett/awesome/deco/screens.lua	/^local function create_tasklist_widget(s) --TODO$/;"	f
 create_tasklist_widget	bennett/awesome/old/deco/screens.lua	/^local function create_tasklist_widget(s) --TODO$/;"	f
+create_tiled_wallpaper	bennett/awesome/lib/bling/module/tiled_wallpaper.lua	/^function create_tiled_wallpaper(str, s, args_table)$/;"	f
 create_timeout	bennett/awesome/lib/rubato/timed.lua	/^local function create_timeout(rate)$/;"	f
 create_timeout	bennett/awesome/old/lib/rubato/timed.lua	/^local function create_timeout(rate)$/;"	f
+create_title_button	bennett/awesome/lib/bling/widget/tabbar/modern.lua	/^local function create_title_button(c, color_focus, color_unfocus)$/;"	f
 create_titlebars	bennett/awesome/deco/titlebar.lua	/^local function create_titlebars(c)$/;"	f
 create_titlebars	bennett/awesome/old/deco/titlebar.lua	/^local function create_titlebars(c)$/;"	f
 create_toggle_button 	bennett/awesome/rc.lua	/^		create_toggle_button = function(icon)$/;"	f
@@ -229,10 +313,13 @@ cross_enter 	bennett/awesome/not_center.lua	/^        local function cross_enter
 cross_enter 	bennett/awesome/not_center.lua	/^local function cross_enter (self, _)$/;"	f
 cross_leave 	bennett/awesome/not_center.lua	/^        local function cross_leave ()$/;"	f
 cross_leave 	bennett/awesome/not_center.lua	/^local function cross_leave (self, _)$/;"	f
+cword_end	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function cword_end(s, pos)$/;"	f
+cword_start	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function cword_start(s, pos)$/;"	f
 default_template	bennett/awesome/lib/battery_upower.lua	/^local function default_template()$/;"	f
 default_template	bennett/awesome/old/lib/battery_upower.lua	/^local function default_template()$/;"	f
-disable_wrapper	bennett/awesome/lib/playerctl/init.lua	/^local function disable_wrapper()$/;"	f
+disable_wrapper	bennett/awesome/lib/bling/signal/playerctl/init.lua	/^local function disable_wrapper()$/;"	f
 disable_wrapper	bennett/awesome/old/lib/playerctl/init.lua	/^local function disable_wrapper()$/;"	f
+divide	bennett/awesome/lib/bling/layout/equalarea.lua	/^local function divide(p, g, low, high, cls, mwfact, mcount)$/;"	f
 down 	bennett/nvim/colorthing/ui.lua	/^	down = function() end,$/;"	f
 downloadFile	programs/hosty/result/bin/hosty	/^downloadFile() {$/;"	f
 draw 	bennett/awesome/deco/screens.lua	/^		draw = function(self, context, cr, width, height)$/;"	f
@@ -251,6 +338,9 @@ draw_circle	bennett/awesome/deco/screens.lua	/^local function draw_circle(cr, he
 draw_circle	bennett/awesome/old/deco/screens.lua	/^local function draw_circle(cr, height)$/;"	f
 draw_slidey_thing	bennett/awesome/deco/screens.lua	/^local function draw_slidey_thing(cr, height, xpos)$/;"	f
 draw_slidey_thing	bennett/awesome/old/deco/screens.lua	/^local function draw_slidey_thing(cr, height, xpos)$/;"	f
+draw_widget	bennett/awesome/lib/bling/widget/tag_preview.lua	/^local function draw_widget($/;"	f
+draw_widget	bennett/awesome/lib/bling/widget/task_preview.lua	/^local function draw_widget($/;"	f
+draw_widget	bennett/awesome/lib/bling/widget/window_switcher.lua	/^local function draw_widget($/;"	f
 easing 	bennett/awesome/lib/rubato/easing.lua	/^	easing = function() return 1 end$/;"	f
 easing 	bennett/awesome/lib/rubato/easing.lua	/^	easing = function(t) return t * t end$/;"	f
 easing 	bennett/awesome/lib/rubato/easing.lua	/^	easing = function(t) return t end$/;"	f
@@ -259,18 +349,26 @@ easing 	bennett/awesome/old/lib/rubato/easing.lua	/^	easing = function() return 
 easing 	bennett/awesome/old/lib/rubato/easing.lua	/^	easing = function(t) return t * t end$/;"	f
 easing 	bennett/awesome/old/lib/rubato/easing.lua	/^	easing = function(t) return t end$/;"	f
 easing 	bennett/awesome/old/lib/rubato/easing.lua	/^	easing = function(t) return$/;"	f
-emit_player_info	bennett/awesome/lib/playerctl/playerctl_cli.lua	/^local function emit_player_info()$/;"	f
+elseif type(wallpaper_object) 	bennett/awesome/lib/bling/module/wallpaper.lua	/^    elseif type(wallpaper_object) == "function" then$/;"	f
+emit_metadata_signal	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function emit_metadata_signal(self, title, artist, artUrl, album, new, player_name)$/;"	f
 emit_player_info	bennett/awesome/old/lib/playerctl/playerctl_cli.lua	/^local function emit_player_info()$/;"	f
-emit_player_status	bennett/awesome/lib/playerctl/playerctl_cli.lua	/^local function emit_player_status()$/;"	f
+emit_player_loop_status	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function emit_player_loop_status(self)$/;"	f
+emit_player_metadata	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function emit_player_metadata(self)$/;"	f
+emit_player_playback_status	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function emit_player_playback_status(self)$/;"	f
+emit_player_position	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function emit_player_position(self)$/;"	f
+emit_player_shuffle	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function emit_player_shuffle(self)$/;"	f
 emit_player_status	bennett/awesome/old/lib/playerctl/playerctl_cli.lua	/^local function emit_player_status()$/;"	f
+emit_player_volume	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function emit_player_volume(self)$/;"	f
 emit_volume_info	bennett/awesome/lib/volume.lua	/^local function emit_volume_info()$/;"	f
 emit_volume_info	bennett/awesome/old/lib/volume.lua	/^local function emit_volume_info()$/;"	f
-enable_wrapper	bennett/awesome/lib/playerctl/init.lua	/^local function enable_wrapper(args)$/;"	f
+enable_wrapper	bennett/awesome/lib/bling/signal/playerctl/init.lua	/^local function enable_wrapper(args)$/;"	f
 enable_wrapper	bennett/awesome/old/lib/playerctl/init.lua	/^local function enable_wrapper(args)$/;"	f
 enter 	bennett/nvim/colorthing/ui.lua	/^	enter = function() end,$/;"	f
 enum 	bennett/luakit/ubinds.lua	/^		enum = function (val) return val end,$/;"	f
+exec	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function exec(self, cb, command_to_history)$/;"	f
 exit 	bennett/awesome/deco/rightthing.lua	/^				exit = function()$/;"	f
 exit 	bennett/awesome/old/deco/rightthing.lua	/^				exit = function()$/;"	f
+exit_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function exit_cb(self, player)$/;"	f
 extractDomains	programs/hosty/result/bin/hosty	/^extractDomains() {$/;"	f
 fclose.shape 	bennett/awesome/rc.lua	/^		fclose.shape = function(cr, width, height) return gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true) end$/;"	f
 file:create_file	bennett/nvim/colorthing/file.lua	/^function file:create_file()$/;"	f
@@ -352,21 +450,28 @@ g:terminal_color_6	bennett/nvim/colors.vim	/^	let g:terminal_color_6 = s:cyan.dr
 g:terminal_color_7	bennett/nvim/colors.vim	/^	let g:terminal_color_7 = s:white.dr[0]$/;"	v
 g:terminal_color_8	bennett/nvim/colors.vim	/^	let g:terminal_color_8 = s:black.n[0]$/;"	v
 g:terminal_color_9	bennett/nvim/colors.vim	/^	let g:terminal_color_9 = s:red.n[0]$/;"	v
-get_album_art	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function get_album_art(url)$/;"	f
+generate_apps	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function generate_apps(self)$/;"	f
 get_album_art	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function get_album_art(url)$/;"	f
 get_containers_recursive	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^local function get_containers_recursive(args)$/;"	f
 get_containers_recursive	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^local function get_containers_recursive(args)$/;"	f
+get_current_player_info	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function get_current_player_info(self, player)$/;"	f
 get_draw	bennett/awesome/lib/awesome-widgets/icons/playpause.lua	/^local function get_draw(pos, pm)$/;"	f
 get_draw	bennett/awesome/old/lib/awesome-widgets/icons/playpause.lua	/^local function get_draw(pos, pm)$/;"	f
 get_draw_function	bennett/awesome/lib/awesome-widgets/icons/hamburger.lua	/^local function get_draw_function(pos)$/;"	f
 get_draw_function	bennett/awesome/old/lib/awesome-widgets/icons/hamburger.lua	/^local function get_draw_function(pos)$/;"	f
 get_dx	bennett/awesome/lib/rubato/timed.lua	/^local function get_dx(time, duration, intro, intro_e, outro, outro_e, m, b)$/;"	f
 get_dx	bennett/awesome/old/lib/rubato/timed.lua	/^local function get_dx(time, duration, intro, intro_e, outro, outro_e, m, b)$/;"	f
+get_icon	bennett/awesome/lib/bling/layout/init.lua	/^local function get_icon(icon_raw)$/;"	f
 get_icon	bennett/awesome/rc.lua	/^local function get_icon(name, path)$/;"	f
+get_icon_by_class	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^local function get_icon_by_class(self, client, apps)$/;"	f
+get_icon_by_icon_name	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^local function get_icon_by_icon_name(self, client, apps)$/;"	f
+get_icon_by_pid_command	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^local function get_icon_by_pid_command(self, client, apps)$/;"	f
 get_info_dot	bennett/awesome/deco/titlebar.lua	/^local function get_info_dot(c)$/;"	f
 get_info_dot	bennett/awesome/old/deco/titlebar.lua	/^local function get_info_dot(c)$/;"	f
+get_layout_icon_path	bennett/awesome/lib/bling/layout/init.lua	/^local function get_layout_icon_path(name)$/;"	f
 get_middle_widget	bennett/awesome/deco/titlebar.lua	/^local function get_middle_widget(c)$/;"	f
 get_middle_widget	bennett/awesome/old/deco/titlebar.lua	/^local function get_middle_widget(c)$/;"	f
+get_parent_pid	bennett/awesome/lib/bling/module/window_swallowing.lua	/^function get_parent_pid(child_ppid, callback)$/;"	f
 get_slope	bennett/awesome/lib/rubato/timed.lua	/^local function get_slope(i, o, t, d, F_1, F_2, b)$/;"	f
 get_slope	bennett/awesome/old/lib/rubato/timed.lua	/^local function get_slope(i, o, t, d, F_1, F_2, b)$/;"	f
 get_widget	bennett/awesome/deco/titlebar.lua	/^local function get_widget(r, g, b, buttons, args)$/;"	f
@@ -383,31 +488,58 @@ handle:connect_signal("mouse::leave", function() hover_timed.target 	bennett/awe
 handle:connect_signal("mouse::leave", function() hover_timed.target 	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^	handle:connect_signal("mouse::leave", function() hover_timed.target = 0 end)$/;"	f
 handlePressedKey	bennett/qutebrowser/greasemonkey/VideoSpeed.js	/^function handlePressedKey(event) {$/;"	f
 handlePressedKey	bennett/qutebrowser/greasemonkey/umassarrowgood.js	/^function handlePressedKey(event) {$/;"	f
+has_value	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function has_value(tab, val)$/;"	f
+have_multibyte_char_at	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function have_multibyte_char_at(text, position)$/;"	f
 hex_to_rgba	bennett/awesome/lib/color/utils.lua	/^local function hex_to_rgba(hex)$/;"	f
 hex_to_rgba	bennett/awesome/old/lib/color/utils.lua	/^local function hex_to_rgba(hex)$/;"	f
+history_add	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function history_add(id, command)$/;"	f
+history_check_load	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function history_check_load(id, max)$/;"	f
+history_items	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function history_items(id)$/;"	f
+history_save	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function history_save(id)$/;"	f
 hsl_to_rgb	bennett/awesome/lib/color/utils.lua	/^local function hsl_to_rgb(obj)$/;"	f
 hsl_to_rgb	bennett/awesome/old/lib/color/utils.lua	/^local function hsl_to_rgb(obj)$/;"	f
+icon_shape 	bennett/awesome/lib/bling/widget/tabbed_misc/titlebar_indicator.lua	/^		icon_shape = function(cr, w, h)$/;"	f
+icon_theme.mt:__call	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^function icon_theme.mt:__call(...)$/;"	f
+icon_theme:choose_icon	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^function icon_theme:choose_icon(icons_names)$/;"	f
+icon_theme:get_client_icon_path	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^function icon_theme:get_client_icon_path(client)$/;"	f
+icon_theme:get_gicon_path	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^function icon_theme:get_gicon_path(gicon)$/;"	f
+icon_theme:get_icon_path	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^function icon_theme:get_icon_path(icon_name)$/;"	f
+if key:match("set_") and args[key:sub(5)] then return function(_, v) args[key:sub(5)] 	bennett/awesome/lib/awesome-widgets/slider.lua	/^		if key:match("set_") and args[key:sub(5)] then return function(_, v) args[key:sub(5)] = v; print(key, v) end end$/;"	f
+if key:match("set_") and args[key:sub(5)] then return function(_, v) args[key:sub(5)] 	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^		if key:match("set_") and args[key:sub(5)] then return function(_, v) args[key:sub(5)] = v; print(key, v) end end$/;"	f
 if method 	bennett/awesome/lib/color/transition.lua	/^	if method == self.RGB then return function(t) return color {$/;"	f
 if method 	bennett/awesome/old/lib/color/transition.lua	/^	if method == self.RGB then return function(t) return color {$/;"	f
+if not pcall(function() img_box.image 	bennett/awesome/lib/bling/widget/tag_preview.lua	/^			if not pcall(function() img_box.image = gears.surface.load(c.icon) end) then$/;"	f
 if times % 6 	bennett/awesome/lib/deviceinfo.lua	/^	if times % 6 == 0 then awful.spawn.easy_async_with_shell(disk_script, function(stdout)$/;"	f
 if type(args.create_callback) 	bennett/awesome/lib/battery_upower.lua	/^    if type(args.create_callback) == "function" then$/;"	f
 if type(args.create_callback) 	bennett/awesome/old/lib/battery_upower.lua	/^    if type(args.create_callback) == "function" then$/;"	f
+if type(callback) 	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^            if type(callback) == "function" then$/;"	f
 if type(wallpaper) 	bennett/awesome/deco/screens.lua	/^	if type(wallpaper) == "function" then$/;"	f
 if type(wallpaper) 	bennett/awesome/old/deco/screens.lua	/^	if type(wallpaper) == "function" then$/;"	f
 index	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^local function index(table, value)$/;"	f
 index	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^local function index(table, value)$/;"	f
-init_player	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function init_player(name)$/;"	f
+init_player	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function init_player(self, name)$/;"	f
 init_player	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function init_player(name)$/;"	f
+inital_apply	bennett/awesome/lib/bling/module/scratchpad.lua	/^            local function inital_apply(c1)$/;"	f
+is_in_table	bennett/awesome/lib/bling/module/window_swallowing.lua	/^local function is_in_table(element, table)$/;"	f
 is_open 	bennett/awesome/rc.lua	/^		is_open = function(self)$/;"	f
+is_word_char	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function is_word_char(c)$/;"	f
+itera	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function itera(inc,a, i)$/;"	f
+keypressed_callback 	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^        keypressed_callback = function(mod, key, cmd)$/;"	f
+layout 	bennett/awesome/rc.lua	/^			layout = recycler(function() return widgets:create_notification_item(layout) end, {$/;"	f
+local buttons 	bennett/awesome/lib/bling/module/tabbed.lua	/^        local buttons = gears.table.join(awful.button({}, 1, function()$/;"	f
 local check_network_mode 	bennett/awesome/lib/network.lua	/^local check_network_mode = function()$/;"	f
 local check_network_mode 	bennett/awesome/old/lib/network.lua	/^local check_network_mode = function()$/;"	f
 local close 	bennett/awesome/rc.lua	/^		local close = ui.create_tasklist_dropdown_item("Close", images.close, function()$/;"	f
 local co 	bennett/luakit/ubinds.lua	/^				local co = coroutine.create(function ()$/;"	f
-local disable 	bennett/awesome/lib/playerctl/playerctl_cli.lua	/^local disable = function()$/;"	f
+local disable 	bennett/awesome/lib/bling/module/flash_focus.lua	/^local disable = function()$/;"	f
 local disable 	bennett/awesome/old/lib/playerctl/playerctl_cli.lua	/^local disable = function()$/;"	f
-local enable 	bennett/awesome/lib/playerctl/playerctl_cli.lua	/^local enable = function(args)$/;"	f
+local enable 	bennett/awesome/lib/bling/module/flash_focus.lua	/^local enable = function()$/;"	f
+local enable 	bennett/awesome/lib/bling/widget/tag_preview.lua	/^local enable = function(opts)$/;"	f
+local enable 	bennett/awesome/lib/bling/widget/task_preview.lua	/^local enable = function(opts)$/;"	f
+local enable 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^local enable = function(opts)$/;"	f
 local enable 	bennett/awesome/old/lib/playerctl/playerctl_cli.lua	/^local enable = function(args)$/;"	f
 local fclose 	bennett/awesome/rc.lua	/^		local fclose = ui.create_tasklist_dropdown_item("Force Close", images.fclose, function()$/;"	f
+local flashfocus 	bennett/awesome/lib/bling/module/flash_focus.lua	/^local flashfocus = function(c)$/;"	f
 local function headerize(str) return "<span font	bennett/awesome/deco/rightthing.lua	/^	local function headerize(str) return "<span font='13' color='".."#ffffff".."'>"..str.."<\/span>" end$/;"	f
 local function headerize(str) return "<span font	bennett/awesome/old/deco/rightthing.lua	/^	local function headerize(str) return "<span font='13' color='".."#ffffff".."'>"..str.."<\/span>" end$/;"	f
 local function hover(value) hover_timed.target 	bennett/awesome/deco/rightthing.lua	/^	local function hover(value) hover_timed.target = value end$/;"	f
@@ -420,16 +552,18 @@ local function set_x(x) return function(geo, args) return {x	bennett/awesome/old
 local function set_x(x) return function(geo, args) return {x	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^local function set_x(x) return function(geo, args) return {x=x, y=(args.parent.height - geo.height)\/2} end end$/;"	f
 local function subheaderize(str) return "<span font	bennett/awesome/deco/rightthing.lua	/^	local function subheaderize(str) return "<span font='10' color='".."#aaaaaa".."'>"..str.."<\/span>" end$/;"	f
 local function subheaderize(str) return "<span font	bennett/awesome/old/deco/rightthing.lua	/^	local function subheaderize(str) return "<span font='10' color='".."#aaaaaa".."'>"..str.."<\/span>" end$/;"	f
+local get_num_clients 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^local get_num_clients = function()$/;"	f
 local id 	bennett/awesome/lib/rubato/subscribable.lua	/^			local id = tostring(func):gsub("function: ", "")$/;"	f
 local id 	bennett/awesome/lib/rubato/subscribable.lua	/^		local id = tostring(func):gsub("function: ", "")$/;"	f
 local id 	bennett/awesome/old/lib/rubato/subscribable.lua	/^			local id = tostring(func):gsub("function: ", "")$/;"	f
 local id 	bennett/awesome/old/lib/rubato/subscribable.lua	/^		local id = tostring(func):gsub("function: ", "")$/;"	f
-local layout 	bennett/awesome/rc.lua	/^			local layout = recycler(function() return widgets:create_notification_item() end, {$/;"	f
 local layout 	bennett/awesome/rc.lua	/^		local layout = recycler(function() return ui:create_tasklist_item() end, {$/;"	f
+local matcher 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^    local matcher = function(c)$/;"	f
 local minimize 	bennett/awesome/rc.lua	/^		local minimize = ui.create_tasklist_dropdown_item("Minimize", images.minimize, function()$/;"	f
 local network_updater 	bennett/awesome/lib/network.lua	/^local network_updater = gears.timer { timeout = update_interval, autostart = true, call_now = true, callback = function()$/;"	f
 local network_updater 	bennett/awesome/old/lib/network.lua	/^local network_updater = gears.timer { timeout = update_interval, autostart = true, call_now = true, callback = function()$/;"	f
 local notifbox 	bennett/awesome/not_center.lua	/^local notifbox = wibox.widget { --empty because it will be filled with the update function$/;"	f
+local p 	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^    local p = pattern:gsub("(%%?)(.)", function(percent, letter)$/;"	f
 local theme_update_functions 	bennett/awesome/rc.lua	/^local theme_update_functions = {}$/;"	f
 local update_disconnected 	bennett/awesome/lib/network.lua	/^local update_disconnected = function()$/;"	f
 local update_disconnected 	bennett/awesome/old/lib/network.lua	/^local update_disconnected = function()$/;"	f
@@ -443,17 +577,19 @@ local update_wireless_data 	bennett/awesome/lib/network.lua	/^    local update_w
 local update_wireless_data 	bennett/awesome/old/lib/network.lua	/^    local update_wireless_data = function(strength, strength_level, healthy)$/;"	f
 local update_wireless_strength 	bennett/awesome/lib/network.lua	/^    local update_wireless_strength = function()$/;"	f
 local update_wireless_strength 	bennett/awesome/old/lib/network.lua	/^    local update_wireless_strength = function()$/;"	f
+local window_switcher_hide 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^local window_switcher_hide = function(window_switcher_box)$/;"	f
 log 	bennett/awesome/lib/rubato/manager.lua	/^		log = function() end,$/;"	f
 log 	bennett/awesome/old/lib/rubato/manager.lua	/^		log = function() end,$/;"	f
+loop_status_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function loop_status_cb(self, player, loop_status)$/;"	f
 make_props_immutable	bennett/awesome/lib/rubato/manager.lua	/^local function make_props_immutable(table)$/;"	f
 make_props_immutable	bennett/awesome/old/lib/rubato/manager.lua	/^local function make_props_immutable(table)$/;"	f
+manage_clientspawn	bennett/awesome/lib/bling/module/window_swallowing.lua	/^local function manage_clientspawn(c)$/;"	f
 manager	bennett/awesome/lib/rubato/manager.lua	/^local function manager()$/;"	f
 manager	bennett/awesome/old/lib/rubato/manager.lua	/^local function manager()$/;"	f
-manager:on_name_appeared	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^    function manager:on_name_appeared(name)$/;"	f
 manager:on_name_appeared	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^    function manager:on_name_appeared(name)$/;"	f
-manager:on_name_vanished	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^    function manager:on_name_vanished(name)$/;"	f
 manager:on_name_vanished	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^    function manager:on_name_vanished(name)$/;"	f
-metadata_cb	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function metadata_cb(player, metadata)$/;"	f
+matcher	bennett/awesome/lib/bling/helpers/client.lua	/^    local function matcher(c)$/;"	f
+metadata_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function metadata_cb(self, player, metadata)$/;"	f
 metadata_cb	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function metadata_cb(player, metadata)$/;"	f
 minimize.shape 	bennett/awesome/rc.lua	/^		minimize.shape = function(cr, width, height) return gears.shape.partially_rounded_rect(cr, width, height, true, true, false, false) end$/;"	f
 mt.__add 	bennett/awesome/lib/color/color.lua	/^	mt.__add = function(_, new) return operate(new, "+") end$/;"	f
@@ -469,17 +605,33 @@ mt.__sub 	bennett/awesome/old/lib/color/color.lua	/^	mt.__sub = function(_, new)
 mt:__call	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^	function mt:__call() return create(args) end$/;"	f
 mt:__call	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^	function mt:__call() return create(args) end$/;"	f
 mt:__index	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^	function mt:__index(key)$/;"	f
+mt:__index	bennett/awesome/lib/awesome-widgets/slider.lua	/^	function mt:__index(key)$/;"	f
 mt:__index	bennett/awesome/lib/rubato/timed.lua	/^	function mt:__index(key)$/;"	f
 mt:__index	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^	function mt:__index(key)$/;"	f
+mt:__index	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^	function mt:__index(key)$/;"	f
 mt:__index	bennett/awesome/old/lib/rubato/timed.lua	/^	function mt:__index(key)$/;"	f
 mt:__newindex	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^	function mt:__newindex(key, value)$/;"	f
+mt:__newindex	bennett/awesome/lib/awesome-widgets/slider.lua	/^	function mt:__newindex(key, value)$/;"	f
 mt:__newindex	bennett/awesome/lib/rubato/timed.lua	/^	function mt:__newindex(key, value)$/;"	f
 mt:__newindex	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^	function mt:__newindex(key, value)$/;"	f
+mt:__newindex	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^	function mt:__newindex(key, value)$/;"	f
 mt:__newindex	bennett/awesome/old/lib/rubato/timed.lua	/^	function mt:__newindex(key, value)$/;"	f
-name_is_selected	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function name_is_selected(name)$/;"	f
+mylayout.arrange	bennett/awesome/lib/bling/layout/centered.lua	/^function mylayout.arrange(p)$/;"	f
+mylayout.arrange	bennett/awesome/lib/bling/layout/deck.lua	/^function mylayout.arrange(p)$/;"	f
+mylayout.arrange	bennett/awesome/lib/bling/layout/equalarea.lua	/^function mylayout.arrange(p)$/;"	f
+mylayout.arrange	bennett/awesome/lib/bling/layout/horizontal.lua	/^function mylayout.arrange(p)$/;"	f
+mylayout.arrange	bennett/awesome/lib/bling/layout/mstab.lua	/^function mylayout.arrange(p)$/;"	f
+mylayout.arrange	bennett/awesome/lib/bling/layout/vertical.lua	/^function mylayout.arrange(p)$/;"	f
+name_is_selected	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function name_is_selected(self, name)$/;"	f
 name_is_selected	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function name_is_selected(name)$/;"	f
+new	bennett/awesome/lib/bling/helpers/icon_theme.lua	/^local function new(theme_name, icon_size)$/;"	f
+new	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function new(args)$/;"	f
+new	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function new(args)$/;"	f
+new	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function new(args)$/;"	f
+new	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function new(args)$/;"	f
 new_layout	bennett/awesome/lib/awesome-widgets/recycler.lua	/^local function new_layout(constructor, args)$/;"	f
 new_layout	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^local function new_layout(constructor, args)$/;"	f
+notif) layout:add	bennett/awesome/rc.lua	/^			naughty.connect_signal("added", function(notif) layout:add(notif) end)$/;"	f
 obj.subscribe_callback 	bennett/awesome/lib/rubato/timed.lua	/^	obj.subscribe_callback = function(func) func(obj.pos, obj._time, obj._dt) end$/;"	f
 obj.subscribe_callback 	bennett/awesome/old/lib/rubato/timed.lua	/^	obj.subscribe_callback = function(func) func(obj.pos, obj._time, obj._dt) end$/;"	f
 obj:_alphaize_hex	bennett/awesome/lib/color/color.lua	/^	function obj:_alphaize_hex()$/;"	f
@@ -510,34 +662,82 @@ obj:subscribe	bennett/awesome/lib/rubato/subscribable.lua	/^	function obj:subscr
 obj:subscribe	bennett/awesome/old/lib/rubato/subscribable.lua	/^	function obj:subscribe(func)$/;"	f
 obj:unsubscribe	bennett/awesome/lib/rubato/subscribable.lua	/^	function obj:unsubscribe(func)$/;"	f
 obj:unsubscribe	bennett/awesome/old/lib/rubato/subscribable.lua	/^	function obj:unsubscribe(func)$/;"	f
+on_animate_turn_off_end	bennett/awesome/lib/bling/module/scratchpad.lua	/^local function on_animate_turn_off_end(self, tag)$/;"	f
 on_attatch	bennett/nvim/lua/lsp.lua	/^local function on_attatch(_, bufnr) --[[for buffer specific mappings, this doesn't work atm]] end$/;"	f
+on_press 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^            on_press = function()$/;"	f
+on_press 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^            on_press = function(c)$/;"	f
 on_press 	bennett/awesome/not_center.lua	/^                                        on_press = function ()$/;"	f
 on_press 	bennett/awesome/not_center.lua	/^                        on_press = function ()$/;"	f
 operate	bennett/awesome/lib/color/color.lua	/^	local function operate(new, operator)$/;"	f
 operate	bennett/awesome/old/lib/color/color.lua	/^	local function operate(new, operator)$/;"	f
-parse_args	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function parse_args(args)$/;"	f
+page_backward	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function page_backward(self, direction)$/;"	f
+page_forward	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function page_forward(self, direction)$/;"	f
+parse_args	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^local function parse_args(self, args)$/;"	f
+parse_args	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function parse_args(self, args)$/;"	f
 parse_args	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function parse_args(args)$/;"	f
 passthrough_container	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^local function passthrough_container()$/;"	f
 passthrough_container	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^local function passthrough_container()$/;"	f
-playback_status_cb	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function playback_status_cb(player, status)$/;"	f
+playback_status_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function playback_status_cb(self, player, status)$/;"	f
 playback_status_cb	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function playback_status_cb(player, status)$/;"	f
-player_compare	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function player_compare(a, b)$/;"	f
+player.on_exit 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        player.on_exit = function(player, shuffle_status)$/;"	f
+player.on_loop_status 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        player.on_loop_status = function(player, loop_status)$/;"	f
+player.on_metadata 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        player.on_metadata = function(player, metadata)$/;"	f
+player.on_playback_status 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        player.on_playback_status = function(player, playback_status)$/;"	f
+player.on_seeked 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        player.on_seeked = function(player, position)$/;"	f
+player.on_shuffle 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        player.on_shuffle = function(player, shuffle_status)$/;"	f
+player.on_volume 	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^        player.on_volume = function(player, volume)$/;"	f
+player_compare	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function player_compare(self, a, b)$/;"	f
 player_compare	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function player_compare(a, b)$/;"	f
-player_compare_name	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function player_compare_name(name_a, name_b)$/;"	f
+player_compare_name	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function player_compare_name(self, name_a, name_b)$/;"	f
 player_compare_name	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function player_compare_name(name_a, name_b)$/;"	f
-playerctl_disable	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function playerctl_disable()$/;"	f
+playerctl.mt:__call	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl.mt:__call(...)$/;"	f
+playerctl.mt:__call	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl.mt:__call(...)$/;"	f
+playerctl:cycle_loop_status	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:cycle_loop_status(player)$/;"	f
+playerctl:cycle_loop_status	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:cycle_loop_status(player)$/;"	f
+playerctl:cycle_shuffle	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:cycle_shuffle(player)$/;"	f
+playerctl:cycle_shuffle	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:cycle_shuffle(player)$/;"	f
+playerctl:disable	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:disable()$/;"	f
+playerctl:disable	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:disable()$/;"	f
+playerctl:get_active_player	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:get_active_player()$/;"	f
+playerctl:get_manager	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:get_manager()$/;"	f
+playerctl:get_player_of_name	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:get_player_of_name(name)$/;"	f
+playerctl:next	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:next(player)$/;"	f
+playerctl:next	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:next(player)$/;"	f
+playerctl:pause	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:pause(player)$/;"	f
+playerctl:pause	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:pause(player)$/;"	f
+playerctl:play	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:play(player)$/;"	f
+playerctl:play	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:play(player)$/;"	f
+playerctl:play_pause	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:play_pause(player)$/;"	f
+playerctl:play_pause	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:play_pause(player)$/;"	f
+playerctl:previous	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:previous(player)$/;"	f
+playerctl:previous	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:previous(player)$/;"	f
+playerctl:set_loop_status	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:set_loop_status(loop_status, player)$/;"	f
+playerctl:set_loop_status	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:set_loop_status(loop_status, player)$/;"	f
+playerctl:set_position	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:set_position(position, player)$/;"	f
+playerctl:set_position	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:set_position(position, player)$/;"	f
+playerctl:set_shuffle	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:set_shuffle(shuffle, player)$/;"	f
+playerctl:set_shuffle	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:set_shuffle(shuffle, player)$/;"	f
+playerctl:set_volume	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:set_volume(volume, player)$/;"	f
+playerctl:set_volume	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:set_volume(volume, player)$/;"	f
+playerctl:stop	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^function playerctl:stop(player)$/;"	f
+playerctl:stop	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^function playerctl:stop(player)$/;"	f
 playerctl_disable	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function playerctl_disable()$/;"	f
-playerctl_enable	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function playerctl_enable(args)$/;"	f
 playerctl_enable	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function playerctl_enable(args)$/;"	f
 playpause	bennett/awesome/lib/awesome-widgets/icons/playpause.lua	/^local function playpause(args)$/;"	f
 playpause	bennett/awesome/old/lib/awesome-widgets/icons/playpause.lua	/^local function playpause(args)$/;"	f
-position_cb	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function position_cb()$/;"	f
+position_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function position_cb(self)$/;"	f
 position_cb	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function position_cb()$/;"	f
+prepare_list	bennett/awesome/lib/bling/module/wallpaper.lua	/^function prepare_list(args)$/;"	f
 print_network_mode	bennett/awesome/lib/network.lua	/^        function print_network_mode() {$/;"	f
 print_network_mode	bennett/awesome/old/lib/network.lua	/^        function print_network_mode() {$/;"	f
+prompt.mt:__call	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^function prompt.mt:__call(...)$/;"	f
+prompt:start	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^function prompt:start()$/;"	f
+prompt:stop	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^function prompt:stop()$/;"	f
+prompt_text_with_cursor	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function prompt_text_with_cursor(args)$/;"	f
 q 	bennett/nvim/colorthing/ui.lua	/^	q = function() end,$/;"	f
-recycler_layout:_place_with_orientation	bennett/awesome/lib/awesome-widgets/recycler.lua	/^function recycler_layout:_place_with_orientation(widget, x, y, w, h, bigw, bigh)$/;"	f
-recycler_layout:_place_with_orientation	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^function recycler_layout:_place_with_orientation(widget, x, y, w, h, bigw, bigh)$/;"	f
+recreate	bennett/awesome/lib/bling/widget/tabbed_misc/titlebar_indicator.lua	/^	local function recreate(group)$/;"	f
+recycler_layout:_place_with_orientation	bennett/awesome/lib/awesome-widgets/recycler.lua	/^function recycler_layout:_place_with_orientation(widget, x, y, w, h, max)$/;"	f
+recycler_layout:_place_with_orientation	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^function recycler_layout:_place_with_orientation(widget, x, y, w, h, max)$/;"	f
 recycler_layout:_request_widget	bennett/awesome/lib/awesome-widgets/recycler.lua	/^function recycler_layout:_request_widget(args)$/;"	f
 recycler_layout:_request_widget	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^function recycler_layout:_request_widget(args)$/;"	f
 recycler_layout:add_at	bennett/awesome/lib/awesome-widgets/recycler.lua	/^function recycler_layout:add_at(pos, args)$/;"	f
@@ -561,6 +761,7 @@ res.inout_const 	bennett/awesome/lib/awesome-widgets/recycler.lua	/^	res.inout_c
 res.inout_const 	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^	res.inout_const = res.inout_const or function() return rubato.timed { duration = 0.2, intro = 0.3, prop_intro = true } end$/;"	f
 res.pos_const 	bennett/awesome/lib/awesome-widgets/recycler.lua	/^	res.pos_const = res.pos_const or function() return rubato.timed { duration = 0.2, intro = 0.3, prop_intro = true } end$/;"	f
 res.pos_const 	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^	res.pos_const = res.pos_const or function() return rubato.timed { duration = 0.2, intro = 0.3, prop_intro = true } end$/;"	f
+reset	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function reset(self)$/;"	f
 restoreSpeed	bennett/qutebrowser/greasemonkey/VideoSpeed.js	/^function restoreSpeed(event) {$/;"	f
 return setmetatable(recycler_layout, {__call	bennett/awesome/lib/awesome-widgets/recycler.lua	/^return setmetatable(recycler_layout, {__call=function(_,...) return new_layout(...) end})$/;"	f
 return setmetatable(recycler_layout, {__call	bennett/awesome/old/lib/awesome-widgets/recycler.lua	/^return setmetatable(recycler_layout, {__call=function(_,...) return new_layout(...) end})$/;"	f
@@ -593,7 +794,18 @@ s:yellow	bennett/nvim/colors.vim	/^let s:yellow = {$/;"	v
 s_down 	bennett/nvim/colorthing/ui.lua	/^	s_down = function() end$/;"	f
 s_enter 	bennett/nvim/colorthing/ui.lua	/^	s_enter = function() end,$/;"	f
 s_up 	bennett/nvim/colorthing/ui.lua	/^	s_up = function() end,$/;"	f
+scroll_down	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function scroll_down(self)$/;"	f
+scroll_left	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function scroll_left(self)$/;"	f
+scroll_right	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function scroll_right(self)$/;"	f
+scroll_up	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function scroll_up(self)$/;"	f
+search	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function search(self, text)$/;"	f
+seeked_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function seeked_cb(self, player, position)$/;"	f
 select.label_maker 	bennett/luakit/usettings.lua	/^select.label_maker = function()$/;"	f
+select_app	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function select_app(self, x, y)$/;"	f
+self._private.grabber 	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^    self._private.grabber = keygrabber.run(function(modifiers, key, event)$/;"	f
+self._private.manager:on_name_appeared	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^    function self._private.manager:on_name_appeared(name)$/;"	f
+self._private.manager:on_player_appeared	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^    function self._private.manager:on_player_appeared(player)$/;"	f
+self._private.manager:on_player_vanished	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^    function self._private.manager:on_player_vanished(player)$/;"	f
 self:set_height	bennett/awesome/lib/awesome-widgets/icons/playpause.lua	/^	function self:set_height(height)$/;"	f
 self:set_height	bennett/awesome/old/lib/awesome-widgets/icons/playpause.lua	/^	function self:set_height(height)$/;"	f
 set	bennett/awesome/lib/rubato/timed.lua	/^	local function set(value)$/;"	f
@@ -602,37 +814,51 @@ set_client_icon	bennett/awesome/rc.lua	/^local function set_client_icon(client)$
 set_config	bennett/qutebrowser/config.py	/^def set_config(val, prev=[]):$/;"	f
 set_def_rate 	bennett/awesome/lib/rubato/init.lua	/^	set_def_rate = function(rate) RUBATO_MANAGER.timed.defaults.rate = rate end,$/;"	f
 set_def_rate 	bennett/awesome/old/lib/rubato/init.lua	/^	set_def_rate = function(rate) RUBATO_MANAGER.timed.defaults.rate = rate end,$/;"	f
+set_loop_status	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^    local function set_loop_status(loop_status)$/;"	f
 set_override_dt 	bennett/awesome/lib/rubato/init.lua	/^	set_override_dt = function(value) RUBATO_MANAGER.timed.defaults.override_dt = value end,$/;"	f
 set_override_dt 	bennett/awesome/old/lib/rubato/init.lua	/^	set_override_dt = function(value) RUBATO_MANAGER.timed.defaults.override_dt = value end,$/;"	f
 set_playpause_status	bennett/awesome/deco/rightthing.lua	/^	local function set_playpause_status()$/;"	f
 set_playpause_status	bennett/awesome/old/deco/rightthing.lua	/^	local function set_playpause_status()$/;"	f
 set_wallpaper	bennett/awesome/deco/screens.lua	/^local function set_wallpaper(s)$/;"	f
+set_wallpaper	bennett/awesome/lib/bling/module/wallpaper.lua	/^    local function set_wallpaper(s)$/;"	f
 set_wallpaper	bennett/awesome/old/deco/screens.lua	/^local function set_wallpaper(s)$/;"	f
 setfenv(ret, setmetatable({}, { __index 	bennett/luakit/ubinds.lua	/^					setfenv(ret, setmetatable({}, { __index = function (_, k)$/;"	f
 setmetatable(transition, {__call 	bennett/awesome/lib/color/transition.lua	/^setmetatable(transition, {__call = function(self, col1, col2, method)$/;"	f
 setmetatable(transition, {__call 	bennett/awesome/old/lib/color/transition.lua	/^setmetatable(transition, {__call = function(self, col1, col2, method)$/;"	f
+setters.awesome_wallpaper	bennett/awesome/lib/bling/module/wallpaper.lua	/^function setters.awesome_wallpaper(args)$/;"	f
+setters.random	bennett/awesome/lib/bling/module/wallpaper.lua	/^function setters.random(args)$/;"	f
+setters.simple	bennett/awesome/lib/bling/module/wallpaper.lua	/^function setters.simple(args)$/;"	f
+setters.simple_schedule	bennett/awesome/lib/bling/module/wallpaper.lua	/^function setters.simple_schedule(args)$/;"	f
+setup	bennett/awesome/lib/bling/module/wallpaper.lua	/^function setup(args)$/;"	f
 shape 	bennett/awesome/deco/screens.lua	/^				shape = function(cr, width, height) return gears.shape.rounded_rect(cr, width, height, dpi(4)) end,$/;"	f
 shape 	bennett/awesome/deco/screens.lua	/^			shape = function(cr, width, height) return gears.shape.rounded_rect(cr, width, height, dpi(3)) end,$/;"	f
+shape 	bennett/awesome/lib/bling/layout/mstab.lua	/^            shape = function(cr, width, height)$/;"	f
 shape 	bennett/awesome/old/deco/screens.lua	/^				shape = function(cr, width, height) return gears.shape.rounded_rect(cr, width, height, dpi(4)) end,$/;"	f
 shape 	bennett/awesome/old/deco/screens.lua	/^			shape = function(cr, width, height) return gears.shape.rounded_rect(cr, width, height, dpi(3)) end,$/;"	f
+shape.prrect	bennett/awesome/lib/bling/helpers/shape.lua	/^function shape.prrect(radius, tl, tr, br, bl)$/;"	f
+shape.rrect	bennett/awesome/lib/bling/helpers/shape.lua	/^function shape.rrect(radius)$/;"	f
+shuffle_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function shuffle_cb(self, player, shuffle)$/;"	f
 simple_container	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^local function simple_container()$/;"	f
 simple_container	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^local function simple_container()$/;"	f
+simple_schedule_object.schedule_set_function 	bennett/awesome/lib/bling/module/wallpaper.lua	/^        simple_schedule_object.schedule_set_function = args.schedule_set_function$/;"	f
 simulate_easing	bennett/awesome/lib/rubato/timed.lua	/^local function simulate_easing(pos, duration, intro, intro_e, outro, outro_e, m, b, dt)$/;"	f
 simulate_easing	bennett/awesome/old/lib/rubato/timed.lua	/^local function simulate_easing(pos, duration, intro, intro_e, outro, outro_e, m, b, dt)$/;"	f
 snippet 	bennett/nvim/lua/plugins.lua	/^	snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },$/;"	f
-start_manager	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^local function start_manager()$/;"	f
+start	bennett/awesome/lib/bling/module/window_swallowing.lua	/^local function start()$/;"	f
+start_manager	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function start_manager(self)$/;"	f
 start_manager	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^local function start_manager()$/;"	f
 stdout 	bennett/awesome/deco/rightthing.lua	/^			stdout = function(string)$/;"	f
 stdout 	bennett/awesome/deco/rightthing.lua	/^		stdout = function(out) $/;"	f
-stdout 	bennett/awesome/lib/playerctl/playerctl_cli.lua	/^            stdout = function(line)$/;"	f
-stdout 	bennett/awesome/lib/playerctl/playerctl_lib.lua	/^                            stdout = function(line)$/;"	f
+stdout 	bennett/awesome/lib/bling/signal/playerctl/playerctl_cli.lua	/^        stdout = function(line)$/;"	f
 stdout 	bennett/awesome/lib/volume.lua	/^        stdout = function(line) emit_volume_info() end$/;"	f
 stdout 	bennett/awesome/old/deco/rightthing.lua	/^			stdout = function(string)$/;"	f
 stdout 	bennett/awesome/old/deco/rightthing.lua	/^		stdout = function(out) $/;"	f
 stdout 	bennett/awesome/old/lib/playerctl/playerctl_cli.lua	/^            stdout = function(line)$/;"	f
 stdout 	bennett/awesome/old/lib/playerctl/playerctl_lib.lua	/^                            stdout = function(line)$/;"	f
 stdout 	bennett/awesome/old/lib/volume.lua	/^        stdout = function(line) emit_volume_info() end$/;"	f
+stop	bennett/awesome/lib/bling/module/window_swallowing.lua	/^local function stop()$/;"	f
 string 	bennett/luakit/ubinds.lua	/^		string = function (val) return val end,$/;"	f
+string_levenshtein	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function string_levenshtein(str1, str2)$/;"	f
 subscribable	bennett/awesome/lib/rubato/subscribable.lua	/^local function subscribable(args)$/;"	f
 subscribable	bennett/awesome/old/lib/rubato/subscribable.lua	/^local function subscribable(args)$/;"	f
 subscribed 	bennett/awesome/deco/rightthing.lua	/^		subscribed = function(pos)$/;"	f
@@ -655,6 +881,8 @@ subscribed 	bennett/awesome/old/lib/awesome-widgets/icons/hamburger.lua	/^		subs
 subscribed 	bennett/awesome/old/lib/awesome-widgets/icons/playpause.lua	/^		subscribed = function(pos)$/;"	f
 subscribed 	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^		subscribed = function(pos)$/;"	f
 subscribed 	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^		subscribed = function(pos, time, dt)$/;"	f
+subscribed 	bennett/awesome/rc.lua	/^						subscribed = function(pos) w2.bg = color_trans(pos).hex; w2:emit_signal("widget::redraw_needed") end,$/;"	f
+subscribed 	bennett/awesome/rc.lua	/^				subscribed = function(pos) close:set_image(gears.color.recolor_image(images.close, close_trans(pos).hex)) end$/;"	f
 subscribed 	bennett/awesome/rc.lua	/^				subscribed = function(pos) w.bg = populated_trans(pos).hex end$/;"	f
 subscribed 	bennett/awesome/rc.lua	/^			subscribed = function(pos) battery.value = 0.22 + 0.77 * pos; battery.color = progressbar_trans(1-pos).hex end$/;"	f
 subscribed 	bennett/awesome/rc.lua	/^			subscribed = function(pos) cpu.value = 0.22 + 0.77 * pos; cpu.color = progressbar_trans(pos).hex end$/;"	f
@@ -665,16 +893,32 @@ subscribed 	bennett/awesome/rc.lua	/^			subscribed = function(pos) ram.value = 0
 subscribed 	bennett/awesome/rc.lua	/^			subscribed = function(pos) w.bg = item_trans(pos).hex end$/;"	f
 subscribed 	bennett/awesome/rc.lua	/^			subscribed = function(pos) w.bg = pos_hover_trans(pos).hex end$/;"	f
 subscribed 	bennett/awesome/rc.lua	/^			subscribed = function(pos)$/;"	f
+tabbed.add 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.add = function(c, tabobj)$/;"	f
+tabbed.init 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.init = function(c)$/;"	f
+tabbed.iter 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.iter = function(idx)$/;"	f
+tabbed.pick 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.pick = function()$/;"	f
+tabbed.pick_by_direction 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.pick_by_direction = function(direction)$/;"	f
+tabbed.pick_with_dmenu 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.pick_with_dmenu = function(dmenu_command)$/;"	f
+tabbed.pop 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.pop = function()$/;"	f
+tabbed.remove 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.remove = function(c)$/;"	f
+tabbed.switch_to 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.switch_to = function(tabobj, new_idx)$/;"	f
+tabbed.update 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.update = function(tabobj)$/;"	f
+tabbed.update_tabbar 	bennett/awesome/lib/bling/module/tabbed.lua	/^tabbed.update_tabbar = function(tabobj)$/;"	f
 table.apply	bennett/awesome/rc.lua	/^function table.apply(table, func)$/;"	f
 table.index	bennett/awesome/rc.lua	/^function table.index(table, element)$/;"	f
 table.map	bennett/awesome/rc.lua	/^function table.map(table, func)$/;"	f
 table.remove_element	bennett/awesome/rc.lua	/^function table.remove_element(tbl, element)$/;"	f
 table.tablex2	bennett/awesome/rc.lua	/^function table.tablex2()$/;"	f
 table.tostringdeep	bennett/awesome/rc.lua	/^function table.tostringdeep(tbl, indents)$/;"	f
+tabobj_support	bennett/awesome/lib/bling/widget/tabbed_misc/custom_tasklist.lua	/^local function tabobj_support(self, c, index, clients)$/;"	f
+tbl_contains	bennett/awesome/lib/bling/widget/tabbed_misc/titlebar_indicator.lua	/^local function tbl_contains(tbl, item)$/;"	f
+time.hhmmss_to_seconds	bennett/awesome/lib/bling/helpers/time.lua	/^function time.hhmmss_to_seconds(time)$/;"	f
+time.time_diff	bennett/awesome/lib/bling/helpers/time.lua	/^function time.time_diff(base, compare)$/;"	f
 timed	bennett/awesome/lib/rubato/timed.lua	/^local function timed(args)$/;"	f
 timed	bennett/awesome/old/lib/rubato/timed.lua	/^local function timed(args)$/;"	f
 timed) print	bennett/awesome/lib/rubato/manager.lua	/^manager.timed.override.forall(function(timed) print(timed) end) --prints all timeds$/;"	f
 timed) print	bennett/awesome/old/lib/rubato/manager.lua	/^manager.timed.override.forall(function(timed) print(timed) end) --prints all timeds$/;"	f
+toggle	bennett/awesome/lib/bling/module/window_swallowing.lua	/^local function toggle()$/;"	f
 toggle_button	bennett/awesome/deco/rightthing.lua	/^local function toggle_button(icon, button, reset_on_leave)$/;"	f
 toggle_button	bennett/awesome/old/deco/rightthing.lua	/^local function toggle_button(icon, button, reset_on_leave)$/;"	f
 toggle_sidebar	bennett/qutebrowser/config.py	/^def toggle_sidebar() -> None:$/;"	f
@@ -688,13 +932,20 @@ ui:hlRedraw	bennett/nvim/colorthing/ui.lua	/^function ui:hlRedraw()$/;"	f
 ui:keybind_event	bennett/nvim/colorthing/ui.lua	/^function ui:keybind_event(keybind)$/;"	f
 ui:make_edit	bennett/nvim/colorthing/ui.lua	/^function ui:make_edit(hlID, args)$/;"	f
 ui:redraw	bennett/nvim/colorthing/ui.lua	/^function ui:redraw()$/;"	f
+unselect_app	bennett/awesome/lib/bling/widget/app_launcher/init.lua	/^local function unselect_app(self)$/;"	f
 up 	bennett/nvim/colorthing/ui.lua	/^	up = function() end,$/;"	f
+update	bennett/awesome/lib/bling/widget/app_launcher/prompt.lua	/^local function update(self)$/;"	f
+update	bennett/awesome/lib/bling/widget/tabbar/modern.lua	/^    local function update()$/;"	f
 update_rgb	bennett/awesome/deco/screens.lua	/^		local function update_rgb(rgb)$/;"	f
 update_rgb	bennett/awesome/deco/titlebar.lua	/^local function update_rgb(w, r, g, b)$/;"	f
 update_rgb	bennett/awesome/old/deco/screens.lua	/^		local function update_rgb(rgb)$/;"	f
 update_rgb	bennett/awesome/old/deco/titlebar.lua	/^local function update_rgb(w, r, g, b)$/;"	f
 update_slidey_thing	bennett/awesome/deco/screens.lua	/^local function update_slidey_thing(w, dim, pos)$/;"	f
 update_slidey_thing	bennett/awesome/old/deco/screens.lua	/^local function update_slidey_thing(w, dim, pos)$/;"	f
+update_tabbar	bennett/awesome/lib/bling/layout/mstab.lua	/^function update_tabbar($/;"	f
+update_tabbar_from	bennett/awesome/lib/bling/module/tabbed.lua	/^local function update_tabbar_from(c)$/;"	f
+update_timer	bennett/awesome/lib/bling/module/wallpaper.lua	/^        local function update_timer()$/;"	f
+update_wallpaper	bennett/awesome/lib/bling/module/wallpaper.lua	/^    local function update_wallpaper()$/;"	f
 utils:compare_tables	bennett/nvim/colorthing/main.lua	/^function utils:compare_tables(t1, t2)$/;"	f
 utils:compare_tables	bennett/nvim/colorthing/utils.lua	/^function utils:compare_tables(t1, t2)$/;"	f
 utils:create_buffer	bennett/nvim/colorthing/main.lua	/^function utils:create_buffer(ui)$/;"	f
@@ -717,10 +968,13 @@ vim.lsp.handlers['textDocument/implementation'] 	bennett/nvim/lua/lsp.lua	/^    
 vim.lsp.handlers['textDocument/references'] 	bennett/nvim/lua/lsp.lua	/^    vim.lsp.handlers['textDocument\/references'] = function(_, _, result) require('lsputil.locations').references_handler(nil, result, { bufnr = bufnr }, nil) end$/;"	f
 vim.lsp.handlers['textDocument/symbol'] 	bennett/nvim/lua/lsp.lua	/^    vim.lsp.handlers['textDocument\/symbol'] = function(_, _, result, _, bufn) require('lsputil.symbols').workspace_handler(nil, result, { bufnr = bufn }, nil) end$/;"	f
 vim.lsp.handlers['textDocument/typeDefinition'] 	bennett/nvim/lua/lsp.lua	/^    vim.lsp.handlers['textDocument\/typeDefinition'] = function(_, method, result) require('lsputil.locations').typeDefinition_handler(nil, result, { bufnr = bufnr, method = method }, nil) end$/;"	f
+volume_cb	bennett/awesome/lib/bling/signal/playerctl/playerctl_lib.lua	/^local function volume_cb(self, player, volume)$/;"	f
 w.buttons 	bennett/awesome/deco/screens.lua	/^		w.buttons = awful.button({}, 1, function() t:view_only() end)$/;"	f
 w.buttons 	bennett/awesome/old/deco/screens.lua	/^		w.buttons = awful.button({}, 1, function() t:view_only() end)$/;"	f
 w.draw 	bennett/awesome/lib/awesome-widgets/icons/hamburger.lua	/^			w.draw = get_draw_function(pos)$/;"	f
 w.draw 	bennett/awesome/old/lib/awesome-widgets/icons/hamburger.lua	/^			w.draw = get_draw_function(pos)$/;"	f
+w2:connect_signal("mouse::enter", function() color_timed.target 	bennett/awesome/rc.lua	/^					w2:connect_signal("mouse::enter", function() color_timed.target = 1 end)$/;"	f
+w2:connect_signal("mouse::leave", function() color_timed.target 	bennett/awesome/rc.lua	/^					w2:connect_signal("mouse::leave", function() color_timed.target = 0 end)$/;"	f
 w:after_draw_children	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^	function w:after_draw_children(...) if w._private.widget.after_draw_children then w._private.widget:after_draw_children(...) end end$/;"	f
 w:after_draw_children	bennett/awesome/old/lib/awesome-widgets/coolwidget.lua	/^	function w:after_draw_children(...) if w._private.widget.after_draw_children then w._private.widget:after_draw_children(...) end end$/;"	f
 w:before_draw_children	bennett/awesome/lib/awesome-widgets/coolwidget.lua	/^	function w:before_draw_children(...) if w._private.widget.before_draw_children then w._private.widget:before_draw_children(...) end end$/;"	f
@@ -794,6 +1048,7 @@ widget:set	bennett/awesome/lib/awesome-widgets/slider.lua	/^	function widget:set
 widget:set	bennett/awesome/old/deco/widgets/slider.lua	/^	function widget:set(val)$/;"	f
 widget:set	bennett/awesome/old/lib/awesome-widgets/icons/playpause.lua	/^	function widget:set(val)$/;"	f
 widget:set	bennett/awesome/old/lib/awesome-widgets/slider.lua	/^	function widget:set(val)$/;"	f
+window_switcher_grabber 	bennett/awesome/lib/bling/widget/window_switcher.lua	/^        window_switcher_grabber = awful.keygrabber.run(function(_, key, event)$/;"	f
 { "$", "Scroll to the absolute right of the document.", function (w) w:scroll{ x 	bennett/luakit/ubinds.lua	/^	{ "$", "Scroll to the absolute right of the document.", function (w) w:scroll{ x = -1 } end },$/;"	f
 { "%", "Go to `[count]` percent of the document.", function (w, m) w:scroll{ ypct 	bennett/luakit/ubinds.lua	/^	{ "%", "Go to `[count]` percent of the document.", function (w, m) w:scroll{ ypct = m.count } end },$/;"	f
 { ":back", "Go back in the browser history `[count	bennett/luakit/ubinds.lua	/^	{ ":back", "Go back in the browser history `[count=1]` items.", function (w, o) w:back(tonumber(o.arg) or 1) end },$/;"	f

@@ -8,6 +8,7 @@
 let
   home-manager = fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
   asusctl = pkgs.callPackage ./programs/asusctl {};
+  awesome = pkgs.callPackage ./programs/awesome {};
 in
 {
   imports = [ 
@@ -143,9 +144,13 @@ in
       libinput.enable = true; # tablet config
       wacom.enable = true;
 
-      windowManager.awesome = {
-        enable = true;
-        package = pkgs.callPackage ./programs/awesome {};
+      #windowManager.awesome = {
+      #  enable = true;
+      #  package = awesome;
+      #};
+      windowManager.session = pkgs.lib.singleton {
+        name = "awesomeDEBUG";
+        start = "exec dbus-run-session -- ${awesome}/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr";
       };
 
       displayManager.gdm.enable = true;
