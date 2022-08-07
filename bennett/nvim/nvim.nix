@@ -45,15 +45,15 @@ let
       sha256 = "0fa6a3m5hf3f7pdbmkb4dnczvcvr6rr3pshvdwkqy62v08h1vdyk";
     };
   };
-  lspsaga = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    name = "lspsaga";
-    src = pkgs.fetchFromGitHub {
-      owner = "tami5";
-      repo = "lspsaga.nvim";
-      rev = "d8073a0e4d19d71da900fb77dcc5f23d72bb8707";
-      sha256 = "0f5qzi9kk02z6siqzwz2zak687zb4q2nkg66x3pnnqvhfqazjb5q";
-    };
-  };
+  #lspsaga = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  #  name = "lspsaga";
+  #  src = pkgs.fetchFromGitHub {
+  #    owner = "tami5";
+  #    repo = "lspsaga.nvim";
+  #    rev = "d8073a0e4d19d71da900fb77dcc5f23d72bb8707";
+  #    sha256 = "0f5qzi9kk02z6siqzwz2zak687zb4q2nkg66x3pnnqvhfqazjb5q";
+  #  };
+  #};
   luasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "luasnip";
     src = pkgs.fetchFromGitHub {
@@ -63,6 +63,16 @@ let
       sha256 = "09lwf4n1qzvb98k9sq2m66671fdlni81iaskxdirq97smfyhxg8k";
     };
   };
+  chadtree = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "chadtree";
+    src = pkgs.fetchFromGitHub {
+      owner = "ms-jpq";
+      repo = "chadtree";
+      rev = "440ee1d02a1b75a19d56507733737ce11bd02dc6";
+      sha256 = "0nzk7kp3pqaq2cwx3jmn9891ric0ncjcyx6vvql20i31zglabpcz";
+    };
+  };
+
 in
 {
   package = pkgs.unstable.neovim-unwrapped;
@@ -81,6 +91,7 @@ in
     #telescope-nvim      # fuzzy search
     galaxyline-nvim     # status line plugin
     chadtree            # files
+    nvim-tree-lua
     indentLine          # indentlines
     dashboard-nvim      # dashboard TODO: configure
     vim-clap            # for dashboard TODO: configure dashboard
@@ -110,7 +121,7 @@ in
     cmp-nvim-lsp
     cmp-nvim-lua
     cmp-copilot
-    lspsaga             # code action
+    #lspsaga             # code action
 
     #copilot-vim         # breaks cmp tab https://github.com/hrsh7th/nvim-cmp/issues/459
 

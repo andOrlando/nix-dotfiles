@@ -4,6 +4,7 @@ local vars = require("main.variables")
 ---@diagnostic disable-next-line: unused-local
 local mymainmenu = require("deco.menu")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local naughty = require "naughty"
 require("awful.hotkeys_popup.keys")
 
 local mk = vars.modkey
@@ -84,17 +85,23 @@ local globalkeys = gears.table.join(
 	--awful.key({mk}, "w", function() mymainmenu:show() end)
 	--awful.key({mk, "Control"}, "j", function() awful.screen.focus_relative(1) end)
 	--awful.key({mk, "Control"}, "k", function() awful.screen.focus_relative(-1) end)
-	--awful.key({mk}, "Tab",
-	--	function()
-	--		awful.client.focus.history.previous()
-	--		if client.focus then client.focus:raise() end
-	--	end end,) --Goes back one client
 	--awful.key({mk}, "space", function() awful.layout.inc(1) end)
 	--awful.key({mk, "Shift"}, "space" function() awful.layout.inc(-1) end)
 
 )
 
-clientkeys = gears.table.join(
+globalkeys = gears.table.join(globalkeys,
+	-- debugging
+	awful.key({mk}, "w", function() naughty.notification {title="dog1",
+		text="this is some notification txext lorem ipsum dolor sit amet heyoooooo in the jungle the mighty jungle the lion sleeps tonight awimboweh awimboweh",
+		category="device",
+		icon=require"images".giraffe,
+		app_name="discord",
+		actions={naughty.action{name="Option 1"}, naughty.action{name="Option 2"}}
+	} end)
+)
+
+local clientkeys = gears.table.join(
 	awful.key({mk}, "f", function(c) c.fullscreen = not c.fullscreen; c:raise() end,
 		{description="Toggle focused client fullscreen", group="aWM: Client"}),
 	awful.key({mk}, "m", function (c) c.maximized = not c.maximized c:raise() end,
@@ -126,7 +133,7 @@ for i = 1, 9 do
 	)
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
 	awful.button({}, 1, function(c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
 	awful.button({mk}, 1, function(c)
 		c:emit_signal("request::activate", "mouse_click", {raise = true})
@@ -138,4 +145,4 @@ clientbuttons = gears.table.join(
 	end)
 )
 
-root.keys(globalkeys)
+return { globalkeys, clientkeys, clientbuttons }

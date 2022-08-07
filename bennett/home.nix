@@ -1,16 +1,18 @@
 { config, pkgs, ... }:
 
 let
-  zshSettings = import ./zsh/zsh.nix;
+  zshSettings = import ./zsh.nix;
+  fishSettings = import ./fish.nix;
   nvimSettings = import ./nvim/nvim.nix;
-  kittySettings = import ./kitty/kitty.nix;
-  #qutebrowserSettings = import ./qutebrowser/qutebrowser.nix;
+  kittySettings = import ./kitty.nix;
+  gitSettings = import ./git.nix;
 
   whitakers-words = pkgs.callPackage ../programs/whitakers-words {};
   gdlauncher = pkgs.callPackage ../programs/gdlauncher {};
   librewolf = pkgs.callPackage ../programs/librewolf {};
   gcolor = pkgs.callPackage ../programs/gcolor3 {};
   picom-ibhagwan = pkgs.callPackage ../programs/picom-ibhagwan {};
+  spotify-adblock = pkgs.callPackage ../programs/spotify-adblock {};
 in
 {
   nixpkgs.config = import ../nixpkgs-config.nix;
@@ -30,7 +32,6 @@ in
     lua              # lua
     python38         # python
     pipenv           # who needs nix-shell with pipenv
-    #sage             # python but math
     texlive.combined.scheme-medium
 
     # Language servers
@@ -41,7 +42,6 @@ in
     # CLI tools
     htop             # top but cooler
     killall          # kills stuff easily
-    git              # VCS
     wget             # something useful
     unzip            # useful
     exa              # ls++
@@ -49,10 +49,8 @@ in
     gcc              # for some nvim thing
     xdotool          # macros
     whitakers-words  # latin dictionary
-    arcan.ffmpeg     # audio
+    ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
-    bitwarden-cli    # for luakit
-    #lm-sensors       # thermals for awesome
 
     # Useful system stuff
     blueman          # bluetooth
@@ -68,18 +66,14 @@ in
     xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording
-    #gcolor          # color picking doesn't work currently
     kcolorchooser
-    librewolf        # firefox but good
-    #chromium         # chrome lite
     gdlauncher       # minecfraft
-    shotcut          # video editing
     zathura          # pdf viewer
     zoom-us          # ugh zoom
-    luakit           # qutebrowser but better
     qutebrowser      # luakit but stable
     bitwarden        # password manager
-    genymotion
+    #spotify          # music but its bad and annoying
+    spotify-adblock
 
     # Ricing stuff
     brightnessctl    # brightness for awesomeWM
@@ -90,15 +84,15 @@ in
 
   # Heavy config programs
   programs.neovim = nvimSettings pkgs;
-  programs.zsh = zshSettings pkgs;
+  #programs.zsh = zshSettings pkgs;
+  programs.fish = fishSettings pkgs;
   programs.kitty = kittySettings pkgs;
-  #programs.qutebrowser = qutebrowserSettings pkgs;
-
-  programs.ncmpcpp.enable = true;
-
+  programs.git = gitSettings;
+  
   xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink ./luakit;
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink ./awesome;
   xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink ./qutebrowser;
+  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink ./picom;
 
   # GTK stuff
   gtk.enable = true;

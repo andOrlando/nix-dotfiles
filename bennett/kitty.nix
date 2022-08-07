@@ -44,6 +44,8 @@ pkgs:
     tab_separator = "\"\"";
     tab_title_template = "{fmt.fg._3D4465}{fmt.bg._252936}  {title} ";
     active_tab_title_template = "{fmt.fg._3D4465}{fmt.bg._252936} {fmt.bg._383F56}{fmt.fg._C3D1D6}{title}{fmt.fg._383F56}{fmt.bg._252936}";
+    
+    confirm_os_window_close = 0;
   };
 
 }

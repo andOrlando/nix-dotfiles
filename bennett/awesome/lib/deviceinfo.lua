@@ -2,9 +2,9 @@ local awful = require "awful"
 local gears = require "gears"
 
 local ram_script = [[ free -m | grep 'Mem:' | awk '{printf "%d@@%d@", $7, $2}' ]]
-local disk_script = [[ df -kh -B 1MB /dev/nvme0n1p7 | tail -1 | awk '{printf "%d@%d", $4, $3}' ]]
+local disk_script = [[ df -kh -B 1MB /dev/nvme0n1p5 | tail -1 | awk '{printf "%d@%d", $4, $3}' ]]
 local cpu_script = [[ vmstat 1 2 | tail -1 | awk '{printf "%d", $15}' ]]
-local temp_script = [[ sensors | grep Package | awk '{print $4}' | cut -c 2-5 ]]
+local temp_script = [[ sensors | grep Tctl | grep -Po "\d+\.\d" ]]
 local battery_script = [[ upower -i /org/freedesktop/UPower/devices/battery_BAT0 | sed -nr "s/percentage: +([0-9]+)%/\1/p" ]]
 
 local times = 0

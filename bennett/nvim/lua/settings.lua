@@ -9,6 +9,7 @@ opt.shiftwidth = 4
 opt.cursorline = true
 opt.number = true
 opt.filetype = "on"
+vim.g.mapleader = "\\"
 
 g.material_theme_style = "palenight"
 vim.cmd "colorscheme material"
@@ -22,7 +23,20 @@ dofile("/etc/nixos/bennett/nvim/lua/plugins.lua")
 
 --other settings
 --nice tab bindings
+local dog 
 for i=1,9 do vim.api.nvim_set_keymap("n", "\\"..i, "<cmd>tabnext "..i.."<cr>", {noremap=true,silent=true}) end
+
+--lsp message
+vim.diagnostic.config({
+	underline = { severity = vim.diagnostic.severity.ERROR },
+	virtual_text = false
+})
+
+local signs = { Error = " ", Warn = " ", Hint = "->", Information = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 
 --fold text
 local charmap = {["("]="...)",["["]="...]",['{']="...}"}
