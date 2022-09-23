@@ -6,7 +6,7 @@
 , libxkbcommon, xcbutilxrm, hicolor-icon-theme
 , asciidoctor
 #, fontsConf
-, playerctl, lm_sensors, brightnessctl
+, playerctl, lm_sensors, brightnessctl, networkmanager, blueman
 , gtk3Support ? false, gtk3 ? null
 }:
 
@@ -40,6 +40,8 @@ stdenv.mkDerivation rec {
     playerctl
     lm_sensors
     brightnessctl
+	networkmanager
+	blueman
   ];
 
   outputs = [ "out" "doc" ];

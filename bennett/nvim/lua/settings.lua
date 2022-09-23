@@ -2,29 +2,31 @@ local opt = vim.opt
 local g = vim.g
 local fn = vim.fn
 
+--TODO: figure out what a modeline is
+vim.cmd "syntax enable"
 opt.termguicolors = true
 opt.smartindent = true
 opt.tabstop = 4
 opt.shiftwidth = 4
+opt.expandtab = false
 opt.cursorline = true
 opt.number = true
 opt.filetype = "on"
-vim.g.mapleader = "\\"
+opt.scrolloff = 8
+opt.swapfile = false
+opt.undofile = true
+opt.splitbelow = true
+opt.splitright = true
+vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
 
-g.material_theme_style = "palenight"
-vim.cmd "colorscheme material"
+--g.material_theme_style = "palenight"
+vim.cmd "colorscheme everforest"
+vim.highlight.create("normal", {guibg="000000"})
+vim.highlight.create("SignColumn", {guibg="000000"})
+vim.highlight.create("EndOfBuffer", {guifg="000000", guibg="000000"})
 
 opt.viminfo = ""
 opt.viminfofile = "NONE"
-
-dofile("/etc/nixos/bennett/nvim/lua/lsp.lua")
-dofile("/etc/nixos/bennett/nvim/lua/plugins.lua")
---dofile("/etc/nixos/bennett/nvim/lua/colorthing/colorthing.lua")
-
---other settings
---nice tab bindings
-local dog 
-for i=1,9 do vim.api.nvim_set_keymap("n", "\\"..i, "<cmd>tabnext "..i.."<cr>", {noremap=true,silent=true}) end
 
 --lsp message
 vim.diagnostic.config({
@@ -93,3 +95,4 @@ end
 opt.tabline = "%!v:lua.tabline_fn()"
 
 --statusline
+--TODO: make cool

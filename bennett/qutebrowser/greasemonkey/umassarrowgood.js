@@ -7,6 +7,8 @@
 
 document.addEventListener("keydown", handlePressedKey);
 
+let selector = "#arrowRight"
+let disabler = "disabled"
 function handlePressedKey(event) {
 
   // If the pressed key is coming from any input field, do nothing.
@@ -15,7 +17,9 @@ function handlePressedKey(event) {
 
   // Mapping keys with actions.
   const key = event.key;
-  if (key === "!") document.querySelector("#arrowRight").classList.remove("disabled");
+  if (key === "!") document.querySelector(selector).classList.remove(disabler);
+  //if (key === "\\") selector = prompt("gimmie selector")
+  //if (key === "|") disabler = prompt("gimmie class to remove")
 }
 
 console.log("running skipper thing")

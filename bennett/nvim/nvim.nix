@@ -54,15 +54,15 @@ let
   #    sha256 = "0f5qzi9kk02z6siqzwz2zak687zb4q2nkg66x3pnnqvhfqazjb5q";
   #  };
   #};
-  luasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    name = "luasnip";
-    src = pkgs.fetchFromGitHub {
-      owner = "L3MON4D3";
-      repo = "LuaSnip";
-      rev = "eb84bb89933141fa0cd0683cb960fef975106dfd";
-      sha256 = "09lwf4n1qzvb98k9sq2m66671fdlni81iaskxdirq97smfyhxg8k";
-    };
-  };
+  #luasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  #  name = "luasnip";
+  #  src = pkgs.fetchFromGitHub {
+  #    owner = "L3MON4D3";
+  #    repo = "LuaSnip";
+  #    rev = "eb84bb89933141fa0cd0683cb960fef975106dfd";
+  #    sha256 = "09lwf4n1qzvb98k9sq2m66671fdlni81iaskxdirq97smfyhxg8k";
+  #  };
+  #};
   chadtree = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "chadtree";
     src = pkgs.fetchFromGitHub {
@@ -79,16 +79,13 @@ in
   enable = true;
   vimAlias = true;
 
-  #extraConfig is broken for me
-  #extraConfig = ''
-  configure.customRC = ''
-    luafile /etc/nixos/bennett/nvim/lua/settings.lua
-  '';
+  extraConfig = "luafile /etc/nixos/bennett/nvim/init.lua";
 
   plugins = with pkgs.vimPlugins; [
 
     # frontend changes
-    #telescope-nvim      # fuzzy search
+    telescope-nvim      # fuzzy search
+	telescope-fzf-native-nvim # fuzzy search +
     galaxyline-nvim     # status line plugin
     chadtree            # files
     nvim-tree-lua
@@ -97,18 +94,27 @@ in
     vim-clap            # for dashboard TODO: configure dashboard
     comment-nvim        # easy commenting TODO: configure
     vim-matchup         # better % key
+    gitsigns-nvim       # shows additions and deletions and stuff in gutter
+    hop-nvim            # better movement
+    nvim-comment        # commments
+    presence-nvim       # discord presence lol
+	nvim-autopairs		# pair stuff
+	nvim-notify		    # notifications
 
     # color stuff
-    nvim-colorizer-lua  # color hex
-    material-vim        # material colorscheme
+    #nvim-colorizer-lua  # color hex
+    vim-hexokinase      # color hex but better
+	material-vim        # material colorscheme
+	everforest			# more green colorscheme
 
     # behind-the-scenes stuff 
     vim-gutentags       # tag support
     nvim-treesitter     # better syntax
     vim-nix             # better nix syntax
     vimtex              # gooooood
-    friendly-snippets   # snippet presets
-    luasnip
+    lspkind-nvim        # icons for stuff
+    #friendly-snippets   # snippet presets
+    #luasnip
 
     # lsp stuff
     nvim-lspconfig      # lsp core
@@ -119,12 +125,11 @@ in
     cmp-calc
     cmp-buffer
     cmp-nvim-lsp
-    cmp-nvim-lua
-    cmp-copilot
+	#cmp-nvim-lua
     #lspsaga             # code action
 
+	#cmp-copilot
     #copilot-vim         # breaks cmp tab https://github.com/hrsh7th/nvim-cmp/issues/459
-
 
   ];
 }

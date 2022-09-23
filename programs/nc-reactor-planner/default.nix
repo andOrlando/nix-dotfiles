@@ -1,6 +1,6 @@
 { stdenv
 , fetchurl
-, mono
+, wine 
 }:
 
 stdenv.mkDerivation rec {
@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
     sha256 = "0hb13bxwakywjjlqs05k8d0y48iiskbn5mgllmifcfzd0jv4whr2";
   };
 
-  buildInputs = [ mono ];
+  buildInputs = [ wine ];
 
   phases = [ "unpackPhase" "installPhase"];
 
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin
     cp run.exe $out
-    echo mono $out/run.exe > $out/bin/nc-reactor-planner
+    echo ${wine}/bin/wine $out/run.exe > $out/bin/nc-reactor-planner
     chmod +x $out/bin/nc-reactor-planner
   ''; 
 

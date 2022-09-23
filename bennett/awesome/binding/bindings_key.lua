@@ -1,13 +1,11 @@
-local gears = require("gears")
-local awful = require("awful")
-local vars = require("main.variables")
----@diagnostic disable-next-line: unused-local
-local mymainmenu = require("deco.menu")
-local hotkeys_popup = require("awful.hotkeys_popup")
+local gears = require "gears"
+local awful = require "awful"
+local hotkeys_popup = require "awful.hotkeys_popup"
 local naughty = require "naughty"
-require("awful.hotkeys_popup.keys")
+local manager = require "lib.rubato.manager"
 
-local mk = vars.modkey
+local mk = "Mod4"
+local term = "kitty"
 
 local globalkeys = gears.table.join(
 	--- Utils
@@ -16,12 +14,9 @@ local globalkeys = gears.table.join(
 	awful.key({}, "Print",
 		function() awful.spawn("flameshot gui") end,
 		{description="Screenshot", group="aWM: Utils"}),
-	awful.key({mk}, "Return", function() awful.spawn(vars.terminal) end,
+	awful.key({mk}, "Return", function() awful.spawn(term) end,
 		{description="Open Terminal", group="aWM: Utils"}),
-	awful.key({mk}, "p",
-		function() awful.spawn("xset dpms force off") end,
-		{description="Screen Off", group="aWM: Utils"}),
-
+	
 
 	--the old thing was awful.screen.focused().mypromptbox:run()
 	awful.key({mk}, "d", function () os.execute("rofi -modi drun,run -show drun") end,
@@ -57,9 +52,9 @@ local globalkeys = gears.table.join(
 		{description="Decrement Focus", group="aWM: Windows"}),
 
 	--- Layout
-	awful.key({mk}, "h", function() awful.tag.incmwfact(0.05) end,
+	awful.key({mk}, "l", function() awful.tag.incmwfact(0.05) end,
 		{description="Increase master client width", group="aWM: Layout"}),
-	awful.key({mk}, "l", function() awful.tag.incmwfact(-0.05) end,
+	awful.key({mk}, "h", function() awful.tag.incmwfact(-0.05) end,
 		{description="Decrease master client width", group="aWM: Layout"}),
 
 	-- TODO: Figure out exactly what this actually does
@@ -90,15 +85,18 @@ local globalkeys = gears.table.join(
 
 )
 
+local num = 0
 globalkeys = gears.table.join(globalkeys,
 	-- debugging
-	awful.key({mk}, "w", function() naughty.notification {title="dog1",
+	awful.key({mk}, "w", function() num = num + 1; print("hit w"); naughty.notification {title="dog"..tostring(num),
 		text="this is some notification txext lorem ipsum dolor sit amet heyoooooo in the jungle the mighty jungle the lion sleeps tonight awimboweh awimboweh",
 		category="device",
 		icon=require"images".giraffe,
 		app_name="discord",
 		actions={naughty.action{name="Option 1"}, naughty.action{name="Option 2"}}
-	} end)
+	} end),
+	awful.key({mk}, "p", function() manager.timed.override.is_instant = not manager.timed.override.is_instant end)
+
 )
 
 local clientkeys = gears.table.join(

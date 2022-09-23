@@ -3,6 +3,7 @@
 TMP="$(mktemp -d)"
 LOG="$TMP/stdout.log"
 LOG_ERROR="$TMP/stderr.log"
+AWESOME="/nix/store/zsvryr8wmqaq79am13r4hyxr5naxcgkj-awesome-git/bin/awesome"
 
 truncate --size 0 "$LOG" "$LOG_ERROR"
 
@@ -28,7 +29,7 @@ export DEBUG="true"
 export XDG_CONFIG_HOME="$TMP"
 export DISPLAY="$DP.0"
 
-awesome -c "$TMP/awesome/rc.lua" > "$LOG" 2> "$LOG_ERROR" &
+$AWESOME -c "$TMP/awesome/rc.lua" > "$LOG" 2> "$LOG_ERROR" &
 WM_PID="$!"
 
 # Debounce interval in seconds

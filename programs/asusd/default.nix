@@ -27,6 +27,7 @@ in
 
   config = mkIf cfg.enable {
     # Set the ledmodes to the packaged ledmodes by default.
+	#services.supergfx.enable = true;
     services.asusd.ledmodes = mkDefault (
       let
         # Convert packaged asusd-ledmodes.toml to JSON.
@@ -73,6 +74,8 @@ in
         ConfigurationDirectory = "asusd";
         Restart = "always";
         RestartSec = "4s";
+		After = "superfgxd.service";
+		Requires = "superfgxd.service";
       };
     };
   };

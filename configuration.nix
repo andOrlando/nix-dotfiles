@@ -1,19 +1,17 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 # Get the unstable tarball
 let
-  home-manager = fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
+  home-manager = fetchTarball https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz;
   asusctl = pkgs.callPackage ./programs/asusctl {};
+  supergfxctl = pkgs.callPackage ./programs/supergfxctl {};
   awesome = pkgs.callPackage ./programs/awesome {};
 in
 {
   imports = [ 
     /etc/nixos/hardware-configuration.nix
     #./programs/waydroid
+	./programs/supergfxd
     ./programs/asusd
     (import "${home-manager}/nixos")
   ];
@@ -54,40 +52,23 @@ in
 
   networking = {
     hostName = "nixos";
-    #networkmanager = {enable = true; dhcp = "dhclient";};
-    #useDHCP = false; # this is depriciated and so explicity set to false
-    #interfaces.wlp1s0.useDHCP = true;
-    wireless.enable = true;
-    wireless.extraConfig = ''
-      ctrl_interface=/run/wpa_supplicant
-      ctrl_interface_group=wheel
-      update_config=1
-
-      network={
-          ssid="The sock thief"
-          psk=6185f1ed939227af0840531f0d6503a72513410b064822711089ac89808e5855
-      }
-      network={
-          ssid="QuietDog"
-          psk=4882031b922b58349801aff8a3492d4c3e13cceeb4c62a737ec0708eba628b71
-      }
-  '';
-
+	networkmanager.enable = true;
   };
 
   sound.enable = true;
 
   hardware = {
     bluetooth = { enable = true; settings.General.Enable = "Source,Sink,Media,Socket"; };
-    pulseaudio = {
-      enable = true;
-    };
+	pulseaudio = {
+	  enable = true;
+	};
   };
 
   users.users = {
     bennett = {
       isNormalUser = true;
-      shell = pkgs.fish;
+	  shell = pkgs.fish;
+	  #shell = pkgs.bash;
       extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
       hashedPassword = "$6$cq5vs/AUW9kQQRMa$vkpwakgVn7Hn9/o04tCF8fsSoWuaYMEF0YPvxv4CGHeZD7esZn8tEAeqnJT4Cz7/Yl6nTQ9gsZ6vS1vDR6eC50";
     };
@@ -122,7 +103,7 @@ in
     extraRules = [{ groups = ["wheel"]; persist = true; }];
   };
 
-  environment.systemPackages = with pkgs; [ vim xorg.xmodmap asusctl hostsblock ];
+  environment.systemPackages = with pkgs; [ vim xorg.xmodmap asusctl ];
 
   programs = {
     steam.enable = true;
@@ -132,25 +113,35 @@ in
     dconf.enable = true;
   };
 
+  services.supergfxd.enable = true;
+  services.supergfxd.mode = "Hybrid"; # set mode to integrated
   services.asusd.enable = true; # asusd from ./programs/asusd
-  services.power-profiles-daemon.enable = true;
+  #services.power-profiles-daemon.enable = true;
   services = {
 
     #openssh.enable = true; #allow ssh
     upower.enable = true; #battery for awesome
     blueman.enable = true; #gui bluetooth
     #mpd.enable = true;
+	tlp.enable = true; # power manager daemon
 
     xserver = {
       enable = true;
+      resolutions = [
+        {
+          x = 2560;
+          y = 1600;
+		}
+        {
+          x = 2048;
+          y = 1280;
+		}
+	  ];
+
       layout = "us";
       libinput.enable = true; # tablet config
       wacom.enable = true;
 
-      #windowManager.awesome = {
-      #  enable = true;
-      #  package = awesome;
-      #};
       windowManager.session = pkgs.lib.singleton {
         name = "awesomeDEBUG";
         start = "exec dbus-run-session -- ${awesome}/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr";
@@ -164,14 +155,14 @@ in
       '';
     };
 
-    #pipewire = {
-    #  enable = true;
-    #  alsa.enable = true;
-    #  alsa.support32Bit = true;
-    #  jack.enable = true;
-    #  pulse.enable = true;
-    #  socketActivation = true;
-    #};
+	#pipewire = {
+	#  enable = true;
+	#  alsa.enable = true;
+	  #alsa.support32Bit = true;
+	#  jack.enable = true;
+	  #pulse.enable = true;
+	#  socketActivation = true;
+	#};
 
   };
   programs.sway.enable = true;

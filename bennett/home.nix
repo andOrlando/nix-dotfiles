@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   zshSettings = import ./zsh.nix;
@@ -13,6 +13,8 @@ let
   gcolor = pkgs.callPackage ../programs/gcolor3 {};
   picom-ibhagwan = pkgs.callPackage ../programs/picom-ibhagwan {};
   spotify-adblock = pkgs.callPackage ../programs/spotify-adblock {};
+  
+  discord = pkgs.discord.overrideAttrs (old: rec { src = builtins.fetchTarball "https://dl.discordapp.net/apps/linux/0.0.20/discord-0.0.20.tar.gz"; });
 in
 {
   nixpkgs.config = import ../nixpkgs-config.nix;
@@ -27,12 +29,15 @@ in
     # Development Stuff
     android-studio
 
-    # Langauges TODO: Just use nix shell
+    # Langauges
     nodejs           # javascript
     lua              # lua
     python38         # python
     pipenv           # who needs nix-shell with pipenv
     texlive.combined.scheme-medium
+    gcc              # for some nvim thing
+	cargo			 # rust stuff also for nvim thingy
+	rustc
 
     # Language servers
     rnix-lsp         # not supported by lspinstaller
@@ -46,11 +51,12 @@ in
     unzip            # useful
     exa              # ls++
     ctags            # tags for gutentags
-    gcc              # for some nvim thing
     xdotool          # macros
     whitakers-words  # latin dictionary
     ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
+	ripgrep			 # probably good idk but telescope wants it
+	sage			 # because sage is cool
 
     # Useful system stuff
     blueman          # bluetooth
@@ -72,8 +78,10 @@ in
     zoom-us          # ugh zoom
     qutebrowser      # luakit but stable
     bitwarden        # password manager
-    #spotify          # music but its bad and annoying
-    spotify-adblock
+    spotify          # you need spotify to log into spotify-adblock idk why
+    spotify-adblock  # spotify but without ads, simple as that
+	gnome.gnome-power-manager
+	notion-app-enhanced # notion
 
     # Ricing stuff
     brightnessctl    # brightness for awesomeWM
@@ -88,11 +96,36 @@ in
   programs.fish = fishSettings pkgs;
   programs.kitty = kittySettings pkgs;
   programs.git = gitSettings;
+  programs.vscode = {
+    enable = true;
+    userSettings = {
+      "java.configuration.runtimes" = [
+        {
+          name = "JavaSE-17";
+          path = "${pkgs.jdk17_headless}/lib/openjdk";
+          default = true;
+        }
+      ];
+	  "java.jdt.ls.java.home" = "${pkgs.jdk17_headless}/lib/openjdk";
+    };
+    extensions = with pkgs.vscode-extensions; [
+      vscodevim.vim
+	  gruntfuggly.todo-tree
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "vscode-java-pack";
+        publisher = "vscjava";
+        version = "0.25.2022082700";
+        sha256 = "sha256-Ntock5NjRojqAMlEJBBiPDovOGt5XEuuCugGlmuB4QY=";
+      }
+    ];
+  };
   
   xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink ./luakit;
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink ./awesome;
   xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink ./qutebrowser;
   xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink ./picom;
+  #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
 
   # GTK stuff
   gtk.enable = true;
