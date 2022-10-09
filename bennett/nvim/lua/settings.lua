@@ -21,9 +21,9 @@ vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype
 
 --g.material_theme_style = "palenight"
 vim.cmd "colorscheme everforest"
-vim.highlight.create("normal", {guibg="000000"})
-vim.highlight.create("SignColumn", {guibg="000000"})
-vim.highlight.create("EndOfBuffer", {guifg="000000", guibg="000000"})
+--vim.api.nvim_set_hl(0, "normal", {bg="#00000000"})
+--vim.highlight.create("SignColumn", {guibg="000000"})
+--vim.highlight.create("EndOfBuffer", {guifg="000000", guibg="000000"})
 
 opt.viminfo = ""
 opt.viminfofile = "NONE"

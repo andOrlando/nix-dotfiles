@@ -1046,6 +1046,7 @@ local function create_info_widgets()
 			},
 			widget = wibox.layout.align.vertical,
 			id = "everythingcontainer"
+			--TODO: fix this
 		},
 		create_big_bluetooth_widget(),
 		margins = dpi(8),

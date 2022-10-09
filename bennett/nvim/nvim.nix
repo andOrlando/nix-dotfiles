@@ -81,7 +81,7 @@ in
 
   extraConfig = "luafile /etc/nixos/bennett/nvim/init.lua";
 
-  plugins = with pkgs.vimPlugins; [
+  plugins = with pkgs.unstable.vimPlugins; [
 
     # frontend changes
     telescope-nvim      # fuzzy search

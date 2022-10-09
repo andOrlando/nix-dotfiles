@@ -5,7 +5,7 @@
 // @grant GM_setClipboard
 // ==/UserScript==
 
-const bind = "t"
+const bind = ""
 let ctrl_down = false
 
 document.addEventListener("keydown", event => { ctrl_down = event.key == "Control" ? true : ctrl_down })

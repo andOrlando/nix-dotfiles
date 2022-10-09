@@ -82,6 +82,8 @@ in
     spotify-adblock  # spotify but without ads, simple as that
 	gnome.gnome-power-manager
 	notion-app-enhanced # notion
+	libreoffice
+	slack
 
     # Ricing stuff
     brightnessctl    # brightness for awesomeWM
@@ -118,6 +120,12 @@ in
         version = "0.25.2022082700";
         sha256 = "sha256-Ntock5NjRojqAMlEJBBiPDovOGt5XEuuCugGlmuB4QY=";
       }
+	  {
+        name = "vscode-eslint";
+        publisher = "dbaeumer";
+		version = "2.2.6";
+		sha256 = "sha256-1yZeyLrXuubhKzobWcd00F/CdU824uJDTkB6qlHkJlQ=";
+	  }
     ];
   };
   

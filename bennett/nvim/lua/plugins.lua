@@ -115,7 +115,8 @@ dashboard.custom_footer = {
 }
 
 --gitsigns
-require"gitsigns".setup({
+--TODO fix this
+--[[require"gitsigns".setup({
 	signs = {
 		add = { hl = 'GitSignsAdd', text = '┃', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
 		change = { hl = 'GitSignsChange', text = '┃', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
@@ -154,7 +155,7 @@ require"gitsigns".setup({
 		col = 1,
 	},
 	yadm = { enable = false, },
-})
+})]]
 
 --hexokinase
 g.Hexokinase_highlighters = { 'backgroundfull' }
