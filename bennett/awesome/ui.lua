@@ -16,7 +16,7 @@ local rubato = require "lib.rubato"
 local coolwidget = require "lib.awesome-widgets".coolwidget
 local recycler = require "lib.awesome-widgets".recycler
 local slider = require "lib.awesome-widgets".slider
-local playerctl = require "lib.bling.signal.playerctl".lib()
+-- local playerctl = require "lib.bling.signal.playerctl".lib()
 local bluetooth = require "lib.bluetooth"
 --local wifi = require "lib.network"
 
@@ -671,7 +671,7 @@ local function create_music_widget()
 	local function set_playpause_status() awful.spawn.with_line_callback("playerctl status", {stdout=function(out) playpause:set(out == "Paused" and 1 or 0) end}) end
 	set_playpause_status()
 
-	playerctl:connect_signal("metadata", function(_, title, artist, album_path, album, new, player_name)
+	--[[playerctl:connect_signal("metadata", function(_, title, artist, album_path, album, new, player_name)
 		image.image = gears.surface.load_uncached(album_path)
 		name.text = title or "no song title"
 		author.text = artist or "no song artist"
@@ -704,7 +704,7 @@ local function create_music_widget()
 
 		--if not manually dragging the slider then don't move it
 		if not slider:is_doing_mouse_things() then slider:set(interval_sec / length_sec) end
-	end)
+	end)]]
 
 	slider:connect_signal("slider::ended_mouse_things", function(_, pos)
 		awful.spawn(("playerctl position %d"):format(math.floor(pos * length)))
