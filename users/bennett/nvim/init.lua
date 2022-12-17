@@ -1,5 +1,5 @@
 --add itself to package.path
-package.path = package.path .. ";/etc/nixos/bennett/nvim/lua/?.lua"
+package.path = package.path .. ";/etc/nixos/users/bennett/nvim/lua/?.lua"
 
 --require all the cool things
 require "settings"

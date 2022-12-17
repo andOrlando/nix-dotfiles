@@ -79,7 +79,7 @@ in
   enable = true;
   vimAlias = true;
 
-  extraConfig = "luafile /etc/nixos/bennett/nvim/init.lua";
+  extraConfig = "luafile /etc/nixos/users/bennett/nvim/init.lua";
 
   plugins = with pkgs.vimPlugins; [
 
