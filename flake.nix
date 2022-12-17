@@ -11,7 +11,9 @@
   outputs = { stable, unstable, home-manager, ... }@inputs:
   let
     system = "x86_64-linux";
+    config = { allowUnfree = true; };
   in {
+    # normal stuff
     nixosConfigurations = {
       zephyrus = stable.lib.nixosSystem {
         inherit system;
@@ -19,10 +21,12 @@
         modules = [ ./hosts/zephyrus/configuration.nix ];
       };
     };
-    homeManagerConfigurations = {
+
+    # home-manager stuff
+    defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+    homeConfigurations = {
       bennett = home-manager.lib.homeManagerConfiguration {
-        inherit stable;
-        specialArgs = inputs;
+        pkgs = import stable {inherit system config;};
         modules = [ ./users/bennett/home.nix ];
       };
     };

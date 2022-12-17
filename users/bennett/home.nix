@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, config, ... }:
 
 let
   zshSettings = import ./zsh.nix;
@@ -7,12 +7,12 @@ let
   kittySettings = import ./kitty.nix;
   gitSettings = import ./git.nix;
 
-  whitakers-words = pkgs.callPackage ../programs/whitakers-words {};
-  gdlauncher = pkgs.callPackage ../programs/gdlauncher {};
-  librewolf = pkgs.callPackage ../programs/librewolf {};
-  gcolor = pkgs.callPackage ../programs/gcolor3 {};
-  picom-ibhagwan = pkgs.callPackage ../programs/picom-ibhagwan {};
-  spotify-adblock = pkgs.callPackage ../programs/spotify-adblock {};
+  whitakers-words = pkgs.callPackage ../../programs/whitakers-words {};
+  gdlauncher = pkgs.callPackage ../../programs/gdlauncher {};
+  librewolf = pkgs.callPackage ../../programs/librewolf {};
+  gcolor = pkgs.callPackage ../../programs/gcolor3 {};
+  picom-ibhagwan = pkgs.callPackage ../../programs/picom-ibhagwan {};
+  spotify-adblock = pkgs.callPackage ../../programs/spotify-adblock {};
   
   # discord = pkgs.discord.overrideAttrs (old: rec { src = builtins.fetchTarball "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"; });
 in
@@ -66,7 +66,7 @@ in
     # Normal GUI applications
     discord          # "ChAt fOr GaMeRs"
     lutris           # gaming
-    unstable.osu-lazer # more gaming
+    osu-lazer # more gaming
     muse             # DAW
     # pkgs.unstable.signal-desktop   # "chat for ~gamers~ privacy nerds"
     signal-desktop
