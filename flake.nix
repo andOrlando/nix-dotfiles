@@ -16,7 +16,7 @@
       zephyrus = stable.lib.nixosSystem {
         inherit system;
         specialArgs = inputs;
-        modules = [ ./hosts/configuration.nix ];
+        modules = [ ./hosts/zephyrus/configuration.nix ];
       };
     };
     homeManagerConfigurations = {
