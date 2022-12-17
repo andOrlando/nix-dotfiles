@@ -1,6 +1,6 @@
 { config, pkgs, unstable, ... }@args:
 let
-  awesome = pkgs.callPackage ./programs/awesome {};
+  awesome = pkgs.callPackage ../../programs/awesome {};
   unstable-pkgs = import unstable {system="x86_64-linux"; allowUnfree = true;};
 in
 {
