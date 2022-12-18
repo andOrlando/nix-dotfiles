@@ -66,7 +66,10 @@ in
   # Enable sudo and add correct config
   security.sudo = {
     enable = true;
-    extraConfig = "Defaults rootpw";
+    extraConfig = ''
+      Defaults rootpw;
+      %wheel ALL=(ALL) NOPASSWD: sudoedit ^/etc/nixos[^[:space:]]*$
+    '';
   };
 
   environment.systemPackages = with pkgs; [ neovim ];

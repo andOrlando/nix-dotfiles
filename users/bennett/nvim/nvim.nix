@@ -100,6 +100,7 @@ in
     presence-nvim       # discord presence lol
     # nvim-autopairs		# pair stuff
     nvim-notify		    # notifications
+    zephyr-nvim
 
     # color stuff
     #nvim-colorizer-lua  # color hex

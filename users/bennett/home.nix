@@ -15,6 +15,15 @@ let
   spotify-adblock = pkgs.callPackage ../../programs/spotify-adblock {};
   
   # discord = pkgs.discord.overrideAttrs (old: rec { src = builtins.fetchTarball "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"; });
+  osu-lazer = pkgs.osu-lazer.overrideAttrs (old: rec {
+    version = "2022.1214.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "ppy";
+      repo = "osu";
+      rev = "2022.1214.0";
+      sha256 = "sha256-XwM5GcPZPA5cwomeZA54zc9kg0lP5TDq3d5j+BMNOlU=";
+    };
+  });
 in
 {
   nixpkgs.config = {allowUnfree = true;};
@@ -66,7 +75,7 @@ in
     # Normal GUI applications
     discord          # "ChAt fOr GaMeRs"
     lutris           # gaming
-    osu-lazer # more gaming
+    osu-lazer        # more gaming
     muse             # DAW
     # pkgs.unstable.signal-desktop   # "chat for ~gamers~ privacy nerds"
     signal-desktop

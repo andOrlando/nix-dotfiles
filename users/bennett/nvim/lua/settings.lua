@@ -20,8 +20,8 @@ opt.splitbelow = true
 opt.splitright = true
 vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
 
---g.material_theme_style = "palenight"
-vim.cmd "colorscheme everforest"
+g.material_theme_style = "palenight"
+vim.cmd "colorscheme material"
 --vim.api.nvim_set_hl(0, "normal", {bg="#00000000"})
 --vim.highlight.create("SignColumn", {guibg="000000"})
 --vim.highlight.create("EndOfBuffer", {guifg="000000", guibg="000000"})

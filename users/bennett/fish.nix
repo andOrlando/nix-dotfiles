@@ -6,7 +6,8 @@ pkgs:
     unziptar = "tar -xvzf";
     ls = "exa --icons --sort extension";
     tree = "exa --icons --sort extension --tree";
-    home = "nvim $NIXOS_CONFIG_DIR/bennett/home.nix";
+    home = "nvim $NIXOS_CONFIG_DIR/users/bennett/home.nix";
+    rebuild = "$NIXOS_CONFIG_DIR/rebuild.sh";
     config = "nvim $NIXOS_CONFIG_DIR/configuration.nix";
     make-store-writable = "sudo mount /nix/store -o remount,ro";
   };
@@ -44,7 +45,7 @@ pkgs:
 
 	# useful functions for nixos
 	function nix-build-with-nixpkgs; nix-build -E "with import <nixpkgs> {}; callPackage ./$argv[1] {}"; end
-    function rebuild; sudo nixos-rebuild switch -I nixos-config=$HOME/.config/nixos/configuration.nix; end
+    # function rebuild; sudo nixos-rebuild switch -I nixos-config=$HOME/.config/nixos/configuration.nix; end
     function nix-fetch-sha256-gh; nix-prefetch-url --unpack "https://github.com/$argv[1]/$argv[2]/archive/$argv[3].tar.gz"; end
     function nix-store-mount-rw; sudo mount -o remount,rw /nix/store; end
     function nix-store-mount-r; sudo mount -o remount,r /nix/store; end
