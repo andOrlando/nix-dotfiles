@@ -1,5 +1,5 @@
-function config() { sudo nixos-rebuild switch --flake path:$NIXOS_CONFIG_DIR#; }
-function home() { nix run $NIXOS_CONFIG_DIR switch -- --flake $NIXOS_CONFIG_DIR; }
+function config() { sudo nixos-rebuild switch --flake path:/etc/nixos/#; }
+function home() { nix run /etc/nixos switch -- --flake /etc/nixos; }
 
 if [ "$1" = "home" ]; then home; fi
 if [ "$1" = "config" ]; then config; fi

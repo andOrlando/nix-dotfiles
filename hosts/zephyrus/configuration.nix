@@ -18,7 +18,7 @@ in
   environment.variables = { EDITOR="nvim"; };
   nixpkgs.config = {allowUnfree = true;};
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -67,7 +67,7 @@ in
   security.sudo = {
     enable = true;
     extraConfig = ''
-      Defaults rootpw;
+      Defaults rootpw
       %wheel ALL=(ALL) NOPASSWD: sudoedit ^/etc/nixos[^[:space:]]*$
     '';
   };

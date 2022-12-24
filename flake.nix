@@ -27,6 +27,7 @@
     homeConfigurations = {
       bennett = home-manager.lib.homeManagerConfiguration {
         pkgs = import stable {inherit system config;};
+        extraSpecialArgs = inputs;
         modules = [ ./users/bennett/home.nix ];
       };
     };

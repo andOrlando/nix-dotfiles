@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, unstable, ... }:
 
 let
   zshSettings = import ./zsh.nix;
@@ -13,17 +13,18 @@ let
   gcolor = pkgs.callPackage ../../programs/gcolor3 {};
   picom-ibhagwan = pkgs.callPackage ../../programs/picom-ibhagwan {};
   spotify-adblock = pkgs.callPackage ../../programs/spotify-adblock {};
-  
+
+  unstable-pkgs = import unstable {system = "x86_64-linux"; config = { allowUnfree = true; };};
   # discord = pkgs.discord.overrideAttrs (old: rec { src = builtins.fetchTarball "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"; });
-  osu-lazer = pkgs.osu-lazer.overrideAttrs (old: rec {
-    version = "2022.1214.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "ppy";
-      repo = "osu";
-      rev = "2022.1214.0";
-      sha256 = "sha256-XwM5GcPZPA5cwomeZA54zc9kg0lP5TDq3d5j+BMNOlU=";
-    };
-  });
+  # osu-lazer = pkgs.osu-lazer.overrideAttrs (old: rec {
+    # version = "2022.1214.0";
+    # src = pkgs.fetchFromGitHub {
+      # owner = "ppy";
+      # repo = "osu";
+      # rev = "2022.1214.0";
+      # sha256 = "sha256-XwM5GcPZPA5cwomeZA54zc9kg0lP5TDq3d5j+BMNOlU=";
+    # };
+  # });
 in
 {
   nixpkgs.config = {allowUnfree = true;};
@@ -84,6 +85,7 @@ in
     obs-studio       # desktop recording
     kcolorchooser
     gdlauncher       # minecfraft
+    unstable-pkgs.prismlauncher
     zathura          # pdf viewer
     zoom-us          # ugh zoom
     qutebrowser      # luakit but stable
@@ -141,10 +143,10 @@ in
     ];
   };
   
-  xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink ./luakit;
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink ./awesome;
-  xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink ./qutebrowser;
-  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink ./picom;
+  xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/luakit;
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/awesome;
+  xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/qutebrowser;
+  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/picom;
   #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
 
   # GTK stuff

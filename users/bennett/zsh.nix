@@ -63,8 +63,8 @@ in
     unziptar = "tar -xvzf";
     ls = "exa --icons --sort extension";
     tree = "exa --icons --sort extension --tree";
-    home = "nvim $NIXOS_CONFIG_DIR/bennett/home.nix";
-    config = "nvim $NIXOS_CONFIG_DIR/configuration.nix";
+    home = "sudoedit /etc/nixos/users/bennett/home.nix";
+    config = "sudoedit /etc/nixos/hosts/configuration.nix";
     make-store-writable = "sudo mount /nix/store -o remount,ro";
   };
 
