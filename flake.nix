@@ -6,6 +6,9 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11"; 
     home-manager.inputs.nixpkgs.follows = "stable";
+
+    nix-matlab.url = "gitlab:doronbehar/nix-matlab";
+    nix-matlab.inputs.nixpkgs.follows = "stable";
   };
 
   outputs = { stable, unstable, home-manager, ... }@inputs:

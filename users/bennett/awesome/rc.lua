@@ -46,11 +46,6 @@ require "lib.deviceinfo"
 
 local globalkeys, clientkeys, clientbuttons = table.unpack(require "binding.bindings_key")
 
---set dpi
---awful.screen.set_auto_dpi_enabled( true )
--- beautiful.xresources.set_dpi(
--- naughty.notify{text=tostring(dpi(1))}
-
 --if cpu is at like 95% then make rubato instant
 awesome.connect_signal("signal::cpu", function(percent) RUBATO_MANAGER.timed.override.instant = percent > 95 end)
 
@@ -179,32 +174,29 @@ end)
 
 --testing popup
 local function test(screen)
-	local r_timed = rubato.timed {duration=0.4}
-	local g_timed = rubato.timed {duration=0.4}
-	local b_timed = rubato.timed {duration=0.4}
 
-
+	print((color.color{r=0, g=0, b=0, a=0}).hex)
 	function make_test_button(c)
 		local w = wibox.container.background(wibox.widget.textbox(c), c)
 
-		r_timed:subscribe(function() w.bg = "#"..color.utils.rgba_to_hex {math.max(r_timed.pos, 0), math.max(g_timed.pos, 0), math.max(b_timed.pos, 0)} end)
-		g_timed:subscribe(function() w.bg = "#"..color.utils.rgba_to_hex {math.max(r_timed.pos, 0), math.max(g_timed.pos, 0), math.max(b_timed.pos, 0)} end)
-		b_timed:subscribe(function() w.bg = "#"..color.utils.rgba_to_hex {math.max(r_timed.pos, 0), math.max(g_timed.pos, 0), math.max(b_timed.pos, 0)} end)
+		local bg_transition = color.transition(color.color{hex="#00000000"}, color.color{hex="#70a5eb"}, 0)
+		local bg_timed = rubato.timed { duration = 0.5, subscribed = function(pos) w:set_bg(bg_transition(pos).hex) end }
 
-		w:connect_signal("mouse::enter", function() r_timed.target, g_timed.target, b_timed.target = color.utils.hex_to_rgba(c) end)
+		w:connect_signal("mouse::enter", function() bg_timed.target = 1 end)
+		w:connect_signal("mouse::leave", function() bg_timed.target = 0 end)
 		return w
 	end
 
 	---@diagnostic disable-next-line: redefined-local
 	local test = awful.popup {
 		widget = {
-			make_test_button("#ff0000"),
-			make_test_button("#00ff00"),
-			make_test_button("#0000ff"),
+			make_test_button("test1"),
+			make_test_button("test2"),
+			make_test_button("test3"),
 			spacing = dpi(10),
 			layout = wibox.layout.fixed.horizontal
 		},
-		bg = "#000000",
+		bg = "#ffffff",
 		maximum_height = dpi(300),
 		minimum_height = dpi(300),
 		maximum_width = dpi(300),
@@ -216,10 +208,10 @@ local function test(screen)
 		opacity = 0
 	}
 
-	globalkeys = gears.table.join(globalkeys, awful.key({"Mod4", "Alt"}, "0", function() test.opacity = (test.opacity + 1) % 2 end))
+	globalkeys = gears.table.join(globalkeys, awful.key({"Mod4"}, "0", function() test.opacity = (test.opacity + 1) % 2 end))
 
 end
---awful.screen.connect_for_each_screen(test)
+awful.screen.connect_for_each_screen(test)
 
 root.keys(globalkeys)
 

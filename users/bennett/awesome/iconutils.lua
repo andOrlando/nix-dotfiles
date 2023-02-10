@@ -40,6 +40,7 @@ function M.get_icon(name, path)
 end
 
 function M.set_client_icon(client)
+	if not client.class then return end
 	local icon = M.get_icon(TAGLIST_ICON_THEME, "128x128/apps/"..string.lower(client.class)..".svg")
 	if icon then client.icon = icon._native end
 end
