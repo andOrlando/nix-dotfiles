@@ -15,7 +15,9 @@ in
     package = pkgs.nixFlakes; # or versioned attributes like nixVersions.nix_2_8
     extraOptions = "experimental-features = nix-command flakes";
   };
-  environment.variables = { EDITOR="nvim"; };
+  environment.variables = {
+    EDITOR="nvim";
+  };
   nixpkgs.config = {allowUnfree = true;};
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
