@@ -1,4 +1,4 @@
-{ pkgs, config, unstable, ... }:
+{ pkgs, config, unstable, nix-matlab, ... }:
 
 let
   zshSettings = import ./zsh.nix;
@@ -6,6 +6,7 @@ let
   nvimSettings = import ./nvim/nvim.nix;
   kittySettings = import ./kitty.nix;
   gitSettings = import ./git.nix;
+  helixSettings = import ./helix.nix;
 
   whitakers-words = pkgs.callPackage ../../programs/whitakers-words {};
   gdlauncher = pkgs.callPackage ../../programs/gdlauncher {};
@@ -28,6 +29,7 @@ let
 in
 {
   nixpkgs.config = {allowUnfree = true;};
+  nixpkgs.overlays = [ nix-matlab.overlay ];
 
   programs.home-manager.enable = true;
   home.username = "bennett";
@@ -35,6 +37,8 @@ in
   home.stateVersion = "21.11";
 
   home.packages = with pkgs; [
+
+    matlab
 
     # Development Stuff
     android-studio
@@ -112,6 +116,7 @@ in
   programs.fish = fishSettings pkgs;
   programs.kitty = kittySettings pkgs;
   programs.git = gitSettings;
+  programs.helix = helixSettings pkgs;
   programs.vscode = {
     enable = true;
     userSettings = {
@@ -143,10 +148,10 @@ in
     ];
   };
   
-  xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/luakit;
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/awesome;
-  xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/qutebrowser;
-  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/users/bennett/picom;
+  xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/luakit";
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/awesome";
+  xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/qutebrowser";
+  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/picom";
   #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
 
   # GTK stuff

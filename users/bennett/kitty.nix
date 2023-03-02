@@ -14,8 +14,8 @@ pkgs:
     enable_audio_bell = "no";
 
     foreground = "#E9EBF3";
-    background = "#71798f";
-	background_opacity = "0.1";
+    background = "#292d3e";
+	# background_opacity = "0.1";
     dynamic_background_opacity = "yes";
     color0 = "#13151C";
     color8 = "#3D4465";
@@ -43,8 +43,8 @@ pkgs:
 
     tab_bar_style = "separator";
     tab_separator = "\"\"";
-	tab_title_template = "\"{fmt.fg._E9EBF3}{fmt.bg._71798f}  {title} \"";
-	active_tab_title_template = "{fmt.fg._525867}{fmt.bg._71798f} {fmt.bg._525867}{fmt.fg._E9EBF3}{title}{fmt.fg._525867}{fmt.bg._71798f}";
+	# tab_title_template = "\"{fmt.fg._E9EBF3}{fmt.bg._71798f}  {title} \"";
+	# active_tab_title_template = "{fmt.fg._525867}{fmt.bg._71798f} {fmt.bg._525867}{fmt.fg._E9EBF3}{title}{fmt.fg._525867}{fmt.bg._71798f}";
     
     confirm_os_window_close = 0;
   };

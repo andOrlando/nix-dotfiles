@@ -9,6 +9,7 @@ in
     (import "${unstable}/nixos/modules/programs/rog-control-center.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/hardware/asusd.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/hardware/supergfxd.nix" (args // {pkgs=unstable-pkgs;}))
+    (import "${unstable}/nixos/modules/services/printing/cups-pdf.nix" (args // {pkgs=unstable-pkgs;}))
   ];
 
   nix = {
@@ -17,10 +18,21 @@ in
   };
   environment.variables = {
     EDITOR="nvim";
+    NIXOS_CONFIG_DIR="/home/bennett/.config/nixos";
   };
   nixpkgs.config = {allowUnfree = true;};
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
+  boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_1.override {
+    argsOverride = rec {
+      version = "6.1.12";
+      modDirVersion = "6.1.12";
+      src = pkgs.fetchurl {
+        url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
+        sha256 = "sha256-1HqmdRcJBNzJPuqnyW21TUdqEcXT6M89O5bjZOKg7eo=";
+      };
+    };
+  });
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -85,6 +97,7 @@ in
     rog-control-center.enable = true;
   };
 
+  # asus stuff
   services.asusd.enable = true; # asusd from ./programs/asusd
   services.supergfxd.enable = true;
   environment.etc."supergfxd.conf" = {
@@ -99,6 +112,14 @@ in
       hotplug_type1 = "Asus";
     };
   };
+
+  # printing stuff
+  services.printing.enable = true;
+  services.printing.cups-pdf.enable = true;
+  services.printing.cups-pdf.instances.opt.settings = {
+    Out = "\${HOME}/Documents";
+  };
+
   services = {
 
     # openssh.enable = true; #allow ssh
@@ -117,12 +138,16 @@ in
       libinput.enable = true; # tablet config
       wacom.enable = true;
 
-      windowManager.session = pkgs.lib.singleton {
-        name = "awesomeDEBUG";
-        start = "exec dbus-run-session -- ${awesome}/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr";
-      };
+      # windowManager.session = pkgs.lib.singleton {
+        # name = "awesomeDEBUG";
+        # start = "exec dbus-run-session -- ${awesome}/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr";
+      # };
 
+      displayManager.sx.enable = true;
       displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      windowManager.awesome.enable = true;
+      windowManager.awesome.package = awesome;
     };
   };
 

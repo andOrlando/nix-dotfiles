@@ -11,7 +11,7 @@
     nix-matlab.inputs.nixpkgs.follows = "stable";
   };
 
-  outputs = { stable, unstable, home-manager, ... }@inputs:
+  outputs = { stable, unstable, home-manager, nix-matlab, ... }@inputs:
   let
     system = "x86_64-linux";
     config = { allowUnfree = true; };

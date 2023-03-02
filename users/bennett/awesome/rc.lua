@@ -76,17 +76,23 @@ awful.rules.rules = {
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen
 		},
 	},
+	{
+		rule = {class = {"sun-awt-X11-XFramePeer"}},
+		properties = { floating = true, tag="3" }
+	},
 	{	rule_any = { type = {"normal", "dialog"} },
 		properties = { titlebars_enabled = true },
 	},
     {	rule_any = { --floating
 			class = {
 				"Blueman-manager",
+			  ".blueman-manager-wrapped",
 				"Tor Browser",
 				"Wpa_gui",
-				"sun-awt-X11-XWindowPeer"
+				"sun-awt-X11-XWindowPeer",
+				-- "sun-awt-X11-XFramePeer"
 			},
-			role = {"pop-up"}
+			-- role = {"pop-up"}
 		},
 		properties = { floating = true },
 	},
@@ -162,7 +168,7 @@ awful.screen.connect_for_each_screen(function(screen)
 	}
 
 	--create screen
-	ui = require"ui"
+	local ui = require"ui"
 	ui:create(screen)
 
 	globalkeys = gears.table.join(globalkeys, awful.key({"Mod4"}, "Tab", function()
@@ -176,7 +182,7 @@ end)
 local function test(screen)
 
 	print((color.color{r=0, g=0, b=0, a=0}).hex)
-	function make_test_button(c)
+	local function make_test_button(c)
 		local w = wibox.container.background(wibox.widget.textbox(c), c)
 
 		local bg_transition = color.transition(color.color{hex="#00000000"}, color.color{hex="#70a5eb"}, 0)
@@ -211,7 +217,7 @@ local function test(screen)
 	globalkeys = gears.table.join(globalkeys, awful.key({"Mod4"}, "0", function() test.opacity = (test.opacity + 1) % 2 end))
 
 end
-awful.screen.connect_for_each_screen(test)
+-- awful.screen.connect_for_each_screen(test)
 
 root.keys(globalkeys)
 
