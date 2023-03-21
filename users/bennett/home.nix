@@ -13,7 +13,7 @@ let
   librewolf = pkgs.callPackage ../../programs/librewolf {};
   gcolor = pkgs.callPackage ../../programs/gcolor3 {};
   picom-ibhagwan = pkgs.callPackage ../../programs/picom-ibhagwan {};
-  spotify-adblock = pkgs.callPackage ../../programs/spotify-adblock {};
+  spotify = pkgs.callPackage ../../programs/spotify {};
 
   unstable-pkgs = import unstable {system = "x86_64-linux"; config = { allowUnfree = true; };};
   # discord = pkgs.discord.overrideAttrs (old: rec { src = builtins.fetchTarball "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"; });
@@ -94,8 +94,8 @@ in
     zoom-us          # ugh zoom
     qutebrowser      # luakit but stable
     bitwarden        # password manager
-    spotify          # you need spotify to log into spotify-adblock idk why
-    spotify-adblock  # spotify but without ads, simple as that
+    spotify          # adblocked spotify
+    # spotify-adblock  # spotify but without ads, simple as that
     gnome.gnome-power-manager
     notion-app-enhanced # notion
     obsidian		 # notion alternative

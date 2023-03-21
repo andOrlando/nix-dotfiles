@@ -7,8 +7,8 @@ pkgs:
     ls = "exa --icons --sort extension";
     tree = "exa --icons --sort extension --tree";
     rebuild = "$NIXOS_CONFIG_DIR/rebuild.sh";
-    home = "nvim $NIXOS_CONFIG_DIR/users/bennett/home.nix";
-    config = "nvim $NIXOS_CONFIG_DIR/configuration.nix";
+    home = "$EDITOR $NIXOS_CONFIG_DIR/users/$USER/home.nix";
+    config = "$EDITOR $NIXOS_CONFIG_DIR/hosts/$(hostname)/configuration.nix";
     make-store-writable = "sudo mount /nix/store -o remount,ro";
     gsudo = "sudo git -c \"include.path=$HOME/.config/git/config\"";
   };

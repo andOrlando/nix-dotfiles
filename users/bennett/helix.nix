@@ -5,7 +5,7 @@ pkgs:
 
   settings = {
     theme = "onedark";
-    editor.mouse = "false";
+    editor.mouse = false;
   };
   
   languages = [

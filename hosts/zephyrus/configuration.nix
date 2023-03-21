@@ -1,12 +1,14 @@
 { config, pkgs, unstable, ... }@args:
 let
   awesome = pkgs.callPackage ../../programs/awesome {};
-  unstable-pkgs = import unstable {system="x86_64-linux"; allowUnfree = true;};
+  unstable-pkgs = import unstable {system="x86_64-linux"; config.allowUnfree = true;};
 in
 {
+  disabledModules = [ "programs/steam.nix" ];
   imports = [ 
     ./hardware-configuration.nix
     (import "${unstable}/nixos/modules/programs/rog-control-center.nix" (args // {pkgs=unstable-pkgs;}))
+    (import "${unstable}/nixos/modules/programs/steam.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/hardware/asusd.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/hardware/supergfxd.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/printing/cups-pdf.nix" (args // {pkgs=unstable-pkgs;}))
@@ -17,7 +19,7 @@ in
     extraOptions = "experimental-features = nix-command flakes";
   };
   environment.variables = {
-    EDITOR="nvim";
+    EDITOR="hx";
     NIXOS_CONFIG_DIR="/home/bennett/.config/nixos";
   };
   nixpkgs.config = {allowUnfree = true;};
@@ -86,15 +88,17 @@ in
     '';
   };
 
-  environment.systemPackages = with pkgs; [ neovim ];
+  environment.systemPackages = with pkgs; [ neovim helix gnome.gnome-session ];
 
   programs = {
     sway.enable = true;
-    steam.enable = true;
     fish.enable = true;
     adb.enable = true;
     dconf.enable = true;
+
+    #unstable
     rog-control-center.enable = true;
+    steam.enable = true;
   };
 
   # asus stuff
@@ -116,9 +120,10 @@ in
   # printing stuff
   services.printing.enable = true;
   services.printing.cups-pdf.enable = true;
-  services.printing.cups-pdf.instances.opt.settings = {
+  services.printing.cups-pdf.instances.bennettpdf.settings = {
     Out = "\${HOME}/Documents";
   };
+  hardware.printers.ensureDefaultPrinter = "bennettpdf";
 
   services = {
 
@@ -144,7 +149,7 @@ in
       # };
 
       displayManager.sx.enable = true;
-      displayManager.gdm.enable = true;
+      # displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       windowManager.awesome.enable = true;
       windowManager.awesome.package = awesome;
