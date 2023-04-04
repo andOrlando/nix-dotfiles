@@ -26,6 +26,11 @@ rustPlatform.buildRustPackage rec {
     autoPatchelfHook
     gnumake
   ];
+  
+  preBuild = ''
+    substituteInPlace src/lib.rs \
+      --replace "/etc/spotify-adblock/config.toml" "${placeholder "out"}/etc/spotify-adblock/config.toml"
+  '';
 
   installPhase = ''
     mkdir -p $out/lib

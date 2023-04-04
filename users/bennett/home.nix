@@ -1,6 +1,8 @@
 { pkgs, config, unstable, nix-matlab, ... }:
 
 let
+  local = import ../../local.nix;
+
   zshSettings = import ./zsh.nix;
   fishSettings = import ./fish.nix;
   nvimSettings = import ./nvim/nvim.nix;
@@ -80,7 +82,7 @@ in
     # Normal GUI applications
     discord          # "ChAt fOr GaMeRs"
     lutris           # gaming
-    osu-lazer        # more gaming
+    unstable-pkgs.osu-lazer        # more gaming
     muse             # DAW
     # pkgs.unstable.signal-desktop   # "chat for ~gamers~ privacy nerds"
     signal-desktop
@@ -148,10 +150,10 @@ in
     ];
   };
   
-  xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/luakit";
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/awesome";
-  xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/qutebrowser";
-  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "$NIXOS_CONFIG_DIR/users/bennett/picom";
+  xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/awesome";
+  xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/qutebrowser";
+  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/picom";
   #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
 
   # GTK stuff
@@ -173,6 +175,7 @@ in
     desktop = "${config.home.homeDirectory}/Desktop";
   };
 
+  xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
