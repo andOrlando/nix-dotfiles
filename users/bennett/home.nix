@@ -1,7 +1,7 @@
 { pkgs, config, unstable, nix-matlab, ... }:
 
 let
-  local = import ../../local.nix;
+  # local = import ../../local.nix;
 
   zshSettings = import ./zsh.nix;
   fishSettings = import ./fish.nix;
@@ -150,10 +150,10 @@ in
     ];
   };
   
-  xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/awesome";
-  xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/qutebrowser";
-  xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/picom";
+  # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "/home/bennett/.config/nixos/users/bennett/awesome";
+  # xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/qutebrowser";
+  # xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/picom";
   #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
 
   # GTK stuff
