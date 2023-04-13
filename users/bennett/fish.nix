@@ -1,6 +1,6 @@
 pkgs:
 let
-  local = import ../../local.nix;
+  # local = import ../../local.nix;
 in
 {
   enable = true;
@@ -9,10 +9,9 @@ in
     unziptar = "tar -xvzf";
     ls = "exa --icons --sort extension";
     tree = "exa --icons --sort extension --tree";
-    rebuild = "${local.configdir}/rebuild.sh";
-    home = "$EDITOR ${local.configdir}/users/$USER/home.nix";
-    config = "$EDITOR ${local.configdir}/hosts/$(hostname)/configuration.nix";
-    make-store-writable = "sudo mount /nix/store -o remount,ro";
+    rebuild = "$NIXOS_CONFIG_DIR/rebuild.sh";
+    home = "$EDITOR $NIXOS_CONFIG_DIR/users/$USER/home.nix";
+    config = "$EDITOR $NIXOS_CONFIG_DIR/hosts/$(hostname)/configuration.nix";
     gsudo = "sudo git -c \"include.path=$HOME/.config/git/config\"";
   };
 

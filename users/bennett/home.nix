@@ -1,7 +1,7 @@
 { pkgs, config, unstable, nix-matlab, ... }:
 
 let
-  # local = import ../../local.nix;
+  local = import "${home.homeDirectory}/.config/nixos/local.nix" ? {};
 
   zshSettings = import ./zsh.nix;
   fishSettings = import ./fish.nix;
@@ -116,7 +116,8 @@ in
   programs.neovim = nvimSettings pkgs;
   #programs.zsh = zshSettings pkgs;
   programs.fish = fishSettings pkgs;
-  programs.kitty = kittySettings pkgs;
+  # programs.kitty = kittySettings pkgs;
+  programs.kitty.enable = true;
   programs.git = gitSettings;
   programs.helix = helixSettings pkgs;
   programs.vscode = {
@@ -151,7 +152,10 @@ in
   };
   
   # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "/home/bennett/.config/nixos/users/bennett/awesome";
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink
+    (if local ? configdir then "${local.configdir}/users/bennett/awesome" else ./awesome);
+  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink
+    (if local ? configdir then "${local.configdir}/users/bennett/kitty" else ./kitty);
   # xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/qutebrowser";
   # xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/picom";
   #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;

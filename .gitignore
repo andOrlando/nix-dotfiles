@@ -1,3 +1,4 @@
 tags
 hardware-configuration.nix
 .luarc.json
+local.nix
