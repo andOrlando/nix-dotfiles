@@ -1,6 +1,0 @@
-	function nix-build-with-nixpkgs; nix-build -E "with import <nixpkgs> {}; callPackage ./$argv[1] {}"; end
-    # function rebuild; sudo nixos-rebuild switch -I nixos-config=$HOME/.config/nixos/configuration.nix; end
-    function nix-fetch-sha256-gh; nix-prefetch-url --unpack "https://github.com/$argv[1]/$argv[2]/archive/$argv[3].tar.gz"; end
-    function nix-store-mount-rw; sudo mount -o remount,rw /nix/store; end
-    function nix-store-mount-r; sudo mount -o remount,r /nix/store; end
-

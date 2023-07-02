@@ -3,7 +3,7 @@
   userName = "andOrlando";
   userEmail = "bennettgillig@gmail.com";
   extraConfig = {
-    core.editor="nvim";
+    core.editor="hx";
     init.defaultBranch="main";
   };
 }

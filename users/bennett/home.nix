@@ -1,12 +1,10 @@
 { pkgs, config, unstable, nix-matlab, ... }:
 
 let
-  local = import "${home.homeDirectory}/.config/nixos/local.nix" ? {};
-
   zshSettings = import ./zsh.nix;
   fishSettings = import ./fish.nix;
   nvimSettings = import ./nvim/nvim.nix;
-  kittySettings = import ./kitty.nix;
+  # kittySettings = import ./kitty.nix;
   gitSettings = import ./git.nix;
   helixSettings = import ./helix.nix;
 
@@ -16,6 +14,7 @@ let
   gcolor = pkgs.callPackage ../../programs/gcolor3 {};
   picom-ibhagwan = pkgs.callPackage ../../programs/picom-ibhagwan {};
   spotify = pkgs.callPackage ../../programs/spotify {};
+  save-manager = pkgs.callPackage ../../programs/save-manager {};
 
   unstable-pkgs = import unstable {system = "x86_64-linux"; config = { allowUnfree = true; };};
   # discord = pkgs.discord.overrideAttrs (old: rec { src = builtins.fetchTarball "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"; });
@@ -28,15 +27,21 @@ let
       # sha256 = "sha256-XwM5GcPZPA5cwomeZA54zc9kg0lP5TDq3d5j+BMNOlU=";
     # };
   # });
+
+  username = "bennett";
+  homeDirectory = "/home/${username}";
+  local = if builtins.pathExists "${homeDirectory}/.config/nixos/local.nix"
+    then import "${homeDirectory}/.config/nixos/local.nix" else {};
 in
 {
   nixpkgs.config = {allowUnfree = true;};
   nixpkgs.overlays = [ nix-matlab.overlay ];
 
   programs.home-manager.enable = true;
-  home.username = "bennett";
-  home.homeDirectory = "/home/bennett";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
   home.stateVersion = "21.11";
+  
 
   home.packages = with pkgs; [
 
@@ -44,6 +49,7 @@ in
 
     # Development Stuff
     android-studio
+    kitty
 
     # Langauges
     nodejs           # javascript
@@ -71,8 +77,9 @@ in
     #whitakers-words  # latin dictionary
     ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
-    ripgrep			 # probably good idk but telescope wants it
-    sage			 # because sage is cool
+    ripgrep			     # probably good idk but telescope wants it
+    sage			       # because sage is cool
+    save-manager     # thing I made
 
     # Useful system stuff
     blueman          # bluetooth
@@ -84,8 +91,8 @@ in
     lutris           # gaming
     unstable-pkgs.osu-lazer        # more gaming
     muse             # DAW
-    # pkgs.unstable.signal-desktop   # "chat for ~gamers~ privacy nerds"
-    signal-desktop
+    unstable-pkgs.signal-desktop   # "chat for ~gamers~ privacy nerds"
+    # signal-desktop
     xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording
@@ -104,6 +111,7 @@ in
     appflowy		 # another notion alternative
     libreoffice
     slack
+    figma-linux
 
     # Ricing stuff
     brightnessctl    # brightness for awesomeWM
@@ -117,7 +125,7 @@ in
   #programs.zsh = zshSettings pkgs;
   programs.fish = fishSettings pkgs;
   # programs.kitty = kittySettings pkgs;
-  programs.kitty.enable = true;
+  # programs.kitty.enable = true;
   programs.git = gitSettings;
   programs.helix = helixSettings pkgs;
   programs.vscode = {
@@ -126,11 +134,11 @@ in
       "java.configuration.runtimes" = [
         {
           name = "JavaSE-17";
-          path = "${pkgs.jdk17_headless}/lib/openjdk";
+          path = "${pkgs.jdk17}/lib/openjdk";
           default = true;
         }
       ];
-	  "java.jdt.ls.java.home" = "${pkgs.jdk17_headless}/lib/openjdk";
+	  "java.jdt.ls.java.home" = "${pkgs.jdk17}/lib/openjdk";
     };
     extensions = with pkgs.vscode-extensions; [
       vscodevim.vim

@@ -4,11 +4,11 @@ let
   unstable-pkgs = import unstable {system="x86_64-linux"; config.allowUnfree = true;};
 in
 {
-  disabledModules = [ "programs/steam.nix" ];
+  # disabledModules = [ "programs/steam.nix" ];
   imports = [ 
     ./hardware-configuration.nix
     (import "${unstable}/nixos/modules/programs/rog-control-center.nix" (args // {pkgs=unstable-pkgs;}))
-    (import "${unstable}/nixos/modules/programs/steam.nix" (args // {pkgs=unstable-pkgs;}))
+    # (import "${unstable}/nixos/modules/programs/steam.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/hardware/asusd.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/hardware/supergfxd.nix" (args // {pkgs=unstable-pkgs;}))
     (import "${unstable}/nixos/modules/services/printing/cups-pdf.nix" (args // {pkgs=unstable-pkgs;}))
@@ -116,6 +116,8 @@ in
       hotplug_type1 = "Asus";
     };
   };
+  
+  virtualisation.waydroid.enable = true;
 
   # printing stuff
   services.printing.enable = true;
@@ -149,7 +151,6 @@ in
       # };
 
       displayManager.sx.enable = true;
-      # displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       windowManager.awesome.enable = true;
       windowManager.awesome.package = awesome;
