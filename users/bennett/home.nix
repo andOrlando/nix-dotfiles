@@ -7,6 +7,7 @@ let
   # kittySettings = import ./kitty.nix;
   gitSettings = import ./git.nix;
   helixSettings = import ./helix.nix;
+  swaySettings = import ./sway.nix;
 
   whitakers-words = pkgs.callPackage ../../programs/whitakers-words {};
   gdlauncher = pkgs.callPackage ../../programs/gdlauncher {};
@@ -158,6 +159,8 @@ in
       }
     ];
   };
+  
+  wayland.windowManager.sway = swaySettings;
   
   # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink

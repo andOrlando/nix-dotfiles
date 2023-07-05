@@ -5,16 +5,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "save-manager";
-  version = "0.1.0";
+  version = "0.1.1";
 
   src = fetchFromGitHub {
     owner = "andOrlando";
     repo = "save-manager";
-    rev = "676e6b84c2a6c26d79ab0e9480b6569d6f7e7dea";
-    sha256 = lib.fakeSha256;
+    rev = "ad73d83fdf7f76042d8e701b9bfd67555ab4e3e2";
+    sha256 = "sha256-dQx1DFKKYQH9To8bU4TFgHJXKvB3xYLPrxsCwcRUVos=";
   };
 
-  cargoHash = lib.fakeHash;
+  cargoHash = "sha256-owHMu6vQM0/+lkFIRTOPENYcCWdckPH7Keln425xbBw=";
 
   meta = with lib; {
     description = "Manages saves";

@@ -156,7 +156,9 @@ in
       windowManager.awesome.package = awesome;
     };
   };
-
+  
+  users.users.yourusername.extraGroups = [ "video" ];
+  programs.light.enable = true;
 
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";
