@@ -1,14 +1,6 @@
-{ pkgs, config, unstable, nix-matlab, ... }:
+{ pkgs, config, unstable, nix-matlab, lib, ... }:
 
 let
-  zshSettings = import ./zsh.nix;
-  fishSettings = import ./fish.nix;
-  nvimSettings = import ./nvim/nvim.nix;
-  # kittySettings = import ./kitty.nix;
-  gitSettings = import ./git.nix;
-  helixSettings = import ./helix.nix;
-  swaySettings = import ./sway.nix;
-
   whitakers-words = pkgs.callPackage ../../programs/whitakers-words {};
   gdlauncher = pkgs.callPackage ../../programs/gdlauncher {};
   librewolf = pkgs.callPackage ../../programs/librewolf {};
@@ -18,16 +10,6 @@ let
   save-manager = pkgs.callPackage ../../programs/save-manager {};
 
   unstable-pkgs = import unstable {system = "x86_64-linux"; config = { allowUnfree = true; };};
-  # discord = pkgs.discord.overrideAttrs (old: rec { src = builtins.fetchTarball "https://dl.discordapp.net/apps/linux/0.0.21/discord-0.0.21.tar.gz"; });
-  # osu-lazer = pkgs.osu-lazer.overrideAttrs (old: rec {
-    # version = "2022.1214.0";
-    # src = pkgs.fetchFromGitHub {
-      # owner = "ppy";
-      # repo = "osu";
-      # rev = "2022.1214.0";
-      # sha256 = "sha256-XwM5GcPZPA5cwomeZA54zc9kg0lP5TDq3d5j+BMNOlU=";
-    # };
-  # });
 
   username = "bennett";
   homeDirectory = "/home/${username}";
@@ -35,6 +17,13 @@ let
     then import "${homeDirectory}/.config/nixos/local.nix" else {};
 in
 {
+  imports = [
+    ./sway.nix
+    ./git.nix
+    ./bash.nix
+    ./helix.nix
+  ];
+
   nixpkgs.config = {allowUnfree = true;};
   nixpkgs.overlays = [ nix-matlab.overlay ];
 
@@ -121,14 +110,6 @@ in
     rofi             # better than dmenu TODO: Replace with awesome
   ];
 
-  # Heavy config programs
-  programs.neovim = nvimSettings pkgs;
-  #programs.zsh = zshSettings pkgs;
-  programs.fish = fishSettings pkgs;
-  # programs.kitty = kittySettings pkgs;
-  # programs.kitty.enable = true;
-  programs.git = gitSettings;
-  programs.helix = helixSettings pkgs;
   programs.vscode = {
     enable = true;
     userSettings = {
@@ -160,7 +141,7 @@ in
     ];
   };
   
-  wayland.windowManager.sway = swaySettings;
+  # wayland.windowManager.sway = swaySettings;
   
   # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink

@@ -75,64 +75,66 @@ let
 
 in
 {
-  package = pkgs.neovim-unwrapped;
-  enable = true;
-  vimAlias = true;
+  programs.nvim = {
+    package = pkgs.neovim-unwrapped;
+    enable = true;
+    vimAlias = true;
 
-  extraConfig = "luafile /etc/nixos/users/bennett/nvim/init.lua";
+    extraConfig = "luafile /etc/nixos/users/bennett/nvim/init.lua";
 
-  plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
 
-    # frontend changes
-    telescope-nvim      # fuzzy search
-    telescope-fzf-native-nvim # fuzzy search +
-    galaxyline-nvim     # status line plugin
-    chadtree            # files
-    nvim-tree-lua
-    indentLine          # indentlines
-    dashboard-nvim      # dashboard TODO: configure
-    vim-clap            # for dashboard TODO: configure dashboard
-    comment-nvim        # easy commenting TODO: configure
-    vim-matchup         # better % key
-    gitsigns-nvim       # shows additions and deletions and stuff in gutter
-    hop-nvim            # better movement
-    nvim-comment        # commments
-    presence-nvim       # discord presence lol
-    # nvim-autopairs		# pair stuff
-    nvim-notify		    # notifications
-    zephyr-nvim
+      # frontend changes
+      telescope-nvim      # fuzzy search
+      telescope-fzf-native-nvim # fuzzy search +
+      galaxyline-nvim     # status line plugin
+      chadtree            # files
+      nvim-tree-lua
+      indentLine          # indentlines
+      dashboard-nvim      # dashboard TODO: configure
+      vim-clap            # for dashboard TODO: configure dashboard
+      comment-nvim        # easy commenting TODO: configure
+      vim-matchup         # better % key
+      gitsigns-nvim       # shows additions and deletions and stuff in gutter
+      hop-nvim            # better movement
+      nvim-comment        # commments
+      presence-nvim       # discord presence lol
+      # nvim-autopairs		# pair stuff
+      nvim-notify		    # notifications
+      zephyr-nvim
 
-    # color stuff
-    #nvim-colorizer-lua  # color hex
-    vim-hexokinase      # color hex but better
-    material-vim        # material colorscheme
-    everforest			# more green colorscheme
+      # color stuff
+      #nvim-colorizer-lua  # color hex
+      vim-hexokinase      # color hex but better
+      material-vim        # material colorscheme
+      everforest			# more green colorscheme
 
-    # behind-the-scenes stuff 
-    vim-gutentags       # tag support
-    nvim-treesitter     # better syntax
-    vim-nix             # better nix syntax
-    vimtex              # gooooood
-    lspkind-nvim        # icons for stuff
-    #friendly-snippets   # snippet presets
-    #luasnip
-    nvim-dap		    # testing/debugging
-    editorconfig-nvim
+      # behind-the-scenes stuff 
+      vim-gutentags       # tag support
+      nvim-treesitter     # better syntax
+      vim-nix             # better nix syntax
+      vimtex              # gooooood
+      lspkind-nvim        # icons for stuff
+      #friendly-snippets   # snippet presets
+      #luasnip
+      nvim-dap		    # testing/debugging
+      editorconfig-nvim
 
-    # lsp stuff
-    nvim-lspconfig      # lsp core
-    nvim-lsp-installer  # lsp installation
-    nvim-lsputils       # better lsp stuff
-    nvim-cmp            # completion
-    cmp-path
-    cmp-calc
-    cmp-buffer
-    cmp-nvim-lsp
-    #cmp-nvim-lua
-    #lspsaga             # code action
+      # lsp stuff
+      nvim-lspconfig      # lsp core
+      nvim-lsp-installer  # lsp installation
+      nvim-lsputils       # better lsp stuff
+      nvim-cmp            # completion
+      cmp-path
+      cmp-calc
+      cmp-buffer
+      cmp-nvim-lsp
+      #cmp-nvim-lua
+      #lspsaga             # code action
 
-    #cmp-copilot
-    #copilot-vim         # breaks cmp tab https://github.com/hrsh7th/nvim-cmp/issues/459
+      #cmp-copilot
+      #copilot-vim         # breaks cmp tab https://github.com/hrsh7th/nvim-cmp/issues/459
 
-  ];
+    ];
+  };
 }

@@ -64,7 +64,6 @@ in
   users.users = {
     bennett = {
       isNormalUser = true;
-      shell = pkgs.fish;
       extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
       hashedPassword = "$6$cq5vs/AUW9kQQRMa$vkpwakgVn7Hn9/o04tCF8fsSoWuaYMEF0YPvxv4CGHeZD7esZn8tEAeqnJT4Cz7/Yl6nTQ9gsZ6vS1vDR6eC50";
     };
@@ -95,6 +94,7 @@ in
     fish.enable = true;
     adb.enable = true;
     dconf.enable = true;
+    light.enable = true;
 
     #unstable
     rog-control-center.enable = true;
@@ -157,8 +157,6 @@ in
     };
   };
   
-  users.users.yourusername.extraGroups = [ "video" ];
-  programs.light.enable = true;
 
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";
