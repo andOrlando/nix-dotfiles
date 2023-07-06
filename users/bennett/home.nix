@@ -22,6 +22,7 @@ in
     ./git.nix
     ./bash.nix
     ./helix.nix
+    ./vscode.nix
   ];
 
   nixpkgs.config = {allowUnfree = true;};
@@ -45,16 +46,10 @@ in
     nodejs           # javascript
     lua              # lua
     python38         # python
-    pipenv           # who needs nix-shell with pipenv
     texlive.combined.scheme-medium
     gcc              # for some nvim thing
-    cargo			 # rust stuff also for nvim thingy
+    cargo			       # rust stuff also for nvim thingy
     rustc
-
-    # Language servers
-    rnix-lsp         # not supported by lspinstaller
-    sumneko-lua-language-server # binary doesn't work
-    rust-analyzer    # binary doesn't work
 
     # CLI tools
     htop             # top but cooler
@@ -62,12 +57,10 @@ in
     wget             # something useful
     unzip            # useful
     exa              # ls++
-    ctags            # tags for gutentags
     xdotool          # macros
     #whitakers-words  # latin dictionary
     ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
-    ripgrep			     # probably good idk but telescope wants it
     sage			       # because sage is cool
     save-manager     # thing I made
 
@@ -98,51 +91,16 @@ in
     gnome.gnome-power-manager
     notion-app-enhanced # notion
     obsidian		 # notion alternative
-    appflowy		 # another notion alternative
     libreoffice
     slack
     figma-linux
 
     # Ricing stuff
     brightnessctl    # brightness for awesomeWM
-    picom-ibhagwan   # compositor
     playerctl        # music control
     rofi             # better than dmenu TODO: Replace with awesome
   ];
 
-  programs.vscode = {
-    enable = true;
-    userSettings = {
-      "java.configuration.runtimes" = [
-        {
-          name = "JavaSE-17";
-          path = "${pkgs.jdk17}/lib/openjdk";
-          default = true;
-        }
-      ];
-	  "java.jdt.ls.java.home" = "${pkgs.jdk17}/lib/openjdk";
-    };
-    extensions = with pkgs.vscode-extensions; [
-      vscodevim.vim
-      gruntfuggly.todo-tree
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "vscode-java-pack";
-        publisher = "vscjava";
-        version = "0.25.2022082700";
-        sha256 = "sha256-Ntock5NjRojqAMlEJBBiPDovOGt5XEuuCugGlmuB4QY=";
-      }
-      {
-        name = "vscode-eslint";
-        publisher = "dbaeumer";
-        version = "2.2.6";
-        sha256 = "sha256-1yZeyLrXuubhKzobWcd00F/CdU824uJDTkB6qlHkJlQ=";
-      }
-    ];
-  };
-  
-  # wayland.windowManager.sway = swaySettings;
-  
   # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink
     (if local ? configdir then "${local.configdir}/users/bennett/awesome" else ./awesome);
@@ -189,7 +147,7 @@ in
   };
 
   home.sessionVariables = {
-    ANDROID_SDK_HOME="${config.home.homeDirectory}/.config";
+    ANDROID_SDK_HOME = "${config.home.homeDirectory}/.config";
     DEFAULT_BROWSER = "${pkgs.librewolf}/bin/librewolf";
   };
 }

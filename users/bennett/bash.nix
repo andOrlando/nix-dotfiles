@@ -1,4 +1,8 @@
+{ pkgs, ... }:
 {
+  
+  home.packages = with pkgs; [ jump ];
+  
   programs.bash = {
     enable = true;
     historyFile = "$HOME/.local/state/bash_hist";
@@ -11,8 +15,9 @@
       config = "$EDITOR $NIXOS_CONFIG_DIR/hosts/$(hostname)/configuration.nix";
       gsudo = "sudo git -c \"include.path=$HOME/.config/git/config\"";
     };
-    sessionVariables = {
-      PS1 = "heyo ";
-    };
+    bashrcExtra = ''
+      PS1="heyo: "
+      eval $(jump shell)
+    '';
   };
 }

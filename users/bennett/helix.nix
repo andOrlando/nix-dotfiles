@@ -1,4 +1,12 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    # Language servers
+    rnix-lsp
+    sumneko-lua-language-server
+    rust-analyzer
+  ];
+
   programs.helix = {
     enable = true;
 

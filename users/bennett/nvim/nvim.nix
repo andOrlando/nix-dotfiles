@@ -1,4 +1,4 @@
-pkgs:
+{ pkgs, ... }:
 let
   nvim-lsp-installer = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-lsp-installer";
@@ -45,24 +45,6 @@ let
       sha256 = "0fa6a3m5hf3f7pdbmkb4dnczvcvr6rr3pshvdwkqy62v08h1vdyk";
     };
   };
-  #lspsaga = pkgs.vimUtils.buildVimPluginFrom2Nix {
-  #  name = "lspsaga";
-  #  src = pkgs.fetchFromGitHub {
-  #    owner = "tami5";
-  #    repo = "lspsaga.nvim";
-  #    rev = "d8073a0e4d19d71da900fb77dcc5f23d72bb8707";
-  #    sha256 = "0f5qzi9kk02z6siqzwz2zak687zb4q2nkg66x3pnnqvhfqazjb5q";
-  #  };
-  #};
-  #luasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
-  #  name = "luasnip";
-  #  src = pkgs.fetchFromGitHub {
-  #    owner = "L3MON4D3";
-  #    repo = "LuaSnip";
-  #    rev = "eb84bb89933141fa0cd0683cb960fef975106dfd";
-  #    sha256 = "09lwf4n1qzvb98k9sq2m66671fdlni81iaskxdirq97smfyhxg8k";
-  #  };
-  #};
   chadtree = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "chadtree";
     src = pkgs.fetchFromGitHub {
@@ -75,6 +57,9 @@ let
 
 in
 {
+
+  home.packages = with pkgs; [ ctags ];
+
   programs.nvim = {
     package = pkgs.neovim-unwrapped;
     enable = true;
