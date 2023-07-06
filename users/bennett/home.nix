@@ -2,9 +2,7 @@
 
 let
   whitakers-words = pkgs.callPackage ../../programs/whitakers-words {};
-  gdlauncher = pkgs.callPackage ../../programs/gdlauncher {};
   librewolf = pkgs.callPackage ../../programs/librewolf {};
-  gcolor = pkgs.callPackage ../../programs/gcolor3 {};
   picom-ibhagwan = pkgs.callPackage ../../programs/picom-ibhagwan {};
   spotify = pkgs.callPackage ../../programs/spotify {};
   save-manager = pkgs.callPackage ../../programs/save-manager {};
@@ -80,7 +78,6 @@ in
     gnome.nautilus   # files
     obs-studio       # desktop recording
     kcolorchooser
-    gdlauncher       # minecfraft
     unstable-pkgs.prismlauncher
     zathura          # pdf viewer
     zoom-us          # ugh zoom
@@ -94,11 +91,6 @@ in
     libreoffice
     slack
     figma-linux
-
-    # Ricing stuff
-    brightnessctl    # brightness for awesomeWM
-    playerctl        # music control
-    rofi             # better than dmenu TODO: Replace with awesome
   ];
 
   # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";

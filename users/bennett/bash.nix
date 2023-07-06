@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  
   home.packages = with pkgs; [ jump ];
   
   programs.bash = {
@@ -16,8 +15,8 @@
       gsudo = "sudo git -c \"include.path=$HOME/.config/git/config\"";
     };
     bashrcExtra = ''
-      PS1="heyo: "
-      eval $(jump shell)
+      PS1="\[\e[94;1m\]\u\[\e[39m\]:\[\e[94m\]\h \[\e[0;37m\]$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')\[\e[90m\]\w\n\[\e[0m\]\$ "
+      eval "$(jump shell --bind=z)"
     '';
   };
 }

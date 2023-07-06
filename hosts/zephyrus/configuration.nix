@@ -90,11 +90,8 @@ in
   environment.systemPackages = with pkgs; [ neovim helix gnome.gnome-session ];
 
   programs = {
-    sway.enable = true;
-    fish.enable = true;
     adb.enable = true;
     dconf.enable = true;
-    light.enable = true;
 
     #unstable
     rog-control-center.enable = true;
