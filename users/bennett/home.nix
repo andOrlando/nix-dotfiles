@@ -16,7 +16,7 @@ let
 in
 {
   imports = [
-    ./sway/sway.nix
+    ./sway.nix
     ./git.nix
     ./bash.nix
     ./helix.nix

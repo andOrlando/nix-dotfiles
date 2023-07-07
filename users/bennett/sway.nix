@@ -107,7 +107,47 @@ in
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    theme = ./rofi-theme-sway.rasi;
+    theme = let inherit (config.lib.formats.rasi) mkLiteral; in {
+      "*" = {
+      	bg = mkLiteral mytheme.bg;
+      	fg = mkLiteral mytheme.fg;
+      	blue = mkLiteral mytheme.blue;
+
+      	background-color = mkLiteral "@bg";
+      	text-color = mkLiteral "@fg";
+      };
+      "#window" = {
+        height = mkLiteral "100%";
+        width = mkLiteral "30em";
+        location = mkLiteral "west";
+        anchor = mkLiteral "west";
+        border = mkLiteral "4px";
+      	border-color = mkLiteral "@blue";
+      };
+      "#inputbar" = {
+        padding = mkLiteral "8px";
+        border = mkLiteral "0px 0px 4px 0px";
+      	border-color = mkLiteral "@blue";
+      };
+      "#prompt" = {
+      	text-transform = mkLiteral "bold";
+      };
+      "#entry" = {
+      	padding = mkLiteral "0px 0px 0px 8px";
+      	placeholder = "say something :/";
+      };
+      "#inputbar entry" = {
+      	padding-left = mkLiteral "4px";
+      };
+      "#element-text" = {
+      	padding = mkLiteral "0px 8px 0px 8px";
+      	highlight = mkLiteral "bold";
+      };
+      "#element-text selected" = {
+      	text-color = mkLiteral "@bg";
+      	background-color = mkLiteral "@blue";
+      };
+    };
   };
 
   programs.i3status-rust = {
