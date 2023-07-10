@@ -87,7 +87,7 @@ in
     '';
   };
 
-  environment.systemPackages = with pkgs; [ neovim helix gnome.gnome-session ];
+  environment.systemPackages = with pkgs; [ helix ];
 
   programs = {
     adb.enable = true;
@@ -159,7 +159,4 @@ in
   time.timeZone = "America/New_York";
 
   system.stateVersion = "21.05"; # Keep this the same for cool stuff
-
 }
-
-

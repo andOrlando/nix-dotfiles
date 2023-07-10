@@ -12,7 +12,7 @@ let
   };
 in
 {
-  home.packages = with pkgs; [ brightnessctl ];
+  home.packages = with pkgs; [ brightnessctl slurp wl-clipboard ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -22,12 +22,15 @@ in
       menu = "rofi -show drun";
 
       terminal = "kitty";
-      keybindings = lib.mkOptionDefault {
+      keybindings = let mod = config.wayland.windowManager.sway.config.modifier;
+      in lib.mkOptionDefault {
+        "${mod}+p" = "exec grim -g \"$(slurp -d)\" - | wl-copy";
         "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
         "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
         "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
         "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'";
         "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+
       };
       window = {
         border = 4;
@@ -101,6 +104,9 @@ in
         scale = "1.5";
         # bg = ???
       };
+      output.eDP-2 = {
+        scale = "1.5";
+      };
     };
   };
   
@@ -154,13 +160,18 @@ in
     enable = true;
     bars.top = {
       blocks = [
+        { block = "music";
+          format = "{artist}-{title}";
+          player = "spotify";
+        }
         { block = "sound";
         }
         { block = "time";
-          # format = "$timestamp.datetime(f:'%a %d/%m %R')";
+          format = "%a %d/%m %R";
         }
         { block = "battery";
-          # format = "$percentage $time $power";
+          format = "{percentage} {time}{power}";
+          full_format = "{percentage} {time}{power}";
         }
       ];
       settings = {
@@ -175,9 +186,9 @@ in
           warning_bg = mytheme.bg;
           critical_fg = mytheme.fg;
           critical_bg = mytheme.red;
-          separator = "";
+          separator = ".";
           separator_bg = "auto";
-          separator_fg = "auto";
+          separator_fg = mytheme.blue;
         };
       };
     };
