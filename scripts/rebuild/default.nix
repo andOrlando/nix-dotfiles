@@ -8,8 +8,7 @@ let
   name = "rebuild";
 in
 stdenv.mkDerivation {
-    pname = "github-downloader";
-    version = "08049f6";
+    inherit name;
     phases = ["installPhase"];
     buildInputs = [ bash ];
     nativeBuildInputs = [ makeWrapper ];

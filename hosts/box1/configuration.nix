@@ -1,11 +1,7 @@
-{ config, pkgs, unstable, ... }@args:
+{ config, pkgs, ... }:
 {
   imports = [ 
     ./hardware-configuration.nix
-    (import "${unstable}/nixos/modules/programs/rog-control-center.nix" (args // {pkgs=pkgs.unstable;}))
-    (import "${unstable}/nixos/modules/services/hardware/asusd.nix" (args // {pkgs=pkgs.unstable;}))
-    (import "${unstable}/nixos/modules/services/hardware/supergfxd.nix" (args // {pkgs=pkgs.unstable;}))
-    (import "${unstable}/nixos/modules/services/printing/cups-pdf.nix" (args // {pkgs=pkgs.unstable;}))
   ];
 
   nix = {

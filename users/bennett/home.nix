@@ -1,14 +1,6 @@
-{ pkgs, config, unstable, nix-matlab, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 let
-  whitakers-words = pkgs.callPackage ../../programs/whitakers-words {};
-  librewolf = pkgs.callPackage ../../programs/librewolf {};
-  picom-ibhagwan = pkgs.callPackage ../../programs/picom-ibhagwan {};
-  spotify = pkgs.callPackage ../../programs/spotify {};
-  save-manager = pkgs.callPackage ../../programs/save-manager {};
-
-  unstable-pkgs = import unstable {system = "x86_64-linux"; config = { allowUnfree = true; };};
-
   username = "bennett";
   homeDirectory = "/home/${username}";
   local = if builtins.pathExists "${homeDirectory}/.config/nixos/local.nix"
@@ -16,21 +8,17 @@ let
 in
 {
   imports = [
-    ./sway.nix
-    ./git.nix
-    ./bash.nix
-    ./helix.nix
-    ./vscode.nix
+    ../../common/programs/sway.nix
+    ../../common/programs/git.nix
+    ../../common/programs/bash.nix
+    ../../common/programs/helix.nix
+    ../../common/programs/vscode.nix
   ];
-
-  nixpkgs.config = {allowUnfree = true;};
-  nixpkgs.overlays = [ nix-matlab.overlay ];
 
   programs.home-manager.enable = true;
   home.username = username;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "21.11";
-  
 
   home.packages = with pkgs; [
 
@@ -70,34 +58,35 @@ in
     # Normal GUI applications
     discord          # "ChAt fOr GaMeRs"
     lutris           # gaming
-    unstable-pkgs.osu-lazer        # more gaming
+    pkgs.unstable.osu-lazer # more gaming
     muse             # DAW
-    unstable-pkgs.signal-desktop   # "chat for ~gamers~ privacy nerds"
+    unstable.signal-desktop # "chat for ~gamers~ privacy nerds"
     # signal-desktop
     xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording
     kcolorchooser
-    unstable-pkgs.prismlauncher
+    unstable.prismlauncher
     zathura          # pdf viewer
     zoom-us          # ugh zoom
     qutebrowser      # luakit but stable
     bitwarden        # password manager
-    spotify          # adblocked spotify
-    # spotify-adblock  # spotify but without ads, simple as that
+    spotify          # spotify is overridden with an adblocked version
     gnome.gnome-power-manager
     notion-app-enhanced # notion
     obsidian		 # notion alternative
     libreoffice
     slack
     figma-linux
+    chromium
   ];
 
   # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
+
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink
-    (if local ? configdir then "${local.configdir}/users/bennett/awesome" else ./awesome);
+    builtins.trace (if local ? configdir then "${local.configdir}/common/config/awesome" else ../../common/config/awesome);
   xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink
-    (if local ? configdir then "${local.configdir}/users/bennett/kitty" else ./kitty);
+    (if local ? configdir then "${local.configdir}/common/config/kitty" else ../../common/config/kitty);
   # xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/qutebrowser";
   # xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/picom";
   #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
@@ -105,7 +94,6 @@ in
   # GTK stuff
   gtk.enable = true;
   gtk.theme = { name = "Adapta-Nokto"; package = pkgs.adapta-gtk-theme; };
-  #gtk.iconTheme = { name = "Tela-pink-dark"; package = pkgs.tela-icon-theme; };
   gtk.iconTheme = { name = "Papirus"; package = pkgs.papirus-icon-theme; };
   gtk.gtk3.extraConfig = { gtk-decoration-layout = "appmenu:none"; };
   gtk.gtk2.configLocation = "${config.xdg.configHome}/.gtkrc-2.0";
@@ -126,11 +114,11 @@ in
     enable = true;
     defaultApplications = {
       "inode/directory"=["org.gnome.Nautilus.desktop"];
-      "text/html" = ["librewolf.desktop"];
-      "x-scheme-handler/http" = ["librewolf.desktop"];
-      "x-scheme-handler/https" = ["librewolf.desktop"];
-      "x-scheme-handler/about" = ["librewolf.desktop"];
-      "x-scheme-handler/unknown" = ["librewolf.desktop"];
+      "text/html" = ["chromium.desktop"];
+      "x-scheme-handler/http" = ["chromium.desktop"];
+      "x-scheme-handler/https" = ["chromium.desktop"];
+      "x-scheme-handler/about" = ["chromium.desktop"];
+      "x-scheme-handler/unknown" = ["chromium.desktop"];
       "application/pdf" = ["org.pwmt.zathura.desktop"];
       "x-scheme-handler/notion"=["notion-app-enhanced.desktop"];
       "x-scheme-handler/bitwarden"=["Bitwarden.desktop"];
@@ -140,6 +128,6 @@ in
 
   home.sessionVariables = {
     ANDROID_SDK_HOME = "${config.home.homeDirectory}/.config";
-    DEFAULT_BROWSER = "${pkgs.librewolf}/bin/librewolf";
+    DEFAULT_BROWSER = "${pkgs.chromium}/bin/chromium";
   };
 }

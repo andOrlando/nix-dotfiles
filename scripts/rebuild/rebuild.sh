@@ -1,4 +1,3 @@
-#!/bin/bash
 DIR=$(nix eval -f $HOME/.config/nixos/local.nix configdir | tr -d '"')
 
 function config() { sudo nixos-rebuild switch --flake path:$DIR#; }
