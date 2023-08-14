@@ -28,7 +28,8 @@
           picom-ibhagwan = final.callPackage ./programs/picom-ibhagwan {};
           spotify = final.callPackage ./programs/spotify {};
           
-          rebuild = final.callPackage ./scripts/rebuild {};
+          rebuild = final.callPackage ./programs/rebuild {};
+          printcolors = final.callPackage ./programs/printcolors {};
         })    
         # unstable
         (final: _prev: {

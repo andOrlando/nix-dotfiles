@@ -2,12 +2,7 @@
 
 they're so cool
 
-appreciates a `local.nix` in `~/.config/nixos` which defines your config directory that looks like this
+to get it started run `rebuild.sh` in `projects/rebuild`, which from then on will just be `rebuild` in path
 
-```nix
-{configdir="/home/bennett/.config/nixos"}
-```
+you also need to enable flakes somehow idk how just do it lol
 
-but it does work without
-
-to get it started run `rebuild.sh` in the scripts folder, which from then on will just be `rebuild` in path

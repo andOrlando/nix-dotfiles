@@ -1,23 +1,16 @@
 { pkgs, config, lib, ... }:
-
-let
-  username = "bennett";
-  homeDirectory = "/home/${username}";
-  local = if builtins.pathExists "${homeDirectory}/.config/nixos/local.nix"
-    then import "${homeDirectory}/.config/nixos/local.nix" else {};
-in
 {
   imports = [
-    ../../common/programs/sway.nix
-    ../../common/programs/git.nix
-    ../../common/programs/bash.nix
-    ../../common/programs/helix.nix
-    ../../common/programs/vscode.nix
+    ../config/sway.nix
+    ../config/git.nix
+    ../config/bash.nix
+    ../config/helix.nix
+    ../config/vscode.nix
   ];
 
   programs.home-manager.enable = true;
-  home.username = username;
-  home.homeDirectory = homeDirectory;
+  home.username = "bennett";
+  home.homeDirectory = "/home/${config.home.username}";
   home.stateVersion = "21.11";
 
   home.packages = with pkgs; [
@@ -44,7 +37,7 @@ in
     unzip            # useful
     exa              # ls++
     xdotool          # macros
-    #whitakers-words  # latin dictionary
+    whitakers-words  # latin dictionary
     ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
     sage			       # because sage is cool
@@ -61,7 +54,6 @@ in
     pkgs.unstable.osu-lazer # more gaming
     muse             # DAW
     unstable.signal-desktop # "chat for ~gamers~ privacy nerds"
-    # signal-desktop
     xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording
@@ -74,22 +66,15 @@ in
     spotify          # spotify is overridden with an adblocked version
     gnome.gnome-power-manager
     notion-app-enhanced # notion
-    obsidian		 # notion alternative
+    obsidian		     # notion alternative
     libreoffice
     slack
     figma-linux
     chromium
   ];
 
-  # xdg.configFile."luakit".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/luakit";
-
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink
-    builtins.trace (if local ? configdir then "${local.configdir}/common/config/awesome" else ../../common/config/awesome);
-  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink
-    (if local ? configdir then "${local.configdir}/common/config/kitty" else ../../common/config/kitty);
-  # xdg.configFile."qutebrowser".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/qutebrowser";
-  # xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${local.configrir}/users/bennett/picom";
-  #xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/awesome";
+  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/kitty";
 
   # GTK stuff
   gtk.enable = true;
