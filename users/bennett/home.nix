@@ -37,7 +37,7 @@
     unzip            # useful
     exa              # ls++
     xdotool          # macros
-    whitakers-words  # latin dictionary
+    # whitakers-words  # latin dictionary
     ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
     sage			       # because sage is cool

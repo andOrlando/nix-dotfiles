@@ -6,6 +6,7 @@
     extraConfig = {
       core.editor="hx";
       init.defaultBranch="main";
+      safe.directory=["/etc/nixos"];
     };
   };
 }
