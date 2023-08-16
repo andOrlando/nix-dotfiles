@@ -2,10 +2,10 @@
   description = "System configuration";
 
   inputs = {
-    stable.url = "github:nixos/nixpkgs/nixos-22.11";
+    stable.url = "github:nixos/nixpkgs/nixos-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-22.11"; 
+    home-manager.url = "github:nix-community/home-manager/release-23.05"; 
     home-manager.inputs.nixpkgs.follows = "stable";
 
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
@@ -21,23 +21,24 @@
     nixpkgs-overlays = ({ config, system, ...}: {
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays = [
-        # additions
+        # modifications to pkgs
         (final: _prev: {
+          # packages
           save-manager = final.callPackage ./programs/save-manager {};
           whitakers-words = final.callPackage ./programs/whitakers-words {};
           picom-ibhagwan = final.callPackage ./programs/picom-ibhagwan {};
-          spotify = final.callPackage ./programs/spotify {};
+          spotify-adblock = final.callPackage ./programs/spotify-adblock {};
           
+          # scripts
           rebuild = final.callPackage ./programs/rebuild {};
           printcolors = final.callPackage ./programs/printcolors {};
-        })    
-        # unstable
-        (final: _prev: {
+
+          # unstable packages
           unstable = import inputs.unstable {
             system = final.system;
             config.allowUnfree = true;
           };
-        })
+        })    
         # other stuff
         nix-matlab.overlay
       ];
@@ -55,11 +56,14 @@
           ./hosts/zephyrus/configuration.nix
         ];
       };
-      # box1 = stable.lib.nixosSystem {
-        # inherit system;
-        # specialArgs = inputs;
-        # modules = [ ./hosts/box1/configuration.nix ];
-      # };
+      box1 = stable.lib.nixosSystem {
+        inherit system;
+        specialArgs = inputs;
+        modules = [
+          nixpkgs-overlays
+          ./hosts/box1/configuration.nix
+        ];
+      };
     };
 
     # home-manager stuff

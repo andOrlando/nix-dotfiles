@@ -161,17 +161,17 @@ in
     bars.top = {
       blocks = [
         { block = "music";
-          format = "{artist}-{title}";
+          format = " {$combo.str(max_w:20,rot_interval:0.5) $artist - $title |} ";
           player = "spotify";
         }
         { block = "sound";
         }
         { block = "time";
-          format = "%a %d/%m %R";
+          format = " $timestamp.datetime(f:'%a %d/%m %R') ";
         }
         { block = "battery";
-          format = "{percentage} {time}{power}";
-          full_format = "{percentage} {time}{power}";
+          format = " $percentage $time $power ";
+          full_format = " $percentage $time $power ";
         }
       ];
       settings = {

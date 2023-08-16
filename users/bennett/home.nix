@@ -63,7 +63,7 @@
     zoom-us          # ugh zoom
     qutebrowser      # luakit but stable
     bitwarden        # password manager
-    spotify          # spotify is overridden with an adblocked version
+    spotify-adblock  # spotify is overridden with an adblocked version
     gnome.gnome-power-manager
     notion-app-enhanced # notion
     obsidian		     # notion alternative

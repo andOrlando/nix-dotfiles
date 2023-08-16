@@ -5,6 +5,7 @@
     rnix-lsp
     sumneko-lua-language-server
     rust-analyzer
+    python311Packages.python-lsp-server
     # (python311Packages.python-lsp-server.overrideAttrs(old: {
       # disabledTests = old.disabledTests ++ [ 
         # "test_in_place_no_modifications_no_writes"
@@ -22,7 +23,7 @@
       editor.mouse = false;
     };
   
-    languages = [
+    languages.language = [
       {
         name = "latex";
         config.texlab = {
