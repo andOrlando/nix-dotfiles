@@ -161,7 +161,7 @@ in
     bars.top = {
       blocks = [
         { block = "music";
-          format = " {$combo.str(max_w:20,rot_interval:0.5) $artist - $title |} ";
+          format = " {$artist}-$title ";
           player = "spotify";
         }
         { block = "sound";

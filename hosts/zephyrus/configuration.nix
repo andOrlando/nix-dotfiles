@@ -60,8 +60,6 @@
     };
   };
   
-  virtualisation.waydroid.enable = true;
-
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.displayManager.sx.enable = true;
