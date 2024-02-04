@@ -107,6 +107,9 @@ in
       output.eDP-2 = {
         scale = "1.5";
       };
+      input."type:touchpad" = {
+        tap = "enabled";
+      };
     };
   };
   
@@ -161,7 +164,7 @@ in
     bars.top = {
       blocks = [
         { block = "music";
-          format = " {$artist}-$title ";
+          # format = " $artist - $title ";
           player = "spotify";
         }
         { block = "sound";

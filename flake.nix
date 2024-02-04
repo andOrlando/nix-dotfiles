@@ -2,17 +2,21 @@
   description = "System configuration";
 
   inputs = {
-    stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    stable.url = "github:nixos/nixpkgs/nixos-23.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-23.05"; 
+    home-manager.url = "github:nix-community/home-manager/release-23.11"; 
     home-manager.inputs.nixpkgs.follows = "stable";
 
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
     nix-matlab.inputs.nixpkgs.follows = "stable";
+
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    aagl.inputs.nixpkgs.follows = "stable";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
-  outputs = { self, stable, unstable, home-manager, nix-matlab, ... }@inputs:
+  outputs = { self, stable, unstable, home-manager, nix-matlab, aagl, nix-minecraft, ... }@inputs:
   let
     inherit (self) outputs;
     system = "x86_64-linux";
@@ -41,8 +45,17 @@
         })    
         # other stuff
         nix-matlab.overlay
+        nix-minecraft.overlay
       ];
     });
+    # mkSystem = name: stable.lib.nixosSystem {
+      # inherit system;
+      # specialArgs = inputs;
+      # modules = [
+          # nixpkgs-overlays
+          # ./hosts + name + /configuration.nix
+      # ];
+    # };
   
   in {
   
@@ -62,6 +75,14 @@
         modules = [
           nixpkgs-overlays
           ./hosts/box1/configuration.nix
+        ];
+      };
+      thinkpad = stable.lib.nixosSystem {
+        inherit system;
+        specialArgs = inputs;
+        modules = [
+          nixpkgs-overlays
+          ./hosts/thinkpad/configuration.nix
         ];
       };
     };

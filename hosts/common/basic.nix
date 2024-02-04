@@ -22,9 +22,14 @@
   security.sudo.enable = true;
   security.sudo.extraConfig = "Defaults rootpw";
 
-  environment.systemPackages = with pkgs; [ helix rebuild ];
+  environment.systemPackages = with pkgs; [
+    helix
+    rebuild
+    bc
+    pulseaudio
+  ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = [ 
       "JetBrainsMono"
       "FantasqueSansMono"

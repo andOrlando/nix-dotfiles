@@ -60,7 +60,7 @@ beautiful.init({
 })
 
 --shut naughty up
-naughty.connect_signal("request::display", function() end)
+-- naughty.connect_signal("request::display", function() end)
 
 --TODO: make its own file
 --do rules

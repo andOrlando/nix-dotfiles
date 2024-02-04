@@ -1101,7 +1101,7 @@ local function create_info_widgets()
 	awesome.connect_signal("signal::ram", function(used, total) ram_timed.target = used / total end)
 	awesome.connect_signal("signal::disk", function(used, total) disk_timed.target = used / total end)
 	-- awesome.connect_signal("signal::battery", function(percent) battery_timed.target = percent / 100 end)
-	awesome.connect_signal("signal::temp", function(value) temp_timed.target = value / 100 end)
+	-- awesome.connect_signal("signal::temp", function(value) temp_timed.target = value / 100 end)
 
 
 	--date

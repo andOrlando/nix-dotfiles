@@ -15,7 +15,9 @@
 
   home.packages = with pkgs; [
 
+    unstable.r2modman
     matlab
+    (callPackage ../../programs/awesome/default.nix {})
 
     # Development Stuff
     android-studio
@@ -25,7 +27,6 @@
     nodejs           # javascript
     lua              # lua
     python38         # python
-    texlive.combined.scheme-medium
     gcc              # for some nvim thing
     cargo			       # rust stuff also for nvim thingy
     rustc
@@ -35,7 +36,7 @@
     killall          # kills stuff easily
     wget             # something useful
     unzip            # useful
-    exa              # ls++
+    eza              # ls++
     xdotool          # macros
     # whitakers-words  # latin dictionary
     ffmpeg-full      # audio
@@ -66,12 +67,16 @@
     spotify-adblock  # spotify is overridden with an adblocked version
     gnome.gnome-power-manager
     notion-app-enhanced # notion
-    obsidian		     # notion alternative
+    # obsidian		     # notion alternative
     libreoffice
     slack
     figma-linux
     chromium
+
+    path-of-building
   ];
+
+  programs.ncmpcpp.enable = true;
 
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/awesome";
   xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/kitty";

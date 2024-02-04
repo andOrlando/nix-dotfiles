@@ -1,19 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }@args:
 {
   imports = [ 
     ./hardware-configuration.nix
 
     ../common/basic.nix
-    ../common/tiffserver.nix
+    ../common/wacom.nix
   ];
 
-  environment.variables = {
-    EDITOR="hx";
-    NIXOS_CONFIG_DIR="/home/bennett/.config/nixos";
-  };
-
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
-  boot.kernelParams = [ "pcie_aspm.policy=powersupersave" ];
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
@@ -24,13 +18,21 @@
     };
   };
 
-  networking.hostName = "box1";
+  networking.hostName = "thinkpad";
   users.users = {
     bennett = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
+      extraGroups = [ "wheel" "networkmanager" ];
+      hashedPassword = "$6$cq5vs/AUW9kQQRMa$vkpwakgVn7Hn9/o04tCF8fsSoWuaYMEF0YPvxv4CGHeZD7esZn8tEAeqnJT4Cz7/Yl6nTQ9gsZ6vS1vDR6eC50";
     };
   };
+
+  programs.steam.enable = false;
+
+  services.xserver.enable = true;
+  services.xserver.layout = "us";
+  services.xserver.displayManager.sx.enable = true;
+  environment.systemPackages = with pkgs; [ i3 ];
 
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";

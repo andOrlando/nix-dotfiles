@@ -6,6 +6,10 @@
     ../common/basic.nix
     ../common/printing.nix
     ../common/wacom.nix
+    ../common/anime-game.nix
+
+    ../common/tiffserver.nix
+    ../common/roomieserver.nix
   ];
 
   boot.kernelParams = [ "pcie_aspm.policy=powersupersave" ];
@@ -16,8 +20,13 @@
       enable = true;
       devices = [ "nodev" ];
       efiSupport = true;
+      useOSProber = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    pkgs.vanillaServers.vanilla-1_20_4
+  ];
 
   networking.hostName = "zephyrus";
   users.users = {
@@ -27,15 +36,10 @@
       hashedPassword = "$6$cq5vs/AUW9kQQRMa$vkpwakgVn7Hn9/o04tCF8fsSoWuaYMEF0YPvxv4CGHeZD7esZn8tEAeqnJT4Cz7/Yl6nTQ9gsZ6vS1vDR6eC50";
     };
   };
-
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override {fonts = [ 
-      "JetBrainsMono"
-      "FantasqueSansMono"
-      "FiraCode"
-      "Hasklig"
-    ];})
-  ];
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [5000 8080];
+  };
 
   programs = {
     adb.enable = true;
@@ -64,6 +68,8 @@
   services.xserver.layout = "us";
   services.xserver.displayManager.sx.enable = true;
 
+  services.udisks2.enable = true;
+  
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";
 

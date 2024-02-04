@@ -7,6 +7,7 @@
       core.editor="hx";
       init.defaultBranch="main";
       safe.directory=["/etc/nixos"];
+      url."https://".insteadOf="git://";
     };
   };
 }

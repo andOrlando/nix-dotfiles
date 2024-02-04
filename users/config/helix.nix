@@ -13,6 +13,7 @@
       # ];
     # }))
     nodePackages_latest.typescript-language-server
+    clang-tools
   ];
 
   programs.helix = {
@@ -24,14 +25,21 @@
     };
   
     languages.language = [
+      # {
+        # name = "latex";
+        # config.texlab = {
+          # build.onSave = true;
+          # build.forwardSearchAfter = true;
+          # forwardSearch.executable = "zathura";
+          # forwardSearch.args = ["--synctex-forward" "%l:1:%f" "%p"];
+          # chktex.onEdit = true;
+        # };
+      # }
       {
-        name = "latex";
-        config.texlab = {
-          build.onSave = true;
-          build.forwardSearchAfter = true;
-          forwardSearch.executable = "zathura";
-          forwardSearch.args = ["--synctex-forward" "%l:1:%f" "%p"];
-          chktex.onEdit = true;
+        name = "markdown";
+        soft-wrap = {
+          enable = true;
+          wrap-at-text-width = true;
         };
       }
     ];
