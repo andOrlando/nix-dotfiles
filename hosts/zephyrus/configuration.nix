@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, ... }@args:
+{ config, pkgs, ... }:
 {
   imports = [ 
     ./hardware-configuration.nix
@@ -6,11 +6,23 @@
     ../common/basic.nix
     ../common/printing.nix
     ../common/wacom.nix
-    ../common/anime-game.nix
 
-    ../common/tiffserver.nix
-    ../common/roomieserver.nix
+    ../common/minecraftservers/tiffserver.nix
+    ../common/minecraftservers/testserver.nix
+    ../common/minecraftservers/roomieserver.nix
   ];
+
+  # nix = {
+    # copied from https://github.com/Misterio77/nix-starter-configs/blob/6c374a2824a4886922c9ccf8a5dfd505d23bd4cf/minimal/nixos/configuration.nix#L39-L45
+    # This will add each flake input as a registry
+    # To make nix3 commands consistent with your flake
+    # registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+
+    # This will additionally add your inputs to the system's legacy channels
+    # Making legacy nix commands consistent as well, awesome!
+    # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+  # };
+
 
   boot.kernelParams = [ "pcie_aspm.policy=powersupersave" ];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
@@ -26,6 +38,7 @@
 
   environment.systemPackages = with pkgs; [
     pkgs.vanillaServers.vanilla-1_20_4
+    nix-index
   ];
 
   networking.hostName = "zephyrus";
@@ -38,13 +51,39 @@
   };
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [5000 8080];
+    allowedTCPPorts = [8080];
   };
 
   programs = {
     adb.enable = true;
     dconf.enable = true;
     steam.enable = true;
+  };
+
+  programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+    # stdenv.cc.cc.lib
+    # zlib
+  # ];
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
+
+     #Optional helps save long term battery health
+     START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+     STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+    };
   };
 
   # asus stuff
@@ -68,7 +107,7 @@
   services.xserver.layout = "us";
   services.xserver.displayManager.sx.enable = true;
 
-  services.udisks2.enable = true;
+  virtualisation.docker.enable = true;
   
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";

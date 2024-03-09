@@ -5,20 +5,17 @@
     enable = true;
     eula = true;
   };
-  services.minecraft-servers.servers.tiffserver = {
+  services.minecraft-servers.servers.testserver = {
     enable = true;
-    whitelist = {
-      andOrlando = "4c9cf2f1-beac-4422-a268-67d47c7b951a";
-      p1nkuu = "649918d9-249f-44e3-b73d-b8299ad93007";
-    };
+    autoStart = false;
     package = pkgs.vanillaServers.vanilla-1_20_4;
     openFirewall = true;
     serverProperties = {
-      server-port = 25565;
+      server-port = 25567;
       difficulty = 2;
-      gamemode = 0;
+      gamemode = 1;
       max-players = 2;
-      motd = "ehyo";
+      motd = "testing :3";
     };
 
   };

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.vscode = {
     enable = true;
@@ -10,6 +10,8 @@
           default = true;
         }
       ];
+    "plantuml.render" = "Local";
+    "plantuml.java" = "${pkgs.jdk17}/bin/java";
 	  "java.jdt.ls.java.home" = "${pkgs.jdk17}/lib/openjdk";
     };
     extensions = with pkgs.vscode-extensions; [
@@ -27,6 +29,18 @@
         publisher = "dbaeumer";
         version = "2.2.6";
         sha256 = "sha256-1yZeyLrXuubhKzobWcd00F/CdU824uJDTkB6qlHkJlQ=";
+      }
+      {
+        name = "PlantUML";
+        publisher = "jebbs";
+        version = "2.17.5";
+        sha256 = "sha256-C/kf+rYGTIdExxivNKHWeOzNsPAOWz2jn4sc52+sClA=";
+      }
+      {
+        name = "codetogether";
+        publisher = "genuitecllc";
+        version = "2024.1.0";
+        sha256 = "sha256-2rdalYoWrSytwCAkyam+CQJ++aDPmTQpEHkKXVlpl80=";
       }
     ];
   };

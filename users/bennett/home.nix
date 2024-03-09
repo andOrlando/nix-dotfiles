@@ -15,9 +15,10 @@
 
   home.packages = with pkgs; [
 
+    unstable.wine64
     unstable.r2modman
     matlab
-    (callPackage ../../programs/awesome/default.nix {})
+    (callPackage ../../programs/awesome.nix {})
 
     # Development Stuff
     android-studio
@@ -64,7 +65,8 @@
     zoom-us          # ugh zoom
     qutebrowser      # luakit but stable
     bitwarden        # password manager
-    spotify-adblock  # spotify is overridden with an adblocked version
+    # spotify-adblock  # spotify is overridden with an adblocked version
+    unstable.spotify
     gnome.gnome-power-manager
     notion-app-enhanced # notion
     # obsidian		     # notion alternative
@@ -73,7 +75,8 @@
     figma-linux
     chromium
 
-    path-of-building
+    unstable.path-of-building
+    unstable.shotcut
   ];
 
   programs.ncmpcpp.enable = true;

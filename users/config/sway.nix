@@ -9,6 +9,8 @@ let
     red = "#e06c75";
     orange = "#e5c07b";
     violet = "#c678dd";
+    accent = mytheme.blue;
+    accent2 = mytheme.cyan;
   };
 in
 {
@@ -40,10 +42,10 @@ in
       colors = {
         background = mytheme.bg;
         focused = {
-          background = mytheme.blue;
-          border = mytheme.blue;
-          childBorder = mytheme.blue;
-          indicator = mytheme.cyan;
+          background = mytheme.accent;
+          border = mytheme.accent;
+          childBorder = mytheme.accent;
+          indicator = mytheme.accent2;
           text = mytheme.bg;
         };
         focusedInactive = {
@@ -84,8 +86,8 @@ in
         colors = {
           background = mytheme.bg;
           focusedWorkspace = {
-            background = mytheme.blue;
-            border = mytheme.blue;
+            background = mytheme.accent;
+            border = mytheme.accent;
             text = mytheme.bg;
           };
           activeWorkspace = {
@@ -120,7 +122,7 @@ in
       "*" = {
       	bg = mkLiteral mytheme.bg;
       	fg = mkLiteral mytheme.fg;
-      	blue = mkLiteral mytheme.blue;
+        accent = mkLiteral mytheme.blue;
 
       	background-color = mkLiteral "@bg";
       	text-color = mkLiteral "@fg";
@@ -131,12 +133,12 @@ in
         location = mkLiteral "west";
         anchor = mkLiteral "west";
         border = mkLiteral "4px";
-      	border-color = mkLiteral "@blue";
+      	border-color = mkLiteral "@accent";
       };
       "#inputbar" = {
         padding = mkLiteral "8px";
         border = mkLiteral "0px 0px 4px 0px";
-      	border-color = mkLiteral "@blue";
+      	border-color = mkLiteral "@accent";
       };
       "#prompt" = {
       	text-transform = mkLiteral "bold";
@@ -154,7 +156,7 @@ in
       };
       "#element-text selected" = {
       	text-color = mkLiteral "@bg";
-      	background-color = mkLiteral "@blue";
+      	background-color = mkLiteral "@accent";
       };
     };
   };
@@ -191,7 +193,7 @@ in
           critical_bg = mytheme.red;
           separator = ".";
           separator_bg = "auto";
-          separator_fg = mytheme.blue;
+          separator_fg = mytheme.accent;
         };
       };
     };

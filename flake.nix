@@ -11,12 +11,12 @@
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
     nix-matlab.inputs.nixpkgs.follows = "stable";
 
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    aagl.inputs.nixpkgs.follows = "stable";
+    # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    # aagl.inputs.nixpkgs.follows = "stable";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
-  outputs = { self, stable, unstable, home-manager, nix-matlab, aagl, nix-minecraft, ... }@inputs:
+  outputs = inputs@{ self, stable, unstable, home-manager, nix-matlab, nix-minecraft, ... }:
   let
     inherit (self) outputs;
     system = "x86_64-linux";
@@ -28,10 +28,10 @@
         # modifications to pkgs
         (final: _prev: {
           # packages
-          save-manager = final.callPackage ./programs/save-manager {};
-          whitakers-words = final.callPackage ./programs/whitakers-words {};
-          picom-ibhagwan = final.callPackage ./programs/picom-ibhagwan {};
-          spotify-adblock = final.callPackage ./programs/spotify-adblock {};
+          save-manager = final.callPackage ./programs/save-manager.nix {};
+          whitakers-words = final.callPackage ./programs/whitakers-words.nix {};
+          picom-ibhagwan = final.callPackage ./programs/picom-ibhagwan.nix {};
+          spotify-adblock = final.callPackage ./programs/spotify-adblock.nix {};
           
           # scripts
           rebuild = final.callPackage ./programs/rebuild {};
