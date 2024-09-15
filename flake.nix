@@ -18,9 +18,9 @@
 
   outputs = inputs@{ self, stable, unstable, home-manager, nix-matlab, nix-minecraft, ... }:
   let
-    inherit (self) outputs;
     system = "x86_64-linux";
     config = { allowUnfree = true; };
+    mkWindowsApp = stable.callPackage ./programs/mkwindowspackage {};
     
     nixpkgs-overlays = ({ config, system, ...}: {
       nixpkgs.config.allowUnfree = true;
@@ -32,10 +32,20 @@
           whitakers-words = final.callPackage ./programs/whitakers-words.nix {};
           picom-ibhagwan = final.callPackage ./programs/picom-ibhagwan.nix {};
           spotify-adblock = final.callPackage ./programs/spotify-adblock.nix {};
+          awakened-poe-trade = final.callPackage ./programs/awakened-poe-trade.nix {};
+          insomnium = final.callPackage ./programs/insomnium.nix {};
           
           # scripts
           rebuild = final.callPackage ./programs/rebuild {};
           printcolors = final.callPackage ./programs/printcolors {};
+
+          # windows stuff
+          # mkwindowsapp-tools = final.callPackage ./programs/mkwindowsapp-tools { wrapProgram = final.wrapProgram; };
+          # ltspice = final.callPackage ./programs/ltspice {
+            # inherit mkWindowsApp;
+            # wine = final.wineWowPackages.full;
+          # };
+
 
           # unstable packages
           unstable = import inputs.unstable {

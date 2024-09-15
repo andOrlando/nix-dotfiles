@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [ 
     ./hardware-configuration.nix
@@ -37,15 +37,23 @@
   };
 
   environment.systemPackages = with pkgs; [
-    pkgs.vanillaServers.vanilla-1_20_4
+    vanillaServers.vanilla-1_20_4
     nix-index
+    libsForQt5.kwallet
+    libsForQt5.kwalletmanager
+    libsForQt5.kwallet-pam
+    unstable.wine64
+    unstable.winetricks
+    screen
   ];
+
+  programs.noisetorch.enable = true;
 
   networking.hostName = "zephyrus";
   users.users = {
     bennett = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" "docker"];
       hashedPassword = "$6$cq5vs/AUW9kQQRMa$vkpwakgVn7Hn9/o04tCF8fsSoWuaYMEF0YPvxv4CGHeZD7esZn8tEAeqnJT4Cz7/Yl6nTQ9gsZ6vS1vDR6eC50";
     };
   };
@@ -66,6 +74,10 @@
     # zlib
   # ];
 
+  services.postgresql.package = pkgs.postgresql;
+  services.postgresql.enable = true;
+
+  # services.xserver.desktopManager.plasma5.enable = true;
   services.tlp = {
     enable = true;
     settings = {

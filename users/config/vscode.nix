@@ -12,6 +12,7 @@
       ];
     "plantuml.render" = "Local";
     "plantuml.java" = "${pkgs.jdk17}/bin/java";
+    "plantuml.jar" = "${pkgs.plantuml}/lib/plantuml.jar";
 	  "java.jdt.ls.java.home" = "${pkgs.jdk17}/lib/openjdk";
     };
     extensions = with pkgs.vscode-extensions; [

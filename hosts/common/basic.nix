@@ -26,7 +26,6 @@
   environment.systemPackages = with pkgs; [
     helix
     rebuild
-    bc
     pulseaudio
   ];
 

@@ -10,5 +10,5 @@
       url."https://".insteadOf="git://";
     };
   };
-  programs.git-credential-oauth.enable = true;
+  # programs.git-credential-oauth.enable = true;
 }

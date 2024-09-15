@@ -1,10 +1,10 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     # Language servers
-    rnix-lsp
+    nil
     sumneko-lua-language-server
-    rust-analyzer
+    # rust-analyzer
     python311Packages.python-lsp-server
     # (python311Packages.python-lsp-server.overrideAttrs(old: {
       # disabledTests = old.disabledTests ++ [ 
@@ -46,6 +46,9 @@
       forwardSearch.executable = "zathura";
       forwardSearch.args = ["--synctex-forward" "%l:1:%f" "%p"];
       chktex.onEdit = true;
+    };
+    languages.language-server.rust-analyzer.config.check = {
+      command = "clippy";
     };
   };
 }

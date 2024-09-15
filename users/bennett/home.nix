@@ -5,7 +5,7 @@
     ../config/git.nix
     ../config/bash.nix
     ../config/helix.nix
-    ../config/vscode.nix
+    # ../config/vscode.nix
   ];
 
   programs.home-manager.enable = true;
@@ -15,10 +15,18 @@
 
   home.packages = with pkgs; [
 
-    unstable.wine64
+    pgadmin4
+    podman
+    vscode
     unstable.r2modman
     matlab
     (callPackage ../../programs/awesome.nix {})
+    awakened-poe-trade
+    ryujinx
+    pkgsCross.avr.buildPackages.gcc
+    avrdude
+    gnumake
+    # insomnium
 
     # Development Stuff
     android-studio
@@ -29,8 +37,6 @@
     lua              # lua
     python38         # python
     gcc              # for some nvim thing
-    cargo			       # rust stuff also for nvim thingy
-    rustc
 
     # CLI tools
     htop             # top but cooler
@@ -53,9 +59,9 @@
     # Normal GUI applications
     discord          # "ChAt fOr GaMeRs"
     lutris           # gaming
-    pkgs.unstable.osu-lazer # more gaming
+    unstable.osu-lazer # more gaming
     muse             # DAW
-    unstable.signal-desktop # "chat for ~gamers~ privacy nerds"
+    signal-desktop # "chat for ~gamers~ privacy nerds"
     xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording
@@ -74,6 +80,7 @@
     slack
     figma-linux
     chromium
+    kicad-small
 
     unstable.path-of-building
     unstable.shotcut

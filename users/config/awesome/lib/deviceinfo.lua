@@ -1,5 +1,7 @@
 local awful = require "awful"
 local gears = require "gears"
+---@diagnostic disable-next-line: undefined-global
+local awesome = awesome
 
 local ram_script = [[ free -m | grep 'Mem:' | awk '{printf "%d@@%d@", $7, $2}' ]]
 local disk_script = [[ df -kh -B 1MB /dev/nvme0n1p5 | tail -1 | awk '{printf "%d@%d", $4, $3}' ]]
@@ -16,11 +18,11 @@ timer:connect_signal("timeout", function()
 		local used = tonumber(total) - tonumber(available)
 		awesome.emit_signal("signal::ram", used, total)
 	end)
-	if times % 6 == 0 then awful.spawn.easy_async_with_shell(disk_script, function(stdout)
-		local available = tonumber(stdout:match('^(.*)@')) / 1000
-		local used = tonumber(stdout:match('@(.*)$')) / 1000
-		awesome.emit_signal("signal::disk", used, available + used)
-	end) end
+	-- if times % 6 == 0 then awful.spawn.easy_async_with_shell(disk_script, function(stdout)
+		-- local available = tonumber(stdout:match('^(.*)@')) / 1000
+		-- local used = tonumber(stdout:match('@(.*)$')) / 1000
+		-- awesome.emit_signal("signal::disk", used, available + used)
+	-- end) end
 	awful.spawn.easy_async_with_shell(cpu_script, function(stdout)
 		local cpu_idle = string.gsub(stdout, '^%s*(.-)%s*$', '%1')
 		awesome.emit_signal("signal::cpu", 100 - tonumber(cpu_idle))
@@ -28,9 +30,9 @@ timer:connect_signal("timeout", function()
 	awful.spawn.easy_async_with_shell(temp_script, function(stdout)
 		awesome.emit_signal("signal::temp", tonumber(stdout))
 	end)
-	awful.spawn.easy_async_with_shell(battery_script, function(stdout)
-		awesome.emit_signal("signal::battery", string.gsub(stdout, '^%s*(.-)%s*$', '%1'))
-	end)
+	-- awful.spawn.easy_async_with_shell(battery_script, function(stdout)
+		-- awesome.emit_signal("signal::battery", string.gsub(stdout, '^%s*(.-)%s*$', '%1'))
+	-- end)
 
 	times = times + 1
 	timer:again()

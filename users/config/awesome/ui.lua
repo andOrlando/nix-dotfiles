@@ -1,10 +1,12 @@
 --big imports
+---@diagnostic disable-next-line: undefined-global
+local awesome, client = awesome, client
+
 local wibox = require "wibox"
 local awful = require "awful"
 local gears = require "gears"
 local naughty = require"naughty"
 local dpi = require "beautiful.xresources".apply_dpi
-local cairo = require "lgi".cairo
 
 --./ stuff
 local images = require "images"
@@ -16,7 +18,7 @@ local rubato = require "lib.rubato"
 local coolwidget = require "lib.awesome-widgets".coolwidget
 local recycler = require "lib.awesome-widgets".recycler
 local slider = require "lib.awesome-widgets".slider
--- local playerctl = require "lib.bling.signal.playerctl".lib()
+local playerctl = require "lib.playerctl".lib()
 local bluetooth = require "lib.bluetooth"
 --local wifi = require "lib.network"
 
@@ -201,18 +203,18 @@ local function create_tasklist_item(layout)
 	focus_timed:subscribe(update_colors)
 
 	--instantiates or destroys (sends to unused) a widget
-	function w:populate(client)
-		self.client = client
-		text.text = client.name
-		bg_timed.pos = client.minimized and 0.12 or 0
+	function w:populate(c)
+		self.client = c
+		text.text = c.name
+		bg_timed.pos = c.minimized and 0.12 or 0
 		bg_timed.target = bg_timed.pos
-		focus_timed.pos = client.active and 0.06 or 0
+		focus_timed.pos = c.active and 0.06 or 0
 		focus_timed.target = focus_timed.pos
 
-		if client then icon:set_client(client) end
-		client:connect_signal("property::name", function() text.text = client.name end)
-		client:connect_signal("property::minimized", function() if client.minimized then bg_timed.target = 0.12 else bg_timed.target = 0 end end)
-		client:connect_signal("property::active", function(c, active) if active then focus_timed.target = 0.06 else focus_timed.target = 0 end end)
+		if c then icon:set_client(c) end
+		c:connect_signal("property::name", function() text.text = c.name end)
+		c:connect_signal("property::minimized", function() if c.minimized then bg_timed.target = 0.12 else bg_timed.target = 0 end end)
+		c:connect_signal("property::active", function(_, active) if active then focus_timed.target = 0.06 else focus_timed.target = 0 end end)
 
 		w.width = sidebar_timed.pos * dpi(340) + dpi(40)
 	end
@@ -241,13 +243,13 @@ local function create_tasklist()
 		spacing = 8,
 	})
 
-	client.connect_signal("tagged", function(client)
-		if not table.index(screen.selected_tag:clients(), client) then return end
-		layout:add(client)
+	client.connect_signal("tagged", function(c)
+		if not table.index(screen.selected_tag:clients(), c) then return end
+		layout:add(c)
 	end)
-	client.connect_signal("untagged", function(client)
-		if table.index(screen.selected_tag:clients(), client) then return end
-		layout:remove(layout:get_by_id(client))
+	client.connect_signal("untagged", function(c)
+		if table.index(screen.selected_tag:clients(), c) then return end
+		layout:remove(layout:get_by_id(c))
 	end)
 	screen:connect_signal("tag::history::update", function()
 		if screen.selected_tag == last_tag then return end
@@ -331,7 +333,7 @@ local function create_taglist()
 end
 
 --tallcontainer stuff needed later
-local everythingcontainer
+-- local everythingcontainer
 local tallcontainer_timed
 local notification_center
 local small_boi --small notif center
@@ -551,7 +553,7 @@ local function create_toggle_button(icon, id)
 	}
 	local trans = color.transition(color.color {hex="#1f2228"}, color.color {hex="#489568"})
 	local hover = rubato.timed {duration=0.2, clamp_position=true}
-	function update_color() w.bg = (trans(w.state.pos) + ("%fl"):format(hover.pos * (w.state.pos + 1) / 2 * 3)).hex; w:emit_signal("widget::redraw_needed") end
+	local function update_color() w.bg = (trans(w.state.pos) + ("%fl"):format(hover.pos * (w.state.pos + 1) / 2 * 3)).hex; w:emit_signal("widget::redraw_needed") end
 
 	--let me set state
 	w.state = rubato.timed {duration=0.2, clamp_position=true}
@@ -671,7 +673,7 @@ local function create_music_widget()
 	local function set_playpause_status() awful.spawn.with_line_callback("playerctl status", {stdout=function(out) playpause:set(out == "Paused" and 1 or 0) end}) end
 	set_playpause_status()
 
-	--[[playerctl:connect_signal("metadata", function(_, title, artist, album_path, album, new, player_name)
+	playerctl:connect_signal("metadata", function(_, title, artist, album_path, album, new, player_name)
 		image.image = gears.surface.load_uncached(album_path)
 		name.text = title or "no song title"
 		author.text = artist or "no song artist"
@@ -704,7 +706,7 @@ local function create_music_widget()
 
 		--if not manually dragging the slider then don't move it
 		if not slider:is_doing_mouse_things() then slider:set(interval_sec / length_sec) end
-	end)]]
+	end)
 
 	slider:connect_signal("slider::ended_mouse_things", function(_, pos)
 		awful.spawn(("playerctl position %d"):format(math.floor(pos * length)))
@@ -1101,7 +1103,7 @@ local function create_info_widgets()
 	awesome.connect_signal("signal::ram", function(used, total) ram_timed.target = used / total end)
 	awesome.connect_signal("signal::disk", function(used, total) disk_timed.target = used / total end)
 	-- awesome.connect_signal("signal::battery", function(percent) battery_timed.target = percent / 100 end)
-	-- awesome.connect_signal("signal::temp", function(value) temp_timed.target = value / 100 end)
+	awesome.connect_signal("signal::temp", function(value) temp_timed.target = math.pow((value / 100), 3) end)
 
 
 	--date
@@ -1123,7 +1125,7 @@ local function create_mini_notification_center()
 			layout = wibox.layout.fixed.horizontal
 		},
 		bg = "#ff000000",
-		maximum_height = screen.geometry.height,
+		maximum_height = dpi(screen.geometry.height),
 		maximum_width = dpi(300),
 		minimum_width = dpi(300),
 		placement = function(d) return awful.placement.top_left(d, {margins={left=dpi(60)}}) end,
