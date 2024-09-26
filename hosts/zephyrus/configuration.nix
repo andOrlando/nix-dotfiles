@@ -12,18 +12,6 @@
     ../common/minecraftservers/roomieserver.nix
   ];
 
-  # nix = {
-    # copied from https://github.com/Misterio77/nix-starter-configs/blob/6c374a2824a4886922c9ccf8a5dfd505d23bd4cf/minimal/nixos/configuration.nix#L39-L45
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
-    # registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
-    # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-  # };
-
-
   boot.kernelParams = [ "pcie_aspm.policy=powersupersave" ];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
   boot.loader = {
@@ -37,14 +25,10 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vanillaServers.vanilla-1_20_4
     nix-index
     libsForQt5.kwallet
     libsForQt5.kwalletmanager
     libsForQt5.kwallet-pam
-    unstable.wine64
-    unstable.winetricks
-    screen
   ];
 
   programs.noisetorch.enable = true;
@@ -118,11 +102,17 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.displayManager.sx.enable = true;
+  services.xserver.displayManager.gnomoe.enable = true;
 
   virtualisation.docker.enable = true;
   
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";
+
+  services.openssh.settings = {
+    TCPKeepAlive = "yes";
+    ClientAliveInterval = 100;
+  };
 
   system.stateVersion = "21.05"; # Keep this the same for cool stuff
 }

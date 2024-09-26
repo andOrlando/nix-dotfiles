@@ -175,8 +175,8 @@ in
           format = " $timestamp.datetime(f:'%a %d/%m %R') ";
         }
         { block = "battery";
-          format = " $percentage $time $power ";
-          full_format = " $percentage $time $power ";
+          format = " $percentage $power ";
+          full_format = " $percentage $power ";
         }
       ];
       settings = {

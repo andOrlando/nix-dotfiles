@@ -15,6 +15,7 @@
 
   home.packages = with pkgs; [
 
+    startgnome
     pgadmin4
     podman
     vscode
@@ -61,7 +62,7 @@
     lutris           # gaming
     unstable.osu-lazer # more gaming
     muse             # DAW
-    signal-desktop # "chat for ~gamers~ privacy nerds"
+    unstable.signal-desktop-beta # "chat for ~gamers~ privacy nerds"
     xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording
@@ -84,6 +85,9 @@
 
     unstable.path-of-building
     unstable.shotcut
+
+    unstable.eclipses.eclipse-java
+    unstable.jdk22
   ];
 
   programs.ncmpcpp.enable = true;
