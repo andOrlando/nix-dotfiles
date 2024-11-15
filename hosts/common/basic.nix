@@ -10,14 +10,11 @@
 
   networking.networkmanager.enable = true;
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket";
-  services.blueman.enable = true;
-
   sound.enable = true;
-  services.pipewire.enable = true;
-  services.pipewire.alsa.enable = true;
-  services.pipewire.pulse.enable = true;
+  # services.pipewire.enable = true;
+  # services.pipewire.alsa.enable = true;
+  # services.pipewire.pulse.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable sudo and add correct config
   security.sudo.enable = true;

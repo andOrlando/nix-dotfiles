@@ -9,20 +9,14 @@
   ];
 
   programs.home-manager.enable = true;
-  home.username = "bennett";
+  home.username = "beni";
   home.homeDirectory = "/home/${config.home.username}";
   home.stateVersion = "21.11";
 
   home.packages = with pkgs; [
 
-    (callPackage ../../programs/awesome.nix {})
-
-    # Development Stuff
     # insomnium
-    android-studio
     kitty
-    matlab
-    vscode
 
     # Langauges
     nodejs           # javascript
@@ -37,54 +31,32 @@
     killall          # kills stuff easily
     wget             # something useful
     unzip            # useful
-    eza              # ls++
-    xdotool          # macros
-    # whitakers-words  # latin dictionary
+    exa              # ls++
     ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
-    sage			       # because sage is cool
-    save-manager     # thing I made
 
     # Useful system stuff
-    flameshot        # screenshot TODO: Replace with xclip or smthn
     pavucontrol      # audio
 
     # Normal GUI applications
     discord          # discord
-    lutris           # gaming
-    unstable.osu-lazer # more gaming
-    muse             # DAW
     unstable.signal-desktop-beta # "chat for privacy nerds"
-    xournalpp        # drawing thing
     gnome.nautilus   # files
     obs-studio       # desktop recording
     kcolorchooser
-    unstable.prismlauncher
     zathura          # pdf viewer
     zoom-us          # ugh zoom
-    qutebrowser      # luakit but stable
     bitwarden        # password manager
-    # spotify-adblock  # spotify is overridden with an adblocked version
     unstable.spotify # I have premium now lol
-    gnome.gnome-power-manager
-    # notion-app-enhanced # notion
-    # obsidian		     # notion alternative
     libreoffice
     slack
-    # figma-linux
     chromium
     librewolf
-    # kicad-small
-    firefox
 
-    unstable.shotcut
-    # unstable.eclipses.eclipse-java
-    # unstable.jdk22
   ];
 
   # programs.ncmpcpp.enable = true;
 
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/awesome";
   xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/kitty";
 
   # GTK stuff

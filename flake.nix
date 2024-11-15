@@ -38,6 +38,7 @@
           # scripts
           rebuild = final.callPackage ./programs/rebuild {};
           printcolors = final.callPackage ./programs/printcolors {};
+          startgnome = final.callPackage ./programs/startgnome {};
 
           # windows stuff
           # mkwindowsapp-tools = final.callPackage ./programs/mkwindowsapp-tools { wrapProgram = final.wrapProgram; };
@@ -87,7 +88,7 @@
           ./hosts/box1/configuration.nix
         ];
       };
-      thinkpad = stable.lib.nixosSystem {
+      t480 = stable.lib.nixosSystem {
         inherit system;
         specialArgs = inputs;
         modules = [
@@ -106,6 +107,14 @@
         modules = [
           nixpkgs-overlays
           ./users/bennett/home.nix
+        ];
+      };
+      beni = home-manager.lib.homeManagerConfiguration {
+        pkgs = import stable { inherit system config; };
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          nixpkgs-overlays
+          ./users/beni/home.nix
         ];
       };
     };

@@ -189,8 +189,8 @@ in
           good_bg = mytheme.bg;
           warning_fg = mytheme.orange;
           warning_bg = mytheme.bg;
-          critical_fg = mytheme.fg;
-          critical_bg = mytheme.red;
+          critical_fg = mytheme.red;
+          critical_bg = mytheme.bg;
           separator = ".";
           separator_bg = "auto";
           separator_fg = mytheme.accent;
