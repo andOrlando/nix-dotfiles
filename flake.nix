@@ -20,7 +20,7 @@
   let
     system = "x86_64-linux";
     config = { allowUnfree = true; };
-    mkWindowsApp = stable.callPackage ./programs/mkwindowspackage {};
+    # mkWindowsApp = stable.callPackage ./programs/mkwindowspackage {};
     
     nixpkgs-overlays = ({ config, system, ...}: {
       nixpkgs.config.allowUnfree = true;
