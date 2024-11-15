@@ -16,6 +16,7 @@
   home.packages = with pkgs; [
 
     # insomnium
+    brightnessctl
     kitty
 
     # Langauges
@@ -48,10 +49,9 @@
     zoom-us          # ugh zoom
     bitwarden        # password manager
     unstable.spotify # I have premium now lol
-    libreoffice
     slack
     chromium
-    librewolf
+    firefox
 
   ];
 

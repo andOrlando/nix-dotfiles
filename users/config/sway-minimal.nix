@@ -20,18 +20,19 @@
         "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
       };
       window = {
-        border = 4;
-        titlebar = true;
+        border = 1;
+        titlebar = false;
       };
-      fonts.size = 13.0;
+      fonts.size = 10.0;
+
+      bars = [{
+        position="top";
+        statusCommand="${pkgs.i3status-rust.out}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
+        fonts.size = 10.0;
+        trayOutput = "none";
+      }];
+
       
-      # output.eDP-1 = {
-      #   scale = "1.5";
-      #   # bg = ???
-      # };
-      # output.eDP-2 = {
-      #   scale = "1.5";
-      # };
       input."type:touchpad" = {
         tap = "enabled";
       };
@@ -44,8 +45,8 @@
     theme = let inherit (config.lib.formats.rasi) mkLiteral; in {
       "*" = {
 
-      	background-color = mkLiteral "@bg";
-      	text-color = mkLiteral "@fg";
+      	background-color = mkLiteral "white";
+      	text-color = mkLiteral "black";
       };
       "#window" = {
         height = mkLiteral "100%";
@@ -53,12 +54,12 @@
         location = mkLiteral "west";
         anchor = mkLiteral "west";
         border = mkLiteral "4px";
-      	border-color = mkLiteral "@accent";
+      	# border-color = mkLiteral "@accent";
       };
       "#inputbar" = {
         padding = mkLiteral "8px";
         border = mkLiteral "0px 0px 4px 0px";
-      	border-color = mkLiteral "@accent";
+      	# border-color = mkLiteral "@accent";
       };
       "#prompt" = {
       	text-transform = mkLiteral "bold";
@@ -75,8 +76,8 @@
       	highlight = mkLiteral "bold";
       };
       "#element-text selected" = {
-      	text-color = mkLiteral "@bg";
-      	background-color = mkLiteral "@accent";
+      	text-color = mkLiteral "white";
+      	background-color = mkLiteral "black";
       };
     };
   };

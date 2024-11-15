@@ -10,7 +10,7 @@
       init.defaultBranch="main";
       safe.directory=["/etc/nixos"];
       url."https://".insteadOf="git://";
-      config.credential.helper = "libsecret";
+      config.credential.helper = "store";
     };
   };
   # programs.git-credential-oauth.enable = true;
