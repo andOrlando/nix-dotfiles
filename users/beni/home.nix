@@ -1,7 +1,7 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
-    ../config/sway.nix
+    ../config/sway-minimal.nix
     ../config/git.nix
     ../config/bash.nix
     ../config/helix.nix
@@ -31,7 +31,7 @@
     killall          # kills stuff easily
     wget             # something useful
     unzip            # useful
-    exa              # ls++
+    eza              # ls++
     ffmpeg-full      # audio
     xorg.xkill       # really really kills stuff
 
@@ -60,7 +60,6 @@
   xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/kitty";
 
   # GTK stuff
-  gtk.enable = true;
   gtk.theme = { name = "Adapta-Nokto"; package = pkgs.adapta-gtk-theme; };
   gtk.iconTheme = { name = "Papirus"; package = pkgs.papirus-icon-theme; };
   gtk.gtk3.extraConfig = { gtk-decoration-layout = "appmenu:none"; };

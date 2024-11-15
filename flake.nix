@@ -93,7 +93,7 @@
         specialArgs = inputs;
         modules = [
           nixpkgs-overlays
-          ./hosts/thinkpad/configuration.nix
+          ./hosts/t480/configuration.nix
         ];
       };
     };

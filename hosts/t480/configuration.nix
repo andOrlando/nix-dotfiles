@@ -54,7 +54,7 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.displayManager.sx.enable = true;
-  environment.systemPackages = with pkgs; [ sway ];
+  environment.systemPackages = with pkgs; [ sway git ];
 
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";
