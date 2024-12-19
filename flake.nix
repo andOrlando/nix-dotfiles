@@ -14,8 +14,8 @@
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "stable";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    # nix-tmodloader.url = "github:andOrlando/nix-tmodloader";
-    nix-tmodloader.url = "path:/home/beni/projects/nix-tmodloader";
+    nix-tmodloader.url = "github:andOrlando/nix-tmodloader";
+    # nix-tmodloader.url = "path:/home/beni/projects/nix-tmodloader";
   };
 
   outputs = inputs@{
