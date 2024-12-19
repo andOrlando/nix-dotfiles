@@ -3,7 +3,7 @@
   imports = [ 
     ./hardware-configuration.nix
 
-    ../common/bluetooth.nix
+    # ../common/bluetooth.nix
     ../common/basic.nix
     ../common/printing.nix
     ../common/wacom.nix
