@@ -23,6 +23,7 @@
     kitty
     matlab
     vscode
+    ryujinx
 
     # Langauges
     nodejs           # javascript
