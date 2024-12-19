@@ -13,11 +13,16 @@
   home.homeDirectory = "/home/${config.home.username}";
   home.stateVersion = "21.11";
 
+  services.spotifyd.enable = true;
   home.packages = with pkgs; [
 
+   (callPackage ../../programs/awesome.nix {})
+  
     # insomnium
     brightnessctl
     kitty
+
+    spotify-tui
 
     # Langauges
     nodejs           # javascript
@@ -41,23 +46,33 @@
 
     # Normal GUI applications
     discord          # discord
-    unstable.signal-desktop-beta # "chat for privacy nerds"
+    unstable.signal-desktop
     gnome.nautilus   # files
     obs-studio       # desktop recording
     kcolorchooser
     zathura          # pdf viewer
-    zoom-us          # ugh zoom
+    unstable.zoom-us # ugh zoom
     bitwarden        # password manager
     unstable.spotify # I have premium now lol
     slack
     chromium
     firefox
+    sx
 
+    # for CS610
+    unstable.eclipses.eclipse-java
+
+    unstable.texlab
+    (texlive.combine {
+      inherit (texlive) scheme-medium
+        parskip;
+    })
   ];
 
   # programs.ncmpcpp.enable = true;
 
   xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/kitty";
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/users/config/awesome";
 
   # GTK stuff
   gtk.theme = { name = "Adapta-Nokto"; package = pkgs.adapta-gtk-theme; };
@@ -81,11 +96,11 @@
     enable = true;
     defaultApplications = {
       "inode/directory"=["org.gnome.Nautilus.desktop"];
-      "text/html" = ["chromium.desktop"];
-      "x-scheme-handler/http" = ["chromium.desktop"];
-      "x-scheme-handler/https" = ["chromium.desktop"];
-      "x-scheme-handler/about" = ["chromium.desktop"];
-      "x-scheme-handler/unknown" = ["chromium.desktop"];
+      "text/html" = ["firefox.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "x-scheme-handler/about" = ["firefox.desktop"];
+      "x-scheme-handler/unknown" = ["firefox.desktop"];
       "application/pdf" = ["org.pwmt.zathura.desktop"];
       "x-scheme-handler/notion"=["notion-app-enhanced.desktop"];
       "x-scheme-handler/bitwarden"=["Bitwarden.desktop"];

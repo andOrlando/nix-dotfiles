@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  # home.packages = with pkgs; [ brightnessctl slurp wl-clipboard ];
-
+  home.packages = with pkgs; [ brightnessctl slurp wl-clipboard ];
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -10,9 +9,8 @@
       menu = "rofi -show drun";
       terminal = "kitty";
       keybindings = let mod = config.wayland.windowManager.sway.config.modifier;
-
       in lib.mkOptionDefault {
-        "${mod}+p" = "exec grim -g \"$(slurp -d)\" - | wl-copy";
+        "Print" = "exec grim -g \"$(slurp -d)\" - | wl-copy";
         "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
         "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
         "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
@@ -20,16 +18,14 @@
         "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
       };
       window = {
-        border = 1;
+        border = 3;
         titlebar = false;
       };
-      fonts.size = 10.0;
+      fonts.size = 13.0;
 
       bars = [{
         position="top";
         statusCommand="${pkgs.i3status-rust.out}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
-        fonts.size = 10.0;
-        trayOutput = "none";
       }];
 
       
@@ -87,25 +83,47 @@
     bars.top = {
       blocks = [
         { block = "music";
-          # format = " $artist - $title ";
           player = "spotify";
         }
-        { block = "sound";
+        { block = "sound"; }
+        { block = "backlight";
+          format = " $brightness ";
+        }
+        { block = "net";
+          format = " $signal_strength $ssid ";
+        }
+        { block = "battery";
+          device = "BAT0";
+          format = " $percentage ";
+          full_format = " $percentage ";
+          charging_format = " $percentage chg ";
+          not_charging_format = " $percentage ";
+          empty_format = " $percentage ";
+          missing_format = " missing ";
+        }
+        { block = "battery";
+          device = "BAT1";
+          format = " $percentage ext ";
+          full_format = " $percentage ext ";
+          charging_format = " $percentage ext chg ";
+          not_charging_format = " $percentage ext ";
+          empty_format = " $percentage ext ";
+          missing_format = " missing ext ";
+        }
+        { block = "battery";
+          device = "DisplayDevice";
+          driver = "upower";
+          format = " $percentage $power ";
+          full_format = " $percentage $power ";
+          charging_format = " $percentage $power $time ";
+          not_charging_format = " $percentage $power ";
+          empty_format = " $percentage $power ";
+          missing_format = " missing ";
         }
         { block = "time";
           format = " $timestamp.datetime(f:'%a %d/%m %R') ";
         }
-        { block = "battery";
-          format = " $percentage $power ";
-          full_format = " $percentage $power ";
-        }
       ];
-      settings = {
-        theme.overrides = {
-          separator = ".";
-          separator_bg = "auto";
-        };
-      };
     };
   };
 }

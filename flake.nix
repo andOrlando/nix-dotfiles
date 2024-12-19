@@ -1,5 +1,5 @@
 {
-  description = "System configuration";
+  description = "System configurationa";
 
   inputs = {
     stable.url = "github:nixos/nixpkgs/nixos-23.11";
@@ -14,13 +14,19 @@
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "stable";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    # nix-tmodloader.url = "github:andOrlando/nix-tmodloader";
+    nix-tmodloader.url = "path:/home/beni/projects/nix-tmodloader";
   };
 
-  outputs = inputs@{ self, stable, unstable, home-manager, nix-matlab, nix-minecraft, ... }:
+  outputs = inputs@{
+    self, stable, unstable, home-manager,
+    nix-matlab,
+    nix-minecraft,
+    nix-tmodloader,
+    ... }:
   let
     system = "x86_64-linux";
     config = { allowUnfree = true; };
-    # mkWindowsApp = stable.callPackage ./programs/mkwindowspackage {};
     
     nixpkgs-overlays = ({ config, system, ...}: {
       nixpkgs.config.allowUnfree = true;
@@ -40,14 +46,6 @@
           printcolors = final.callPackage ./programs/printcolors {};
           startgnome = final.callPackage ./programs/startgnome {};
 
-          # windows stuff
-          # mkwindowsapp-tools = final.callPackage ./programs/mkwindowsapp-tools { wrapProgram = final.wrapProgram; };
-          # ltspice = final.callPackage ./programs/ltspice {
-            # inherit mkWindowsApp;
-            # wine = final.wineWowPackages.full;
-          # };
-
-
           # unstable packages
           unstable = import inputs.unstable {
             system = final.system;
@@ -57,66 +55,41 @@
         # other stuff
         nix-matlab.overlay
         nix-minecraft.overlay
+        nix-tmodloader.overlay
       ];
     });
-    # mkSystem = name: stable.lib.nixosSystem {
-      # inherit system;
-      # specialArgs = inputs;
-      # modules = [
-          # nixpkgs-overlays
-          # ./hosts + name + /configuration.nix
-      # ];
-    # };
+
+    mkSystem = name: stable.lib.nixosSystem {
+      inherit system;
+      specialArgs = inputs;
+      modules = [
+          nixpkgs-overlays
+          ./hosts/${name}/configuration.nix
+      ];
+    };
+    mkHome = name: home-manager.lib.homeManagerConfiguration {
+      pkgs = import stable { inherit system config; };
+      extraSpecialArgs = { inherit inputs; };
+      modules = [
+        nixpkgs-overlays
+        ./users/${name}/home.nix
+      ];
+    };
   
   in {
   
     # normal stuff
     nixosConfigurations = {
-      zephyrus = stable.lib.nixosSystem {
-        inherit system;
-        specialArgs = inputs;
-        modules = [
-          nixpkgs-overlays
-          ./hosts/zephyrus/configuration.nix
-        ];
-      };
-      box1 = stable.lib.nixosSystem {
-        inherit system;
-        specialArgs = inputs;
-        modules = [
-          nixpkgs-overlays
-          ./hosts/box1/configuration.nix
-        ];
-      };
-      t480 = stable.lib.nixosSystem {
-        inherit system;
-        specialArgs = inputs;
-        modules = [
-          nixpkgs-overlays
-          ./hosts/t480/configuration.nix
-        ];
-      };
+      zephyrus = mkSystem "zephyrus";
+      box1 = mkSystem "box1";
+      t480 = mkSystem "t480";
     };
 
     # home-manager stuff
     defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
     homeConfigurations = {
-      bennett = home-manager.lib.homeManagerConfiguration {
-        pkgs = import stable { inherit system config; };
-        extraSpecialArgs = { inherit inputs; };
-        modules = [
-          nixpkgs-overlays
-          ./users/bennett/home.nix
-        ];
-      };
-      beni = home-manager.lib.homeManagerConfiguration {
-        pkgs = import stable { inherit system config; };
-        extraSpecialArgs = { inherit inputs; };
-        modules = [
-          nixpkgs-overlays
-          ./users/beni/home.nix
-        ];
-      };
+      bennett = mkHome "bennett";
+      beni = mkHome "beni";
     };
   };
 }

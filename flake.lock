@@ -3,11 +3,11 @@
     "flake-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1696426674,
-        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "lastModified": 1733328505,
+        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
         "type": "github"
       },
       "original": {
@@ -79,11 +79,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726412491,
-        "narHash": "sha256-0uOLOdrymruXrG45Zun8q/evTQvrA9ovqH3nzq9fqE0=",
+        "lastModified": 1734361313,
+        "narHash": "sha256-MxBgCrzGbG3P1fnAAaiwfGURAaZlRJnmE3uvbYtYcgU=",
         "owner": "doronbehar",
         "repo": "nix-matlab",
-        "rev": "d11378d0277ca240ce8211be3a0e9c0ddf8226fe",
+        "rev": "45bd1ee7d0c4ca58fff29b0fe4f438faaa097d33",
         "type": "gitlab"
       },
       "original": {
@@ -99,17 +99,32 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1726365040,
-        "narHash": "sha256-IGBYtQDfbYW83A7xtBw7imugGeDdudEaF1L1M/MAO7w=",
+        "lastModified": 1734314370,
+        "narHash": "sha256-9PhjDAAuXP4tuJg+kM1AozKwBFyHHJ8ZqhQD+peqGtg=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "7ff4b79d959b26101bf3d53d00aeaeed05ab579a",
+        "rev": "616634de04e87b621bc3d495af114c4e9c6ccd36",
         "type": "github"
       },
       "original": {
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
         "type": "github"
+      }
+    },
+    "nix-tmodloader": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1734367885,
+        "narHash": "sha256-VNIPOVPyTdG1titMoWLu359bDkA0e+f240UNuyH7ptM=",
+        "path": "/home/beni/projects/nix-tmodloader",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/beni/projects/nix-tmodloader",
+        "type": "path"
       }
     },
     "nixpkgs": {
@@ -128,11 +143,28 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1734119587,
+        "narHash": "sha256-AKU6qqskl0yf2+JdRdD0cfxX4b9x3KKV5RqA6wijmPM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "3566ab7246670a43abd2ffa913cc62dad9cdf7d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-matlab": "nix-matlab",
         "nix-minecraft": "nix-minecraft",
+        "nix-tmodloader": "nix-tmodloader",
         "stable": "stable",
         "unstable": "unstable"
       }
@@ -170,11 +202,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1726243404,
-        "narHash": "sha256-sjiGsMh+1cWXb53Tecsm4skyFNag33GPbVgCdfj3n9I=",
+        "lastModified": 1734119587,
+        "narHash": "sha256-AKU6qqskl0yf2+JdRdD0cfxX4b9x3KKV5RqA6wijmPM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "345c263f2f53a3710abe117f28a5cb86d0ba4059",
+        "rev": "3566ab7246670a43abd2ffa913cc62dad9cdf7d5",
         "type": "github"
       },
       "original": {

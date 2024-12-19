@@ -1,10 +1,12 @@
-{ config, pkgs, unstable, ... }@args:
+{ config, pkgs, unstable, nix-tmodloader, ... }:
 {
   imports = [ 
     ./hardware-configuration.nix
 
     ../common/basic.nix
     # ../common/wacom.nix
+
+    nix-tmodloader.nixosModules.tmodloader
   ];
 
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
@@ -14,7 +16,6 @@
       enable = true;
       devices = [ "nodev" ];
       efiSupport = true;
-      useOSProber = true;
     };
   };
 
@@ -27,8 +28,9 @@
     };
   };
 
-  programs.steam.enable = false;
+  programs.steam.enable = true;
 
+  services.upower.enable = true;
   services.tlp = {
     enable = true;
     settings = {
@@ -43,10 +45,10 @@
       CPU_MIN_PERF_ON_BAT = 0;
       CPU_MAX_PERF_ON_BAT = 100;
 
-     # START_CHARGE_THRESH_BAT0 = 40;
-     # STOP_CHARGE_THRESH_BAT0 = 80;
-     # START_CHARGE_THRESH_BAT1 = 40;
-     # STOP_CHARGE_THRESH_BAT1 = 80;
+     START_CHARGE_THRESH_BAT0 = 0;
+     STOP_CHARGE_THRESH_BAT0 = 80;
+     START_CHARGE_THRESH_BAT1 = 0;
+     STOP_CHARGE_THRESH_BAT1 = 80;
     };
   };
 
@@ -54,10 +56,25 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.displayManager.sx.enable = true;
-  environment.systemPackages = with pkgs; [ sway git ];
+  environment.systemPackages = with pkgs; [ sway git texlab ];
 
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";
 
   system.stateVersion = "21.05"; # Keep this the same for cool stuff
+
+
+  services.tmodloader.enable = true;
+  services.tmodloader.makeAttachScripts = true;
+  services.tmodloader.servers.test = {
+    enable = true;
+    install = [ 2824688072 2824688266 ];
+  };
+  services.tmodloader.servers.test2 = {
+    enable = true;
+    port = 7778;
+  };
+
+
+  
 }

@@ -28,10 +28,8 @@
 
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = [ 
-      "JetBrainsMono"
       "FantasqueSansMono"
-      "FiraCode"
-      "Hasklig"
+      # "Hasklig"
     ];})
   ];
 
