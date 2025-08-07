@@ -117,14 +117,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1734367885,
-        "narHash": "sha256-VNIPOVPyTdG1titMoWLu359bDkA0e+f240UNuyH7ptM=",
-        "path": "/home/beni/projects/nix-tmodloader",
-        "type": "path"
+        "lastModified": 1734377184,
+        "narHash": "sha256-1Nz10m5qTsSXedAAl08cN/ama6lCDsM/WgdV5lb/9cQ=",
+        "owner": "andOrlando",
+        "repo": "nix-tmodloader",
+        "rev": "e29ca685ed7e59ef67c592030932ef17dbd8539c",
+        "type": "github"
       },
       "original": {
-        "path": "/home/beni/projects/nix-tmodloader",
-        "type": "path"
+        "owner": "andOrlando",
+        "repo": "nix-tmodloader",
+        "type": "github"
       }
     },
     "nixpkgs": {

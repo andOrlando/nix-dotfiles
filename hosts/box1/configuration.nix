@@ -40,6 +40,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHLqMhzG2TIamYykhSfcv0Gl5qFuUjfl9CZ7mjLCUsgV beni@t480"
     ];
+    hashedPassword = "$6$cq5vs/AUW9kQQRMa$vkpwakgVn7Hn9/o04tCF8fsSoWuaYMEF0YPvxv4CGHeZD7esZn8tEAeqnJT4Cz7/Yl6nTQ9gsZ6vS1vDR6eC50";
   };
 
   # List packages installed in system profile. To search, run:

@@ -59,13 +59,13 @@
       ];
     });
 
-    mkSystem = name: stable.lib.nixosSystem {
+    mkSystem = name: modules: stable.lib.nixosSystem {
       inherit system;
       specialArgs = inputs;
       modules = [
           nixpkgs-overlays
           ./hosts/${name}/configuration.nix
-      ];
+      ] ++ modules;
     };
     mkHome = name: home-manager.lib.homeManagerConfiguration {
       pkgs = import stable { inherit system config; };
@@ -80,9 +80,9 @@
   
     # normal stuff
     nixosConfigurations = {
-      zephyrus = mkSystem "zephyrus";
-      box1 = mkSystem "box1";
-      t480 = mkSystem "t480";
+      zephyrus = mkSystem "zephyrus" [];
+      t480 = mkSystem "t480" [];
+      box1 = mkSystem "box1" [./homelab];
     };
 
     # home-manager stuff
@@ -90,6 +90,7 @@
     homeConfigurations = {
       bennett = mkHome "bennett";
       beni = mkHome "beni";
+      ssh = mkHome "ssh";
     };
   };
 }
