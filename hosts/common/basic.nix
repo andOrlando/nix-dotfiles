@@ -7,14 +7,7 @@
     extraOptions = "experimental-features = nix-command flakes";
   };
   environment.variables.EDITOR="hx";
-
   networking.networkmanager.enable = true;
-
-  sound.enable = true;
-  # services.pipewire.enable = true;
-  # services.pipewire.alsa.enable = true;
-  # services.pipewire.pulse.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # Enable sudo and add correct config
   security.sudo.enable = true;
@@ -23,13 +16,11 @@
   environment.systemPackages = with pkgs; [
     helix
     rebuild
-    pulseaudio
   ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = [ 
       "FantasqueSansMono"
-      # "Hasklig"
     ];})
   ];
 

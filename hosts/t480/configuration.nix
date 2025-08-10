@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
 
     ../common/basic.nix
+    ../common/pulseaudio.nix
     # ../common/wacom.nix
 
     nix-tmodloader.nixosModules.tmodloader
