@@ -10,14 +10,24 @@
       ./hardware-configuration.nix
       ../common/basic.nix
 
-      ./homelab
+      ./homelab.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # raid
+  boot.swraid.enable = true;
+  boot.swraid.mdadmConf = "ARRAY /dev/md0 metadata=1.2 UUID=54ac3abb:2c4fb3a4:adaf7049:ee60df83";
+  fileSystems."/mnt/md0" = {
+    device = "/dev/disk/by-uuid/882954f9-60cd-4766-ad74-b1092552c6fe";
+    fsType = "ext4";
+  };
+
   networking.hostName = "box1"; # Define your hostname.
   services.tailscale.enable = true;
+  systemd.services.tailscaled.after = [ "systemd-networkd-wait-online.service" ];
+  services.mullvad-vpn.enable = true;
 
   time.timeZone = "America/New_York";
 

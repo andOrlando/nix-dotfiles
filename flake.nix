@@ -2,10 +2,10 @@
   description = "System configurationa";
 
   inputs = {
-    stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    stable.url = "github:nixos/nixpkgs/nixos-25.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-23.11"; 
+    home-manager.url = "github:nix-community/home-manager/release-25.05"; 
     home-manager.inputs.nixpkgs.follows = "stable";
 
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
@@ -26,7 +26,6 @@
     ... }:
   let
     system = "x86_64-linux";
-    config = { allowUnfree = true; };
     
     nixpkgs-overlays = ({ config, system, ...}: {
       nixpkgs.config.allowUnfree = true;
@@ -59,38 +58,37 @@
       ];
     });
 
-    mkSystem = name: modules: stable.lib.nixosSystem {
+    lib = stable.lib.extend(final: prev: prev // { helpers = import ./helpers.nix prev; });
+
+    mkUsers = users: {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+
+      home-manager.users = builtins.listToAttrs (
+        map (user: {name=user; value=./users/${user}/home.nix; })
+        users
+      );
+    };
+    mkSystem = name: users: stable.lib.nixosSystem {
       inherit system;
-      specialArgs = inputs;
+      specialArgs = inputs // { inherit lib; };
       modules = [
           nixpkgs-overlays
+          ./homelab
           ./hosts/${name}/configuration.nix
-      ] ++ modules;
-    };
-    mkHome = name: home-manager.lib.homeManagerConfiguration {
-      pkgs = import stable { inherit system config; };
-      extraSpecialArgs = { inherit inputs; };
-      modules = [
-        nixpkgs-overlays
-        ./users/${name}/home.nix
+
+          home-manager.nixosModules.home-manager
+          (mkUsers users)
+
       ];
     };
   
   in {
   
-    # normal stuff
     nixosConfigurations = {
-      zephyrus = mkSystem "zephyrus" [];
-      t480 = mkSystem "t480" [];
-      box1 = mkSystem "box1" [./homelab];
-    };
-
-    # home-manager stuff
-    defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-    homeConfigurations = {
-      bennett = mkHome "bennett";
-      beni = mkHome "beni";
-      ssh = mkHome "ssh";
+      zephyrus = mkSystem "zephyrus" ["bennett"];
+      t480 = mkSystem "t480" ["beni"];
+      box1 = mkSystem "box1" ["ssh"];
     };
   };
 }

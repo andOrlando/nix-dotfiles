@@ -5,7 +5,7 @@
 , gprbuild
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "whitakers-words";
   version = "1.0";
 

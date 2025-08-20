@@ -19,6 +19,5 @@
     wget             # something useful
     unzip            # useful
     eza              # ls++
-
   ];
 }

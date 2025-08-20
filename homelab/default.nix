@@ -15,8 +15,29 @@ in
       type = lib.types.str;
       description = "group for all homelab services";
     };
+    basedomain = lib.mkOption {
+      default = "box1";
+      type = lib.types.str;
+      description = "base domain for home server";
+    };
   };
-  imports = [];
+  imports = [
+    ./homepage
+    ./deluge
+    ./immich
+    ./navidrome
+
+    ./prowlarr
+    ./sonarr
+    ./radarr
+    ./lidarr
+    ./bazarr
+
+    ./jellyfin
+    ./jellyseerr
+
+    ./owntracks
+  ];
   config = lib.mkIf cfg.enable {
     users = {
       groups.${cfg.group} = {

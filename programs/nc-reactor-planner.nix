@@ -3,7 +3,7 @@
 , wine 
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "nc-reactor-planner";
   version = "1.0";
 
