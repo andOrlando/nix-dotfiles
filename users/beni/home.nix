@@ -17,23 +17,21 @@
   services.spotifyd.enable = true;
   home.packages = with pkgs; [
 
-    (callPackage ../../programs/awesome.nix {})
-  
+    # (callPackage ../../programs/awesome.nix {})
     stremio
-    kicad
+    unstable.claude-code
     baobab
-    notion-app-enhanced
+    docker
   
     # insomnium
-    sqlitebrowser
     brightnessctl
     kitty
 
-    # spotify-tui
+    naviterm
 
     # Langauges
     go
-    nodejs           # javascript
+    nodejs_24           # javascript
     lua              # lua
     python312Full    # python
     gcc              # for some nvim thing
@@ -55,19 +53,15 @@
     discord          # discord
     unstable.signal-desktop
     nautilus   # files
-    kcolorchooser
+    kdePackages.kcolorchooser
     zathura          # pdf viewer
     unstable.zoom-us # ugh zoom
-    bitwarden        # password manager
-    unstable.spotify # I have premium now lol
     slack
     chromium
     firefox
     unstable.librewolf
     sx
 
-    # for CS610
-    unstable.eclipses.eclipse-java
     prismlauncher
 
     unstable.texlab

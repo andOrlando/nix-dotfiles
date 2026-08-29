@@ -14,9 +14,9 @@
         "Shift+Print" = "exec grim -g \"$(slurp -d)\"";
         "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
         "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
-        "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
-        "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'";
-        "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+        "XF86AudioRaiseVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+'";
+        "XF86AudioLowerVolume" = "exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-'";
+        "XF86AudioMute" = "exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
       };
       window = {
         border = 3;
@@ -83,9 +83,9 @@
     enable = true;
     bars.top = {
       blocks = [
-        { block = "music";
-          player = "spotify";
-        }
+        # { block = "music";
+        #   player = "spotify";
+        # }
         { block = "sound"; }
         { block = "backlight";
           format = " $brightness ";

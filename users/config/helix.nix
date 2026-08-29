@@ -7,8 +7,10 @@
     # rust-analyzer
     python3Packages.python-lsp-server
     typescript-language-server
+    rustup
     clang-tools
     gopls
+    ltex-ls-plus
   ];
 
   programs.helix = {
@@ -33,6 +35,7 @@
           enable = true;
           wrap-at-text-width = true;
         };
+        language-servers = ["texlab" "ltex-ls-plus"];
       }
     ];
     languages.language-server.texlab.config.texlab = {
@@ -44,6 +47,11 @@
     };
     languages.language-server.rust-analyzer.config.check = {
       command = "clippy";
+    };
+    languages.language-server.ltex-ls-plus.config.ltex = {
+      diagnosticSeverity = "warning";
+      disabledRules = { en-US = ["PROFANITY"]; en-GB = ["PROFANITY"]; };
+      dictionary = { en-US = ["builtin"]; en-GB = ["builtin"]; };
     };
   };
 }

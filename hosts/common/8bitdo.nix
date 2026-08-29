@@ -3,8 +3,6 @@
   # Fix for using Xinput mode on 8bitdo Ultimate C controller
   # Inspired by https://aur.archlinux.org/packages/8bitdo-ultimate-controller-udev
   
-  environment.systemPackages = [pkgs.xboxdrv];
-
   # Udev rules to start or stop systemd service when controller is connected or disconnected
   services.udev.extraRules = ''
     # May vary depending on your controller model, find product id using 'lsusb'

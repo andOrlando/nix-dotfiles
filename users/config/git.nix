@@ -14,7 +14,8 @@ in
       safe.directory=["/etc/nixos"];
       url."https://".insteadOf="git://";
       config.credential.helper = "store";
-      };
+    };
+    lfs.enable = true;
   };
   # programs.git-credential-oauth.enable = true;
 }

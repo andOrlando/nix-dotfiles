@@ -1,15 +1,26 @@
-{ config, pkgs, unstable, nix-tmodloader, ... }:
+{  pkgs, nix-tmodloader, ... }:
 {
   imports = [ 
     ./hardware-configuration.nix
 
     ../common/basic.nix
-    ../common/pulseaudio.nix
-    ../common/8bitdo.nix
+    ../common/sound.nix
+    # ../common/8bitdo.nix
     # ../common/wacom.nix
 
     nix-tmodloader.nixosModules.tmodloader
   ];
+  nix.settings.auto-optimise-store = true;
+  virtualisation.docker.enable = true;
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      # dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
+  };
+
 
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
   boot.loader = {
@@ -33,6 +44,8 @@
   programs.steam.enable = true;
   programs.adb.enable = true;
   services.tailscale.enable = true;
+  # services.postgresql.enable = true;
+  # services.postgresql.package = pkgs.postgresql_15;
 
   services.upower.enable = true;
   services.tlp = {
@@ -40,6 +53,8 @@
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_DRIVER_OPMODE_ON_AC = "active";
+      CPU_DRIVER_OPMODE_ON_BAT = "passive";
 
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
@@ -58,9 +73,11 @@
 
 
   services.xserver.enable = true;
-  services.xserver.layout = "us";
+  services.xserver.xkb.layout = "us";
   services.xserver.displayManager.sx.enable = true;
   environment.systemPackages = with pkgs; [
+    gpclient
+    i3
     sway
     git
     texlab

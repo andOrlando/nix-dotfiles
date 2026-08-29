@@ -7,7 +7,7 @@
     ../common/basic.nix
     ../common/printing.nix
     ../common/wacom.nix
-    ../common/pulseaudio.nix
+    ../common/sound.nix
 
     ../common/minecraftservers/tiffserver.nix
     ../common/minecraftservers/testserver.nix
