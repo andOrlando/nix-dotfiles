@@ -5,6 +5,7 @@
 
     ../common/basic.nix
     ../common/pulseaudio.nix
+    ../common/8bitdo.nix
     # ../common/wacom.nix
 
     nix-tmodloader.nixosModules.tmodloader
@@ -30,10 +31,12 @@
   };
 
   programs.steam.enable = true;
+  programs.adb.enable = true;
+  services.tailscale.enable = true;
 
   services.upower.enable = true;
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -57,25 +60,19 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.displayManager.sx.enable = true;
-  environment.systemPackages = with pkgs; [ sway git texlab ];
+  environment.systemPackages = with pkgs; [
+    sway
+    git
+    texlab
+    libsodium
+    czmq
+    pkg-config
+  ];
+  services.gnome.gnome-keyring.enable = true;
 
   time.hardwareClockInLocalTime = true;
   time.timeZone = "America/New_York";
 
   system.stateVersion = "21.05"; # Keep this the same for cool stuff
 
-
-  services.tmodloader.enable = true;
-  services.tmodloader.makeAttachScripts = true;
-  services.tmodloader.servers.test = {
-    enable = true;
-    install = [ 2824688072 2824688266 ];
-  };
-  services.tmodloader.servers.test2 = {
-    enable = true;
-    port = 7778;
-  };
-
-
-  
 }

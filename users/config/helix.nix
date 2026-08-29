@@ -6,14 +6,9 @@
     lua-language-server
     # rust-analyzer
     python3Packages.python-lsp-server
-    # (python311Packages.python-lsp-server.overrideAttrs(old: {
-      # disabledTests = old.disabledTests ++ [ 
-        # "test_in_place_no_modifications_no_writes"
-        # "test_in_place_no_modifications_no_writes_with_empty_file"
-      # ];
-    # }))
     typescript-language-server
     clang-tools
+    gopls
   ];
 
   programs.helix = {

@@ -1,3 +1,12 @@
-[submodule "users/bennett/awesome/lib/bling"]
-	path = users/bennett/awesome/lib/bling
+[submodule "users/config/awesome/lib/bling"]
+	path = users/config/awesome/lib/bling
 	url = https://github.com/BlingCorp/bling
+[submodule "users/config/awesome/lib/awesome-widgets"]
+	path = users/config/awesome/lib/awesome-widgets
+	url = https://github.com/andOrlando/awesome-widgets
+[submodule "users/config/awesome/lib/color"]
+	path = users/config/awesome/lib/color
+	url = https://github.com/andOrlando/color
+[submodule "users/config/awesome/lib/rubato"]
+	path = users/config/awesome/lib/rubato
+	url = https://github.com/andOrlando/rubato

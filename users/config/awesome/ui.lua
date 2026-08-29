@@ -19,7 +19,7 @@ local coolwidget = require "lib.awesome-widgets".coolwidget
 local recycler = require "lib.awesome-widgets".recycler
 local slider = require "lib.awesome-widgets".slider
 local playerctl = require "lib.playerctl".lib()
-local bluetooth = require "lib.bluetooth"
+-- local bluetooth = require "lib.bluetooth"
 --local wifi = require "lib.network"
 
 --returning table

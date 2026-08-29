@@ -13,22 +13,29 @@
   home.homeDirectory = "/home/${config.home.username}";
   home.stateVersion = "21.11";
 
+  # hardware.opengl.enable = true;
   services.spotifyd.enable = true;
   home.packages = with pkgs; [
 
-   (callPackage ../../programs/awesome.nix {})
+    (callPackage ../../programs/awesome.nix {})
+  
+    stremio
+    kicad
+    baobab
+    notion-app-enhanced
   
     # insomnium
+    sqlitebrowser
     brightnessctl
     kitty
 
-    spotify-tui
+    # spotify-tui
 
     # Langauges
+    go
     nodejs           # javascript
     lua              # lua
-    python3          # python
-    python3Packages.pip
+    python312Full    # python
     gcc              # for some nvim thing
     gnumake
 
@@ -47,8 +54,7 @@
     # Normal GUI applications
     discord          # discord
     unstable.signal-desktop
-    gnome.nautilus   # files
-    obs-studio       # desktop recording
+    nautilus   # files
     kcolorchooser
     zathura          # pdf viewer
     unstable.zoom-us # ugh zoom
@@ -57,15 +63,48 @@
     slack
     chromium
     firefox
+    unstable.librewolf
     sx
 
     # for CS610
     unstable.eclipses.eclipse-java
+    prismlauncher
 
     unstable.texlab
     (texlive.combine {
-      inherit (texlive) scheme-medium
-        parskip;
+      inherit (texlive) scheme-full
+        pygmentex
+        listingsutf8
+        pdfcol
+        tikzfill
+        tcolorbox
+        multirow
+        libertine
+        inconsolata
+        newtx
+        minted
+        ncctools
+        ifmtarg
+        hyperxmp
+        totpages
+        xstring
+        environ
+        lipsum
+        makecell
+        gensymb
+        relsize
+        ifoddpage
+        cancel
+        codesection
+        parskip
+        enumitem
+        comment;
+    })
+
+    (wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+      ];
     })
   ];
 
@@ -96,11 +135,11 @@
     enable = true;
     defaultApplications = {
       "inode/directory"=["org.gnome.Nautilus.desktop"];
-      "text/html" = ["firefox.desktop"];
-      "x-scheme-handler/http" = ["firefox.desktop"];
-      "x-scheme-handler/https" = ["firefox.desktop"];
-      "x-scheme-handler/about" = ["firefox.desktop"];
-      "x-scheme-handler/unknown" = ["firefox.desktop"];
+      "text/html" = ["librewolf.desktop"];
+      "x-scheme-handler/http" = ["librewolf.desktop"];
+      "x-scheme-handler/https" = ["librewolf.desktop"];
+      "x-scheme-handler/about" = ["librewolf.desktop"];
+      "x-scheme-handler/unknown" = ["librewolf.desktop"];
       "application/pdf" = ["org.pwmt.zathura.desktop"];
       "x-scheme-handler/notion"=["notion-app-enhanced.desktop"];
       "x-scheme-handler/bitwarden"=["Bitwarden.desktop"];

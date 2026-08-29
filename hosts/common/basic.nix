@@ -3,7 +3,7 @@
   
   nix = {
     nixPath = ["nixpkgs=${stable}"];
-    package = pkgs.nixVersions.stable ; # or versioned attributes like nixVersions.nix_2_8
+    package = pkgs.nixVersions.stable;
     extraOptions = "experimental-features = nix-command flakes";
   };
   environment.variables.EDITOR="hx";

@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  home.packages = with pkgs; [ brightnessctl slurp wl-clipboard ];
+  home.packages = with pkgs; [ brightnessctl slurp wl-clipboard grim ];
   wayland.windowManager.sway = {
     enable = true;
     config = {
@@ -11,6 +11,7 @@
       keybindings = let mod = config.wayland.windowManager.sway.config.modifier;
       in lib.mkOptionDefault {
         "Print" = "exec grim -g \"$(slurp -d)\" - | wl-copy";
+        "Shift+Print" = "exec grim -g \"$(slurp -d)\"";
         "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
         "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
         "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'";
@@ -120,6 +121,8 @@
           empty_format = " $percentage $power ";
           missing_format = " missing ";
         }
+        { block = "cpu"; }
+        { block = "memory"; }
         { block = "time";
           format = " $timestamp.datetime(f:'%a %d/%m %R') ";
         }

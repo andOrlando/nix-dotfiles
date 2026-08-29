@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  git-libsecret = pkgs.gitFull.override { withLibsecret = true; };
+in
 {
   programs.git = {
     enable = true;
