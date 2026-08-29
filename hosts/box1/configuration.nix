@@ -9,12 +9,16 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common/basic.nix
+#      ../common/terrariaservers/johncenx.nix
+#      ../common/terrariaservers/calamity.nix
+#      ../common/palworldservers/server.nix
 
       ./homelab.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  programs.nix-ld.enable = true;
 
   # raid
   boot.swraid.enable = true;
@@ -26,6 +30,8 @@
 
   networking.hostName = "box1"; # Define your hostname.
   services.tailscale.enable = true;
+  services.tailscale.permitCertUid = "caddy";
+  services.cloudflared.enable = true;
   systemd.services.tailscaled.after = [ "systemd-networkd-wait-online.service" ];
   services.mullvad-vpn.enable = true;
 
@@ -47,7 +53,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ rebuild helix ];
+  environment.systemPackages = with pkgs; [ rebuild helix cloudflared calc ];
 
 
   # This value determines the NixOS release from which the default

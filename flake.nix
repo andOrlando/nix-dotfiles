@@ -2,10 +2,10 @@
   description = "System configurationa";
 
   inputs = {
-    stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    stable.url = "github:nixos/nixpkgs/nixos-26.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05"; 
+    home-manager.url = "github:nix-community/home-manager/release-26.05"; 
     home-manager.inputs.nixpkgs.follows = "stable";
 
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
@@ -14,8 +14,9 @@
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "stable";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    nix-tmodloader.url = "github:andOrlando/nix-tmodloader";
-    # nix-tmodloader.url = "path:/home/beni/projects/nix-tmodloader";
+    # nix-tmodloader.url = "github:andOrlando/nix-tmodloader";
+    nix-tmodloader.url = "path:/home/ssh/nix-tmodloader";
+    palworld-server-flake.url = "github:dp138504/palworld-server-flake";
   };
 
   outputs = inputs@{
@@ -23,6 +24,7 @@
     nix-matlab,
     nix-minecraft,
     nix-tmodloader,
+    palworld-server-flake,
     ... }:
   let
     system = "x86_64-linux";
@@ -50,7 +52,27 @@
             system = final.system;
             config.allowUnfree = true;
           };
-        })    
+
+          # update palworld manifest
+          palworld-server-unwrapped = _prev.palworld-server-unwrapped.overrideAttrs(old: {
+            src = final.fetchSteam {
+              name = "palworld-server";
+              appId = "2394010";
+              depotId = "2394012";
+              manifestId = "1480973772525600530";
+              hash = lib.fakeHash;
+            };
+          });
+          steamworks-sdk-redist = _prev.steamworks-sdk-redist.overrideAttrs (old: {
+            src = final.fetchSteam {
+              name = "steamworks-sdk-redist";
+              appId = "1007";
+              depotId = "1006";
+              manifestId = "5587033981095108078"; # unchanged, same manifest — just re-pin the hash
+              hash = "sha256-qsmqBj3GlHZ47kyO0w3XlaTW2bC99nEjXrxEyGy5ico=";
+            };
+          });
+        })
         # other stuff
         nix-matlab.overlay
         nix-minecraft.overlay

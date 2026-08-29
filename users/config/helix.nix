@@ -3,16 +3,16 @@
   home.packages = with pkgs; [
     # Language servers
     nil
-    sumneko-lua-language-server
+    lua-language-server
     # rust-analyzer
-    python311Packages.python-lsp-server
+    python3Packages.python-lsp-server
     # (python311Packages.python-lsp-server.overrideAttrs(old: {
       # disabledTests = old.disabledTests ++ [ 
         # "test_in_place_no_modifications_no_writes"
         # "test_in_place_no_modifications_no_writes_with_empty_file"
       # ];
     # }))
-    nodePackages_latest.typescript-language-server
+    typescript-language-server
     clang-tools
   ];
 

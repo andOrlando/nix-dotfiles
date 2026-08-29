@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.homelab.homepage;
-  # homelab = config.homelab;
+  homelab = config.homelab;
 in
 {
   options.homelab.homepage = {
@@ -17,7 +17,7 @@ in
       services  =
       let
         hl = config.homelab;
-        categories = [ "media" "torrent" ];
+        categories = [ "media" "torrent" "utilities" ];
         getServicesByName = x: (lib.attrsets.mapAttrsToList (name: _: name) (lib.attrsets.filterAttrs (name: value:
               value ? homepage
               && value.homepage ? category
@@ -56,6 +56,7 @@ in
     services.caddy = {
       enable = true;
       virtualHosts.":80".extraConfig = "reverse_proxy http://localhost:8082";
+      virtualHosts.${homelab.basedomain}.extraConfig = "reverse_proxy http://localhost:8082";
     };
   };
 }

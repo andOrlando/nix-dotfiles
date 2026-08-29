@@ -24,19 +24,26 @@ in
   imports = [
     ./homepage
     ./deluge
+    ./qbittorrent
     ./immich
     ./navidrome
+    ./beets
 
     ./prowlarr
+    ./jackett
     ./sonarr
     ./radarr
-    ./lidarr
     ./bazarr
+    ./slskd
 
     ./jellyfin
     ./jellyseerr
 
     ./owntracks
+    ./traccar
+    ./vaultwarden
+    ./nextcloud
+    ./opencloud
   ];
   config = lib.mkIf cfg.enable {
     users = {

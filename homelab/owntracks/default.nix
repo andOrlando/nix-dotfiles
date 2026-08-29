@@ -5,11 +5,16 @@
 let
   service = "owntracks";
   cfg = config.homelab.${service};
-  # homelab = config.homelab;
+  homelab = config.homelab;
 in
 {
   options.homelab.${service} = {
     enable = lib.mkEnableOption "enable ${service}";
+    homepage = lib.helpers.mkStringDefaults {
+      category = "utilities";
+      description = "find stuff";
+      url = "${homelab.basedomain}:8083";
+    };
   };
   config = lib.mkIf cfg.enable {
     systemd.services.ot-recorder = {
