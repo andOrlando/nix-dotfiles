@@ -14,12 +14,12 @@
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "stable";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    # nix-tmodloader.url = "github:andOrlando/nix-tmodloader";
-    nix-tmodloader.url = "path:/home/ssh/nix-tmodloader";
+    nix-tmodloader.url = "github:andOrlando/nix-tmodloader";
+    # nix-tmodloader.url = "path:/home/ssh/nix-tmodloader";
     palworld-server-flake.url = "github:dp138504/palworld-server-flake";
 
-    naviterm.url = "gitlab:detoxify92/naviterm";
-    naviterm.inputs.nixpkgs.follows = "stable";
+    # naviterm.url = "gitlab:detoxify92/naviterm";
+    # naviterm.inputs.nixpkgs.follows = "stable";
 
   };
 
@@ -29,7 +29,7 @@
     nix-minecraft,
     nix-tmodloader,
     palworld-server-flake,
-    naviterm,
+    # naviterm,
     ... }:
   let
     system = "x86_64-linux";
@@ -82,9 +82,9 @@
         nix-matlab.overlay
         nix-minecraft.overlay
         nix-tmodloader.overlay
-        (final: _prev: {
-          naviterm = naviterm.packages.${final.system}.default;
-        })
+        # (final: _prev: {
+          # naviterm = naviterm.packages.${final.system}.default;
+        # })
       ];
     });
 

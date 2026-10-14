@@ -18,7 +18,6 @@
   home.packages = with pkgs; [
 
     # (callPackage ../../programs/awesome.nix {})
-    stremio
     unstable.claude-code
     baobab
     docker
@@ -27,13 +26,13 @@
     brightnessctl
     kitty
 
-    naviterm
-
     # Langauges
     go
     nodejs_24           # javascript
     lua              # lua
-    python312Full    # python
+    (python3.withPackages(ps: [
+      ps.numpy
+    ]))    # python
     gcc              # for some nvim thing
     gnumake
 

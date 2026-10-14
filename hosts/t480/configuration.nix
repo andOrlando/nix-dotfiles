@@ -42,7 +42,6 @@
   };
 
   programs.steam.enable = true;
-  programs.adb.enable = true;
   services.tailscale.enable = true;
   # services.postgresql.enable = true;
   # services.postgresql.package = pkgs.postgresql_15;
