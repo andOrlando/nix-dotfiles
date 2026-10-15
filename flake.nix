@@ -119,6 +119,7 @@
       zephyrus = mkSystem "zephyrus" ["bennett"];
       t480 = mkSystem "t480" ["beni"];
       box1 = mkSystem "box1" ["ssh"];
+      desktop = mkSystem "desktop" ["bennett2"];
     };
   };
 }
