@@ -97,7 +97,10 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;  # see the note above
   hardware.nvidia.modesetting.enable = true; # for wayland
+  hardware.nvidia.powerManagement.enable = true;
+  hardware.nvidia.nvidiaSettings = true;
   # programs.nix-ld = { enable = true; libraries = pkgs.steam-run.fhsenv.args.multiPkgs pkgs ++ []; };
+  services.sunshine.enable = true;
 
   programs.steam.enable = true;
   programs.firefox.enable = true;
